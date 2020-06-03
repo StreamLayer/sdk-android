@@ -1,0 +1,101 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.versions = [
+            'gradle'                     : '4.0.0',
+            'kotlin'                     : "1.3.61",
+            'googleServices'             : "4.3.3",
+            'protobufGradle'             : "0.8.10",
+            'appcompat'                  : "1.1.0",
+            'coreKtx'                    : "1.2.0",
+            'constraintlayout'           : "2.0.0-beta4",
+            'legacySupportV4'            : "1.0.0",
+            'junit'                      : "4.12",
+            'archCore'                   : "2.1.0",
+            'roboelectric'               : "4.3",
+            'espresso'                   : "3.2.0",
+            'truth'                      : "0.44",
+            'mockWebServer'              : "4.2.1",
+            'mockito'                    : "3.1.0",
+            'dexMaker'                   : "2.12.1",
+            'androidxTestCore'           : "1.2.0-beta01",
+            'androidxTestExtKotlinRunner': "1.1.1-beta01",
+            'androidxTestRules'          : "1.2.0-beta01",
+            'fragmentTesting'            : "1.2.4",
+            'testCore'                   : "1.2.0",
+            'leakCanary'                 : "2.0-beta-3",
+            'room'                       : "2.2.5",
+            'navigation'                 : "2.2.0",
+            'archLifecycle'              : "2.2.0",
+            'rxRoom'                     : "1.1.1",
+            'dagger'                     : "2.24",
+            'retrofit'                   : "2.6.1",
+            'okHttp'                     : "4.1.0",
+            'firebaseCore'               : "17.2.1",
+            'firebaseAnalytics'          : "17.2.1",
+            'firebaseMessaging'          : "20.1.0",
+            'crashlytics'                : "17.0.0-beta01",
+            'crashlyticsPlugin'          : "2.0.0-beta01",
+            'rxAndroid'                  : "2.1.1",
+            'rxJava'                     : "2.2.11",
+            'rxProguard'                 : "1.3.3.0",
+            'rxBindings'                 : "2.0.0",
+            'parceler'                   : "1.1.12",
+            'material'                   : "1.1.0",
+            'androidUtils'               : "0.97",
+            'animicons'                  : "0.2",
+            'glide'                      : "4.10.0",
+            'glideTransformations'       : "4.1.0",
+            'protobuf'                   : "3.9.0",
+            'javalite'                   : "3.0.0",
+            'exoPlayer'                  : "2.11.1",
+            'javax'                      : "1.3.2",
+            'grpc'                       : "1.27.0",
+            'slProtofiles'               : "1.98.3",
+            'fadingEdgeLayout'           : "1.0.0",
+            'libPhoneNumber'             : "8.2.0",
+            'runtimePermissionsKt'       : "1.1.2",
+            'pagination'                 : "2.1.1",
+            'keyboardVisibilityEvent'    : "3.0.0-RC1",
+            'ticker'                     : "2.0.2",
+            'cardStackView'              : "2.3.4",
+            'circleImageView'            : "3.1.0",
+            'flexbox'                    : "2.0.1",
+            'viewTooltip'                : "1.2.2",
+            'androidEmoji'               : "1.1.0-beta01",
+            'timeago'                    : "4.0.3",
+            'badge'                      : "2.1",
+            'webRTC'                     : "1.0.30039",
+            'videoCache'                 : "2.7.1",
+            'coroutinesRx'               : "1.3.6",
+            'vimeoExtractor'             : "1.2.1",
+            'twitter'                    : "3.3.0"
+    ]
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+        classpath "com.google.gms:google-services:$versions.googleServices"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$versions.crashlyticsPlugin"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

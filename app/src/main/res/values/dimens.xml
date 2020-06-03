@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="divider_size">1dp</dimen>
+    <dimen name="divider_dash_width">2dp</dimen>
+    <dimen name="divider_dash_spacing">2dp</dimen>
+    <dimen name="player_height_portrait">210dp</dimen>
+</resources>
