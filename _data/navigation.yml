@@ -12,6 +12,6 @@ docs:
       - title: StreamLayerFragment
         url: /classes/sdk/io.streamlayer.sdk.main/-stream-layer-fragment/index
       - title: StreamLayerFragmentLite
-          url: /classes/sdk/io.streamlayer.sdk.lite/-stream-layer-lite-fragment/index
+        url: /classes/sdk/io.streamlayer.sdk.lite/-stream-layer-lite-fragment/index
       - title: StreamLayerSettings
-          url: /classes/sdk/io.streamlayer.sdk/-stream-layer-settings/index
+        url: /classes/sdk/io.streamlayer.sdk/-stream-layer-settings/index
