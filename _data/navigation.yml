@@ -1,0 +1,13 @@
+# main links
+main:
+  - title: "Documentation"
+    url: https://docs.streamlayer.io/docs
+
+# documentation links
+docs:
+  - title: Classes
+    children:
+      - title: StreamLayer
+        url: /classes/sdk/io.streamlayer.sdk/-stream-layer/index
+      - title: StreamLayerFragment
+        url: /classes/sdk/io.streamlayer.sdk.main/-stream-layer-fragment/index

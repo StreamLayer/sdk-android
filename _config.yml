@@ -1,1 +1,157 @@
-theme: jekyll-theme-minimal
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your entire site, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# `jekyll serve`. If you change this file, please restart the server process.
+
+remote_theme: "mmistakes/minimal-mistakes@4.19.2"
+
+minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+# Site Settings
+locale: "en-US"
+title: "StreamLayer"
+title_separator: "-"
+subtitle: "Android SDK Documentation"
+name: "StreamLayer Android SDK" # &name is a YAML anchor which can be *referenced later
+description: "StreamLayer Android SDK documentation"
+url: https://streamlayer.github.io
+baseurl: "/sdk-android"
+repository: "streamlayer/sdk-android"
+masthead_title: # overrides the website title displayed in the masthead, use " " for no title
+words_per_minute: 200
+
+
+# Social Sharing
+twitter:
+  username: "streamlayer"
+# For specifying social profiles, used in _includes/seo.html
+# - https://developers.google.com/structured-data/customize/social-profiles
+social:
+  type: "Organization"
+  name: # If the user or organization name differs from the site's name
+  links: # An array of links to social media profiles
+    - "https://twitter.com/streamlayer"
+
+
+# Site Footer
+footer:
+  links:
+    - label: "iOS Documentation"
+      url: "https://streamlayer.github.io/sdk-ios"
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+  - _classes
+exclude:
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - vendor
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - assets/js/plugins
+  - assets/js/_main.js
+  - assets/js/vendor
+  - Capfile
+  - CHANGELOG
+  - config
+  - Gemfile
+  - Gruntfile.js
+  - gulpfile.js
+  - LICENSE
+  - log
+  - node_modules
+  - package.json
+  - Rakefile
+  - README
+  - tmp
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd,md"
+
+
+# Conversion
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
+
+# Markdown Processing
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+  classes:
+    output: true
+    permalink: /:collection/:path/
+
+
+
+# Defaults
+defaults:
+  # _docs
+  - scope:
+      path: ""
+    values:
+      layout: single
+      read_time: false
+      author_profile: false
+      share: false
+      comments: false
+      sidebar:
+        nav: "docs"
+
+
+# Sass/SCSS
+sass:
+  sass_dir: _sass
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+
+
+
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+# mimic GitHub Pages with --safe
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
+
+
+# HTML Compression
+# - http://jch.penibelst.de/
+compress_html:
+  clippings: all
+  ignore:
+    envs: development
