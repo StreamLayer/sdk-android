@@ -1,9 +1,6 @@
 $dokka.format:html
 $dokka.linkExtension:html
 
-io.streamlayer.common.mvvm
-io.streamlayer.common.routes
-io.streamlayer.common.views
 io.streamlayer.common.views.alphavideoview
 io.streamlayer.sdk
 io.streamlayer.sdk.auth
@@ -14,6 +11,5 @@ io.streamlayer.sdk.messaging.chat
 io.streamlayer.sdk.messaging.invite
 io.streamlayer.sdk.model.deeplink
 io.streamlayer.sdk.model.notifications
-io.streamlayer.sdk.onboarding
 io.streamlayer.utils
 
