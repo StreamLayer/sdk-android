@@ -28,7 +28,6 @@ object NotificationChannelsHelper {
      * When adding new channel, update VERSION and getChannelName/Description methods.
      * Use [Channel.name] as channelId in [android.support.v4.app.NotificationCompat.Builder] constructor
      *
-     * @see [com.bornfight.tasteatlas.firebase.MyFirebaseMessagingService.showNotification]
      */
     enum class Channel {
         general

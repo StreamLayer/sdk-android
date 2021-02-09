@@ -14,13 +14,10 @@ import javax.inject.Singleton
         (AndroidInjectionModule::class),
         (BindingModuleActivities::class),
         (RepositoryModule::class),
-        (SchedulersModule::class),
         (ViewModelModule::class),
         (ExoPlayerModule::class)
     ]
 )
 interface ApplicationComponent : AndroidInjector<App> {
-
     val context: Context
-
 }

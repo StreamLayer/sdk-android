@@ -4,6 +4,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
+import io.branch.referral.Branch
 import io.streamlayer.demo.common.dagger.components.ApplicationComponent
 import io.streamlayer.demo.common.dagger.components.DaggerApplicationComponent
 import io.streamlayer.demo.common.dagger.modules.ContextModule
@@ -29,9 +30,8 @@ class App : Application(), HasAndroidInjector {
             .build()
             .also { component = it }
             .inject(this)
-
         NotificationChannelsHelper.initChannels(this)
-
+        Branch.getAutoInstance(this)
         StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
     }
 }

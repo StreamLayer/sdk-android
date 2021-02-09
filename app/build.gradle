@@ -23,17 +23,21 @@ android {
         unitTests.includeAndroidResources = true
     }
 
-    compileSdkVersion 29
-    buildToolsVersion '29.0.2'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "io.streamlayer.demo"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         resValue "string", "app_name", "StreamLayer DEMO"
+
+        manifestPlaceholders += [branchIoKey: "your-branchIo-sdk-key"]
+        manifestPlaceholders += [branchIoHost: "your-branchIo-host"]
+        manifestPlaceholders += [branchIoAlternateHost: "your-branchIo-alternate-host"]
 
         buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
     }
@@ -44,40 +48,36 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-debug-rules.pro'
 
-            manifestPlaceholders = [enableCrashlytics: false]
+            manifestPlaceholders += [enableCrashlytics: false]
         }
+    }
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
 
     // StreamLayer SDK dependency ================================================
-    implementation "io.streamlayer:androidsdk:1.1.1-beta.3"
+    implementation "io.streamlayer:androidsdk:2.2.0"
 
-
-    // Other dependencies ========================================================
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.coreKtx"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.archLifecycle"
-    implementation "com.google.android.exoplayer:exoplayer:$versions.exoPlayer"
 
     // Google Material Design Components
     implementation "com.google.android.material:material:$versions.material"
-
-    // test dependencies
-    testImplementation "junit:junit:$versions.junit"
-
-    // AndroidX Test - Instrumented testing
-    androidTestImplementation "androidx.test:core-ktx:$versions.androidxTestCore"
-    androidTestImplementation "androidx.test.ext:junit-ktx:$versions.androidxTestExtKotlinRunner"
 
     // Firebase
     implementation "com.google.firebase:firebase-analytics:$versions.firebaseAnalytics"
     implementation "com.google.firebase:firebase-crashlytics:$versions.crashlytics"
     implementation "com.google.firebase:firebase-messaging:$versions.firebaseMessaging"
+
+    // Exo player
+    implementation "com.google.android.exoplayer:exoplayer:$versions.exoPlayer"
 
     // Bornfight dependencies
     implementation "com.github.bornfight:AndroidUtils:$versions.androidUtils"
@@ -85,13 +85,12 @@ dependencies {
 
     //Dagger
     implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger"
     implementation "com.google.dagger:dagger-android:$versions.dagger"
     implementation "com.google.dagger:dagger-android-support:$versions.dagger"
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
-
-    kaptTest "com.google.dagger:dagger:$versions.dagger"
-    testImplementation "com.google.dagger:dagger:$versions.dagger"
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
@@ -102,4 +101,7 @@ dependencies {
 
     // Vimeo
     implementation "com.github.ed-george:AndroidVimeoExtractor:$versions.vimeoExtractor"
+
+    // Branch IO
+    implementation "io.branch.sdk.android:library:$versions.branchIO"
 }

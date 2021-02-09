@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="io.streamlayer.demo.main.HomeFragment"
+        tools:layout="@layout/fragment_home"/>
+    <fragment
+        android:id="@+id/scoreFragment"
+        android:name="io.streamlayer.demo.main.ScoreFragment"
+        tools:layout="@layout/fragment_scores"/>
+    <fragment
+        android:id="@+id/extraFragment"
+        android:name="io.streamlayer.demo.main.ExtrasFragment"
+        tools:layout="@layout/fragment_extras"/>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="io.streamlayer.demo.main.MoreFragment"
+        tools:layout="@layout/fragment_more"/>
+
+    <activity
+        android:id="@+id/playerActivity"
+        android:name="io.streamlayer.demo.player.PlayerActivity"
+        tools:layout="@layout/activity_player" />
+</navigation>

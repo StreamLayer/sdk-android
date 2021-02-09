@@ -2,9 +2,8 @@ package io.streamlayer.demo.common.dagger.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import io.streamlayer.demo.common.firebase.MyFirebaseMessagingService
 import io.streamlayer.demo.common.mvvm.BaseActivity
-import io.streamlayer.demo.main.MainActivity
+import io.streamlayer.demo.player.PlayerActivity
 
 @Module
 abstract class BindingModuleActivities {
@@ -13,8 +12,5 @@ abstract class BindingModuleActivities {
     abstract fun contributeBaseActivity(): BaseActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeMainActivity(): MainActivity
-
-    @ContributesAndroidInjector
-    abstract fun contributeMyFirebaseService(): MyFirebaseMessagingService
+    abstract fun contributeMainActivity(): PlayerActivity
 }

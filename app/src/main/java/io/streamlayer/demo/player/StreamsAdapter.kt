@@ -1,4 +1,4 @@
-package io.streamlayer.demo.main
+package io.streamlayer.demo.player
 
 import android.view.View
 import com.bornfight.utils.adapters.GenericAdapter
@@ -7,10 +7,10 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import io.streamlayer.demo.R
-import io.streamlayer.demo.common.kotlin.dp
-import io.streamlayer.demo.common.kotlin.gone
-import io.streamlayer.demo.common.kotlin.visible
-import io.streamlayer.demo.common.kotlin.visibleIf
+import io.streamlayer.demo.utils.dp
+import io.streamlayer.demo.utils.gone
+import io.streamlayer.demo.utils.visible
+import io.streamlayer.demo.utils.visibleIf
 import io.streamlayer.sdk.StreamLayerDemo
 import kotlinx.android.synthetic.main.item_stream.view.*
 
@@ -19,7 +19,6 @@ class StreamsAdapter : GenericAdapter<StreamLayerDemo.Item>() {
 
     override fun getLayoutId(viewType: Int): Int =
         R.layout.item_stream
-
     override fun getViewHolder(view: View, viewType: Int): GenericViewHolder<StreamLayerDemo.Item> {
         return StreamViewHolder(view)
     }

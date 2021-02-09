@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -23,8 +24,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseView, HasAndroidInjector 
 
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
-    //@Inject
-    //lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     /**
      * Lifecycle

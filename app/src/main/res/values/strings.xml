@@ -3,4 +3,13 @@
     <string name="share_msg">You have received a test message from StreamLayer. Please disregard. Thanks</string>
     <string name="general">General</string>
     <string name="general_notif_info">General notifications</string>
+    <string name="open_player">Open player</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_scores">Scores</string>
+    <string name="menu_watch">Watch</string>
+    <string name="menu_extras">Extras</string>
+    <string name="menu_more">More</string>
+
+    <string name="auth_sync_btn">Let\'s Go</string>
+    <string name="auth_sync_title">You need to sync before starting</string>
 </resources>
