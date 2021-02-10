@@ -28,7 +28,7 @@
 
             <!-- to enable StreamLayer push notifications with deep linking,
             add this intent filter to your activity which is the host for StreamLayerFragment.
-            Also, add the StreamLayerPushClient.handleDeepLinkIntent() to onResume of this activity. -->
+            Also, add the StreamLayer.handleDeepLinkIntent() to onResume of this activity. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

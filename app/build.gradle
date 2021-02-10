@@ -59,7 +59,7 @@ android {
 dependencies {
 
     // StreamLayer SDK dependency ================================================
-    implementation "io.streamlayer:androidsdk:2.2.0"
+    implementation "io.streamlayer:androidsdk:$versions.streamlayer"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
