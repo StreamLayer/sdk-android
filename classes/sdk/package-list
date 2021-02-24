@@ -1,24 +1,5 @@
-$dokka.format:html
+$dokka.format:html-v1
 $dokka.linkExtension:html
 
-io.streamlayer.common.data.voximplant
-io.streamlayer.common.settings
-io.streamlayer.common.views
-io.streamlayer.common.views.alphavideoview
 io.streamlayer.sdk
-io.streamlayer.sdk.auth
-io.streamlayer.sdk.base
-io.streamlayer.sdk.calls.call
-io.streamlayer.sdk.calls.call.view.minified
-io.streamlayer.sdk.calls.call.view.minified.texture
-io.streamlayer.sdk.lite
-io.streamlayer.sdk.main
-io.streamlayer.sdk.model.deeplink
-io.streamlayer.sdk.model.notifications
-io.streamlayer.sdk.onboarding
-io.streamlayer.sdk.repository.messaging
-io.streamlayer.sdk.twitter.view.internal.format
-io.streamlayer.sdk.twitter.view.internal.media
-io.streamlayer.sdk.usecases
-io.streamlayer.utils
 
