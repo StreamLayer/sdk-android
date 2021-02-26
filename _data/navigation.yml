@@ -9,5 +9,7 @@ docs:
     children:
       - title: StreamLayer
         url: /classes/sdk/io.streamlayer.sdk/-stream-layer/index
-      - title: StreamLayerSettings
-        url: /classes/sdk/io.streamlayer.sdk/-stream-layer-settings/index
+      - title: StreamLayerAuth
+        url: /classes/sdk/io.streamlayer.sdk/-stream-layer-auth/index
+      - title: StreamLayerUI
+        url: /classes/sdk/io.streamlayer.sdk/-stream-layer-u-i/index
