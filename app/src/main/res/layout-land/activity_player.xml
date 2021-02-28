@@ -23,26 +23,14 @@
         tools:background="@tools:sample/backgrounds/scenic">
 
         <ImageButton
-            android:id="@+id/play_button"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/sl_play_ic"
-            android:visibility="gone"
-            tools:visibility="visible"/>
-
-        <ImageButton
-            android:id="@+id/pause_button"
+            android:id="@+id/playback_button"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
             android:src="@drawable/sl_pause_ic"
-            android:visibility="gone"
-            tools:visibility="visible"/>
+            android:visibility="gone" />
 
         <ImageButton
             android:id="@+id/close_button"

@@ -33,7 +33,7 @@ import io.streamlayer.demo.common.mvvm.Status
 import io.streamlayer.demo.common.network.NetworkConnectionLiveData
 import io.streamlayer.demo.repository.DemoStreamsRepository
 import io.streamlayer.demo.utils.getStreamUrl
-import io.streamlayer.sdk.StreamLayerDemo
+import io.streamlayer.sdk.base.StreamLayerDemo
 import javax.inject.Inject
 
 class PlayerViewModel @Inject constructor(
@@ -117,9 +117,8 @@ class PlayerViewModel @Inject constructor(
     }
 
     // exo player helpers
-
-    // check if player was stopped by user - don't need live data here - just simple cache instance
-    var isPlaybackPaused = false
+    var isPlaybackPaused = false // check if player was stopped by user
+    var isControlsVisible = false // check if player controls are visible
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 

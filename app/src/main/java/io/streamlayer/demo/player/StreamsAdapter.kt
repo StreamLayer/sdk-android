@@ -11,7 +11,7 @@ import io.streamlayer.demo.utils.dp
 import io.streamlayer.demo.utils.gone
 import io.streamlayer.demo.utils.visible
 import io.streamlayer.demo.utils.visibleIf
-import io.streamlayer.sdk.StreamLayerDemo
+import io.streamlayer.sdk.base.StreamLayerDemo
 import kotlinx.android.synthetic.main.item_stream.view.*
 
 class StreamsAdapter : GenericAdapter<StreamLayerDemo.Item>() {

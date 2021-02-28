@@ -1,14 +1,11 @@
 package io.streamlayer.demo.player
 
 import android.content.Intent
-import android.content.res.Configuration
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.os.Handler
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
@@ -18,17 +15,23 @@ import io.streamlayer.demo.common.mvvm.BaseActivity
 import io.streamlayer.demo.common.mvvm.Status
 import io.streamlayer.demo.common.recyclerview.DashedDividerDecoration
 import io.streamlayer.demo.utils.DoubleClickListener
+import io.streamlayer.demo.utils.gone
+import io.streamlayer.demo.utils.isScreenPortrait
 import io.streamlayer.demo.utils.visible
 import io.streamlayer.sdk.StreamLayer
-import io.streamlayer.sdk.StreamLayerComponents
+import io.streamlayer.sdk.StreamLayerUI
 import kotlinx.android.synthetic.main.activity_player.*
 import kotlin.math.min
+
+private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
 
 class PlayerActivity : BaseActivity() {
 
     private val streamsAdapter: StreamsAdapter by lazy { StreamsAdapter() }
 
     private val viewModel: PlayerViewModel by viewModels { viewModelFactory }
+
+    private val controlsHandler = Handler()
 
     private val playerListener = object : Player.EventListener {
 
@@ -42,15 +45,15 @@ class PlayerActivity : BaseActivity() {
                 else -> error.localizedMessage
             }
             Toast.makeText(
-                playerView.context,
-                "Exo error: type=" + error.type + " message=" + exceptionMessage,
-                Toast.LENGTH_LONG
+                    playerView.context,
+                    "Exo error: type=" + error.type + " message=" + exceptionMessage,
+                    Toast.LENGTH_LONG
             ).show()
         }
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
             playerView.keepScreenOn =
-                !(playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED || !playWhenReady)
+                    !(playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED || !playWhenReady)
             if (playWhenReady && playbackState == Player.STATE_READY || viewModel.isPlaybackPaused) videoLoader.hide()
             else videoLoader.show()
         }
@@ -62,9 +65,15 @@ class PlayerActivity : BaseActivity() {
         setupUI()
         bind()
         window.addFlags(
-            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        if (viewModel.isControlsVisible) showControls()
+        setPlaybackIcon()
     }
 
     private fun setupUI() {
@@ -72,115 +81,28 @@ class PlayerActivity : BaseActivity() {
         if (viewModel.isPlaybackPaused) videoLoader.hide()
         playerView.player = viewModel.exoPlayer
         playerView.videoSurfaceView?.setOnClickListener(DoubleClickListener(
-            {
-                if (close_button.isPlayerControlVisible()) {
-                    close_button.visibility = View.GONE
-                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        StreamLayerComponents.showStreamLayerButton(this)
-                    }
-                } else {
-                    if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        StreamLayerComponents.hideStreamLayerButton(this)
-                    }
-                    close_button.let {
-                        it.visibility = View.VISIBLE
-                        it.alpha = 1f
-                        it.animate()
-                            .setStartDelay(4900)
-                            .setDuration(200)
-                            .alpha(0f)
-                            .withEndAction {
-                                if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                                    StreamLayerComponents.showStreamLayerButton(this)
-                                }
-                            }
-                            .start()
+                {
+                    // single tap
+                    if (viewModel.isControlsVisible) hideControls() else showControls()
+                },
+                {
+                    // double tap
+                    if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT) {
+                        playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+                    } else if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
+                        playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
                     }
                 }
-
-                if (viewModel.isPlaybackPaused) {
-                    if (play_button.isPlayerControlVisible()) {
-                        play_button.let {
-                            it.visibility = View.GONE
-                            it.alpha = 0f
-                        }
-                    } else  {
-                        play_button.let {
-                            it.visibility = View.VISIBLE
-                            it.alpha = 1f
-                            it.animate()
-                                .setStartDelay(4900)
-                                .setDuration(200)
-                                .alpha(0f)
-                                .start()
-                        }
-                    }
-                } else {
-                    if (pause_button.isPlayerControlVisible()) {
-                        pause_button.let {
-                            it.visibility = View.GONE
-                            it.alpha = 0f
-                        }
-                    } else {
-                        pause_button.let {
-                            it.visibility = View.VISIBLE
-                            it.alpha = 1f
-                            it.animate()
-                                .setStartDelay(4900)
-                                .setDuration(200)
-                                .alpha(0f)
-                                .start()
-                        }
-                    }
-                }
-            },
-            {
-                if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT) {
-                    playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
-                } else if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
-                    playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-                }
-            }
         ))
         close_button.setOnClickListener { finish() }
-        play_button.setOnClickListener {
-            viewModel.isPlaybackPaused = false
-            viewModel.exoPlayer.prepare()
-            viewModel.exoPlayer.playWhenReady = true
-            it.visibility = View.GONE
-            pause_button.visibility = View.VISIBLE
-            pause_button.alpha = 1f
-            close_button.clearAnimation()
-            close_button.visibility = View.VISIBLE
-            close_button.alpha = 1f
-            pause_button.animate()
-                .setStartDelay(4900)
-                .setDuration(200)
-                .alpha(0f)
-                .withEndAction {
-                    close_button.alpha = 0f
-                }
-                .start()
+        playback_button.setOnClickListener {
+            viewModel.isPlaybackPaused = !viewModel.isPlaybackPaused
+            if (!viewModel.isPlaybackPaused) viewModel.exoPlayer.prepare()
+            viewModel.exoPlayer.playWhenReady = !viewModel.isPlaybackPaused
+            setPlaybackIcon()
+            showControls()
         }
 
-        pause_button.setOnClickListener {
-            viewModel.isPlaybackPaused = true
-            viewModel.exoPlayer.playWhenReady = false
-            it.visibility = View.GONE
-            play_button.visibility = View.VISIBLE
-            play_button.alpha = 1f
-            close_button.clearAnimation()
-            close_button.visibility = View.VISIBLE
-            close_button.alpha = 1f
-            play_button.animate()
-                .setStartDelay(4900)
-                .setDuration(200)
-                .alpha(0f)
-                .withEndAction {
-                    close_button.alpha = 0f
-                }
-                .start()
-        }
         recycler?.apply {
             addItemDecoration(DashedDividerDecoration(baseContext))
             adapter = streamsAdapter
@@ -210,7 +132,11 @@ class PlayerActivity : BaseActivity() {
             }
         })
 
-        StreamLayer.setStreamEventChangeListener { eventId -> viewModel.requestStreamEvent(eventId) }
+        StreamLayer.setStreamEventChangeListener(object : StreamLayer.StreamEventChangeListener {
+            override fun onStreamChanged(id: String) {
+                viewModel.requestStreamEvent(id)
+            }
+        })
     }
 
     private fun bind() {
@@ -244,6 +170,30 @@ class PlayerActivity : BaseActivity() {
         startActivity(shareIntent)
     }
 
+    private fun showControls() {
+        controlsHandler.removeCallbacksAndMessages(null)
+        playback_button?.visible()
+        close_button?.visible()
+        if (!isScreenPortrait(this)) StreamLayerUI.hideLaunchButton(this)
+        viewModel.isControlsVisible = true
+        controlsHandler.postDelayed({ hideControls() }, CONTROLS_AUTO_HIDE_DELAY)
+    }
+
+    private fun hideControls() {
+        controlsHandler.removeCallbacksAndMessages(null)
+        playback_button?.gone()
+        close_button?.gone()
+        if (!isScreenPortrait(this)) StreamLayerUI.showLaunchButton(this)
+        viewModel.isControlsVisible = false
+    }
+
+    private fun setPlaybackIcon() {
+        playback_button.setImageResource(
+                if (viewModel.isPlaybackPaused) R.drawable.sl_play_ic
+                else R.drawable.sl_pause_ic
+        )
+    }
+
     private fun resumePlaying() {
         if (!viewModel.exoPlayer.isPlaying && !viewModel.isPlaybackPaused) viewModel.exoPlayer.play()
     }
@@ -260,7 +210,7 @@ class PlayerActivity : BaseActivity() {
      */
     override fun onResume() {
         super.onResume()
-        if (!StreamLayer.handleDeepLinkIntent(intent, this)) {
+        if (!StreamLayer.handleDeepLink(intent, this)) {
             // do host logic if needed
         }
     }
@@ -282,48 +232,16 @@ class PlayerActivity : BaseActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent == null) return
-        if (!StreamLayer.handleDeepLinkIntent(intent, this)) {
+        if (!StreamLayer.handleDeepLink(intent, this)) {
             // do host logic if needed
-        }
-    }
-
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        super.onConfigurationChanged(newConfig)
-        if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
-            playerView.layoutParams.apply {
-                width = MATCH_PARENT
-                height = baseContext.resources.getDimensionPixelSize(R.dimen.player_height_portrait)
-                playerView.layoutParams = this
-            }
-            (streamLayerFragment.layoutParams as ConstraintLayout.LayoutParams).topToBottom =
-                R.id.playerView
-            (streamLayerFragment.layoutParams as ConstraintLayout.LayoutParams).topToTop =
-                ConstraintLayout.LayoutParams.UNSET
-        } else {
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-            playerView.layoutParams.apply {
-                width = MATCH_PARENT
-                height = MATCH_PARENT
-                playerView.layoutParams = this
-            }
-            (streamLayerFragment.layoutParams as ConstraintLayout.LayoutParams).topToBottom =
-                ConstraintLayout.LayoutParams.UNSET
-            (streamLayerFragment.layoutParams as ConstraintLayout.LayoutParams).topToTop =
-                ConstraintLayout.LayoutParams.PARENT_ID
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
+        controlsHandler.removeCallbacksAndMessages(null)
         viewModel.exoPlayer.removeListener(playerListener)
         StreamLayer.setAudioDuckingListener(null)
         StreamLayer.setStreamEventChangeListener(null)
-    }
-
-    private fun View.isPlayerControlVisible(): Boolean{
-        return visibility == View.VISIBLE && alpha > 0f
     }
 }

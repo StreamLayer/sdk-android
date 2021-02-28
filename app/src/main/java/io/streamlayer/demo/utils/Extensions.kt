@@ -1,5 +1,7 @@
 package io.streamlayer.demo.utils
 
+import android.content.Context
+import android.content.res.Configuration
 import android.content.res.Resources
 import android.os.Handler
 import android.view.View
@@ -52,3 +54,7 @@ internal infix fun View.visibleIf(boolean: Boolean) {
 
 internal val Float.dp: Int
     get() = (this * Resources.getSystem().displayMetrics.density).toInt()
+
+internal fun isScreenPortrait(context: Context): Boolean {
+    return context.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+}

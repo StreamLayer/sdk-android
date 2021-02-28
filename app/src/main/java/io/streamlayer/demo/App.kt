@@ -9,6 +9,7 @@ import io.streamlayer.demo.common.dagger.components.ApplicationComponent
 import io.streamlayer.demo.common.dagger.components.DaggerApplicationComponent
 import io.streamlayer.demo.common.dagger.modules.ContextModule
 import io.streamlayer.demo.common.firebase.NotificationChannelsHelper
+import io.streamlayer.demo.utils.SdkFileLogger
 import io.streamlayer.sdk.StreamLayer
 import javax.inject.Inject
 
@@ -33,5 +34,7 @@ class App : Application(), HasAndroidInjector {
         NotificationChannelsHelper.initChannels(this)
         Branch.getAutoInstance(this)
         StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
+        StreamLayer.setLogListener(SdkFileLogger(this))
+        if (!BuildConfig.DEBUG) StreamLayer.setLogcatLoggingEnabled(false)
     }
 }

@@ -1,7 +1,7 @@
 package io.streamlayer.demo.repository
 
 import io.reactivex.Single
-import io.streamlayer.sdk.StreamLayerDemo
+import io.streamlayer.sdk.base.StreamLayerDemo
 
 class DemoStreamsRepository {
 

@@ -11,6 +11,7 @@ import io.streamlayer.demo.R
 import io.streamlayer.demo.databinding.ActivityMainBinding
 import io.streamlayer.demo.databinding.LayoutMainContentBinding
 import io.streamlayer.sdk.StreamLayer
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
     private val branchReferralInitListener =
         BranchReferralInitListener { linkProperties, error ->
             if (error == null) linkProperties?.let {
-                if (!StreamLayer.handleReferralDeepLink(it.toString(), this)) {
+                if (!StreamLayer.handleReferralLink(it.toString(), this)) {
                     // do host logic if needed
                 }
             }
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setupBottomNavView()
-        if (!StreamLayer.handleDeepLinkIntent(intent, this)) {
+        if (!StreamLayer.handleDeepLink(intent, this)) {
             // do host logic if needed
         }
     }
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         Branch.sessionBuilder(this)
             .withCallback(branchReferralInitListener)
             .reInit()
-        if (!StreamLayer.handleDeepLinkIntent(intent, this)) {
+        if (!StreamLayer.handleDeepLink(intent, this)) {
             // do host logic if needed
         }
     }
