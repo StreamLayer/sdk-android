@@ -59,7 +59,10 @@ android {
 dependencies {
 
     // StreamLayer SDK dependency ================================================
-    implementation "io.streamlayer:androidsdk:$versions.streamlayer"
+    implementation ("io.streamlayer:androidsdk:$versions.streamlayer") {
+        exclude group: "com.google.protobuf", module: "protobuf-java"
+    }
+
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"

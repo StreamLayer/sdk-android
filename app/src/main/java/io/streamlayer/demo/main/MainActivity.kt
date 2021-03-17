@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity() {
     private val branchReferralInitListener =
         BranchReferralInitListener { linkProperties, error ->
             if (error == null) linkProperties?.let {
-                if (!StreamLayer.handleReferralLink(it.toString(), this)) {
+                if (StreamLayer.isReferralLink(it.toString())) {
                     // do host logic if needed
+                    StreamLayer.handleReferralLink(it.toString(), this)
                 }
             }
         }
