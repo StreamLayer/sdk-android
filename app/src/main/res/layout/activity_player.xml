@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
@@ -10,12 +11,12 @@
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:layout_height="210dp"
+        android:layout_height="@dimen/player_height_portrait"
         app:auto_show="false"
         app:hide_on_touch="false"
         app:keep_content_on_player_reset="true"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:resize_mode="zoom"
         app:surface_type="surface_view"
@@ -112,13 +113,6 @@
         app:layout_constraintStart_toStartOf="@id/recycler"
         app:layout_constraintTop_toTopOf="@id/recycler" />
 
-    <Space
-        android:id="@+id/slOverlaySwipeIndicatorSpace"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        app:layout_constraintBottom_toBottomOf="@id/playerView"
-        app:layout_constraintStart_toStartOf="@id/playerView" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/streamLayerFragment"
         android:name="io.streamlayer.sdk.main.StreamLayerFragment"
@@ -126,5 +120,7 @@
         android:layout_height="0dp"
         android:tag="StreamLayerFragment"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/slOverlaySwipeIndicatorSpace" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

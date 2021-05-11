@@ -1,10 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext.versions = [
-            'gradle'                 : '4.1.3',
+            'gradle'                 : '4.2.0',
             'kotlin'                 : "1.4.20",
             'googleServices'         : "4.3.3",
-            'streamlayer'            : "2.7.1",
+            'streamlayer'            : "2.8.2-beta.2",
             'appcompat'              : "1.2.0",
             'coreKtx'                : "1.3.2",
             // Beta4 has issues with MotionLayout and RecyclerView https://issuetracker.google.com/issues/130386093
@@ -27,7 +27,7 @@ buildscript {
             'material'               : "1.2.1",
             'androidUtils'           : "0.97",
             'glide'                  : "4.11.0",
-            'exoPlayer'              : "2.12.0",
+            'exoPlayer'              : "2.10.8",
             'javax'                  : "1.3.2",
             'vimeoExtractor'         : "1.2.1",
             'branchIO'               : "5.0.3",

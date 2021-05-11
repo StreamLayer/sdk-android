@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
@@ -41,19 +42,18 @@ class PlayerActivity : BaseActivity() {
                 ExoPlaybackException.TYPE_RENDERER -> error.rendererException.localizedMessage
                 ExoPlaybackException.TYPE_UNEXPECTED -> error.unexpectedException.localizedMessage
                 ExoPlaybackException.TYPE_OUT_OF_MEMORY -> error.outOfMemoryError.localizedMessage
-                ExoPlaybackException.TYPE_TIMEOUT -> error.timeoutException.localizedMessage
                 else -> error.localizedMessage
             }
             Toast.makeText(
-                    playerView.context,
-                    "Exo error: type=" + error.type + " message=" + exceptionMessage,
-                    Toast.LENGTH_LONG
+                playerView.context,
+                "Exo error: type=" + error.type + " message=" + exceptionMessage,
+                Toast.LENGTH_LONG
             ).show()
         }
 
         override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
             playerView.keepScreenOn =
-                    !(playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED || !playWhenReady)
+                !(playbackState == Player.STATE_IDLE || playbackState == Player.STATE_ENDED || !playWhenReady)
             if (playWhenReady && playbackState == Player.STATE_READY || viewModel.isPlaybackPaused) videoLoader.hide()
             else videoLoader.show()
         }
@@ -62,11 +62,12 @@ class PlayerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
+
         setupUI()
         bind()
         window.addFlags(
-                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                        or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
     }
 
@@ -81,23 +82,25 @@ class PlayerActivity : BaseActivity() {
         if (viewModel.isPlaybackPaused) videoLoader.hide()
         playerView.player = viewModel.exoPlayer
         playerView.videoSurfaceView?.setOnClickListener(DoubleClickListener(
-                {
-                    // single tap
-                    if (viewModel.isControlsVisible) hideControls() else showControls()
-                },
-                {
-                    // double tap
-                    if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT) {
-                        playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
-                    } else if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
-                        playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-                    }
+            {
+                // single tap
+                if (viewModel.isControlsVisible) hideControls() else showControls()
+            },
+            {
+                // double tap
+                if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_FIT) {
+                    playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
+                } else if (playerView.resizeMode != AspectRatioFrameLayout.RESIZE_MODE_ZOOM) {
+                    playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
                 }
+            }
         ))
+        if (isScreenPortrait(this)) playerView.doOnPreDraw {
+            StreamLayerUI.setOverlayViewHeight(this, container.height - it.height)
+        }
         close_button.setOnClickListener { finish() }
         playback_button.setOnClickListener {
             viewModel.isPlaybackPaused = !viewModel.isPlaybackPaused
-            if (!viewModel.isPlaybackPaused) viewModel.exoPlayer.prepare()
             viewModel.exoPlayer.playWhenReady = !viewModel.isPlaybackPaused
             setPlaybackIcon()
             showControls()
@@ -189,17 +192,17 @@ class PlayerActivity : BaseActivity() {
 
     private fun setPlaybackIcon() {
         playback_button.setImageResource(
-                if (viewModel.isPlaybackPaused) R.drawable.sl_play_ic
-                else R.drawable.sl_pause_ic
+            if (viewModel.isPlaybackPaused) R.drawable.sl_play_ic
+            else R.drawable.sl_pause_ic
         )
     }
 
     private fun resumePlaying() {
-        if (!viewModel.exoPlayer.isPlaying && !viewModel.isPlaybackPaused) viewModel.exoPlayer.play()
+        if (!viewModel.exoPlayer.isPlaying && !viewModel.isPlaybackPaused) viewModel.exoPlayer.playWhenReady = true
     }
 
     private fun pausePlaying() {
-        if (viewModel.exoPlayer.isPlaying) viewModel.exoPlayer.pause()
+        if (viewModel.exoPlayer.isPlaying) viewModel.exoPlayer.playWhenReady = false
     }
 
     /**

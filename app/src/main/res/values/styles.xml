@@ -37,7 +37,6 @@
     </style>
 
     <style name="AuthSyncTheme" parent="StreamLayerSDK_AuthTheme">
-        <item name="slrOverlayToolbarBackground">#75FF1A1A</item>
         <item name="slrOverlayButton">@style/AuthSync_Button</item>
         <item name="slrOverlayBackground">#DA1A13D8</item>
         <item name="slrOverlayAuthSyncLottieInfoView">@style/AuthSync_Info</item>
