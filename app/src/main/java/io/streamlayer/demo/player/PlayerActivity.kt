@@ -12,13 +12,13 @@ import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import io.streamlayer.demo.R
+import io.streamlayer.demo.common.kotlin.gone
+import io.streamlayer.demo.common.kotlin.visible
 import io.streamlayer.demo.common.mvvm.BaseActivity
 import io.streamlayer.demo.common.mvvm.Status
 import io.streamlayer.demo.common.recyclerview.DashedDividerDecoration
 import io.streamlayer.demo.utils.DoubleClickListener
-import io.streamlayer.demo.utils.gone
 import io.streamlayer.demo.utils.isScreenPortrait
-import io.streamlayer.demo.utils.visible
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayerUI
 import kotlinx.android.synthetic.main.activity_player.*
@@ -34,14 +34,13 @@ class PlayerActivity : BaseActivity() {
 
     private val controlsHandler = Handler()
 
-    private val playerListener = object : Player.EventListener {
+    private val playerListener = object : Player.Listener {
 
         override fun onPlayerError(error: ExoPlaybackException) {
             val exceptionMessage = when (error.type) {
                 ExoPlaybackException.TYPE_SOURCE -> error.sourceException.localizedMessage
                 ExoPlaybackException.TYPE_RENDERER -> error.rendererException.localizedMessage
                 ExoPlaybackException.TYPE_UNEXPECTED -> error.unexpectedException.localizedMessage
-                ExoPlaybackException.TYPE_OUT_OF_MEMORY -> error.outOfMemoryError.localizedMessage
                 else -> error.localizedMessage
             }
             Toast.makeText(
@@ -62,7 +61,6 @@ class PlayerActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player)
-
         setupUI()
         bind()
         window.addFlags(
@@ -114,12 +112,12 @@ class PlayerActivity : BaseActivity() {
         shareButton?.setOnClickListener { share() }
 
         StreamLayer.setAudioDuckingListener(object : StreamLayer.AudioDuckingListener {
-            private var initialVolume: Float? = null
+
             override fun requestAudioDucking() {
                 viewModel.exoPlayer.audioComponent?.let { audio ->
                     // decrease volume to 10% if louder, otherwise keep the current volume
-                    if (initialVolume == null) {
-                        initialVolume = audio.volume
+                    if (viewModel.volumeBeforeDucking == null) {
+                        viewModel.volumeBeforeDucking = audio.volume
                         audio.volume = min(audio.volume, 0.1f)
                     }
                 }
@@ -127,9 +125,9 @@ class PlayerActivity : BaseActivity() {
 
             override fun disableAudioDucking() {
                 viewModel.exoPlayer.audioComponent?.let { audio ->
-                    initialVolume?.let { volume ->
+                    viewModel.volumeBeforeDucking?.let { volume ->
                         audio.volume = volume
-                        initialVolume = null
+                        viewModel.volumeBeforeDucking = null
                     }
                 }
             }

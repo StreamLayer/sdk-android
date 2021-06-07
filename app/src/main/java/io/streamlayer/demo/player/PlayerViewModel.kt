@@ -10,7 +10,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
-import com.google.android.exoplayer2.*
+import androidx.lifecycle.viewModelScope
+import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.BaseMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
@@ -20,26 +25,20 @@ import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.CacheDataSource
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.disposables.Disposables
-import io.reactivex.schedulers.Schedulers
 import io.streamlayer.demo.R
-import io.streamlayer.demo.common.mvvm.BaseError
 import io.streamlayer.demo.common.mvvm.ResourceState
 import io.streamlayer.demo.common.mvvm.Status
 import io.streamlayer.demo.common.network.NetworkConnectionLiveData
 import io.streamlayer.demo.repository.DemoStreamsRepository
-import io.streamlayer.demo.utils.getStreamUrl
 import io.streamlayer.sdk.VideoPlayer
 import io.streamlayer.sdk.VideoPlayerProvider
 import io.streamlayer.sdk.VideoPlayerView
 import io.streamlayer.sdk.base.StreamLayerDemo
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class PlayerViewModel @Inject constructor(
@@ -48,13 +47,13 @@ class PlayerViewModel @Inject constructor(
     private val context: Context
 ) : ViewModel() {
 
-    private var streamsDisposable: Disposable = Disposables.disposed()
+    private var job: Job? = null
 
-    private val _demoStreams: MutableLiveData<ResourceState<List<StreamLayerDemo.Item>>> = MutableLiveData()
-    val demoStreams: LiveData<ResourceState<List<StreamLayerDemo.Item>>> = _demoStreams
+    private val _demoStreams: MutableLiveData<ResourceState<List<StreamLayerDemo.Stream>>> = MutableLiveData()
+    val demoStreams: LiveData<ResourceState<List<StreamLayerDemo.Stream>>> = _demoStreams
 
-    private var _selectedStream: MutableLiveData<StreamLayerDemo.Item> = MutableLiveData()
-    val selectedStream: LiveData<StreamLayerDemo.Item> = _selectedStream
+    private var _selectedStream: MutableLiveData<StreamLayerDemo.Stream> = MutableLiveData()
+    val selectedStream: LiveData<StreamLayerDemo.Stream> = _selectedStream
 
     @SuppressLint("MissingPermission")
     private val _networkConnectionLiveData = NetworkConnectionLiveData(context)
@@ -68,41 +67,27 @@ class PlayerViewModel @Inject constructor(
 
     fun refresh() {
         if (_demoStreams.value?.status == Status.LOADING || _demoStreams.value?.status == Status.SUCCESS) return
-        streamsDisposable.dispose()
-        streamsDisposable = demoStreamsRepository.getDemoStreams()
-            .flatMapObservable {
-                Observable.fromIterable(it)
-            }
-            .concatMapEager { item ->
-                getStreamUrl(item.streamId).doOnError { Observable.just(item) }
-                    .map { item.copy(streamUrl = it) }.toObservable()
-            }
-            .filter { it.streamUrl.isNotEmpty() }
-            .toList()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .doOnSubscribe {
-                _demoStreams.postValue(ResourceState.loading())
-            }
-            .doOnSuccess { list ->
+        job?.cancel()
+        job = viewModelScope.launch {
+            _demoStreams.postValue(ResourceState.loading())
+            val result = demoStreamsRepository.getDemoStreams()
+            result.data?.let { list ->
                 if (_selectedStream.value == null) {
                     selectStream(requestedStreamId?.let {
-                        list.first { it!!.eventId.toString() == requestedStreamId } ?: list.first()
-                    } ?: list.first())
+                        list.firstOrNull { it.eventId.toString() == requestedStreamId } ?: list.firstOrNull()
+                    } ?: list.firstOrNull())
                 }
                 _demoStreams.postValue(ResourceState.success(list))
-            }
-            .subscribe({
-                _demoStreams.postValue(ResourceState.success(it))
-            }, {
-                _demoStreams.postValue(ResourceState.error(it.message?.let { BaseError(it) } ?: BaseError()))
-            })
+            } ?: kotlin.run { result.error?.let { _demoStreams.postValue(result) } }
+        }
     }
 
-    fun selectStream(stream: StreamLayerDemo.Item) {
+    fun selectStream(stream: StreamLayerDemo.Stream?) {
+        if (stream == null) return
         requestedStreamId = null
         _selectedStream.postValue(stream)
-        exoPlayer.prepare(buildMediaSource(stream.streamUrl), true, true)
+        exoPlayer.setMediaSource(buildMediaSource(stream.streamUrl), true)
+        if (exoPlayer.playbackState == Player.STATE_IDLE) exoPlayer.prepare()
         isPlaybackPaused = false
         exoPlayer.playWhenReady = true
     }
@@ -117,13 +102,13 @@ class PlayerViewModel @Inject constructor(
 
     override fun onCleared() {
         exoPlayer.release()
-        streamsDisposable.dispose()
         super.onCleared()
     }
 
     // exo player helpers
     var isPlaybackPaused = false // check if player was stopped by user
     var isControlsVisible = false // check if player controls are visible
+    var volumeBeforeDucking: Float? = null
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
@@ -135,23 +120,34 @@ class PlayerViewModel @Inject constructor(
     val exoPlayer: ExoPlayer by lazy { initPlayer() }
 
     private fun initPlayer(): ExoPlayer {
-        val trackSelector = DefaultTrackSelector(bandwidthMeter)
+        val trackSelector = DefaultTrackSelector(context)
         trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
-        return ExoPlayerFactory.newSimpleInstance(context, trackSelector).apply {
-            repeatMode = Player.REPEAT_MODE_ALL
-            playWhenReady = true
-            setForegroundMode(true)
-        }
+        return SimpleExoPlayer.Builder(context)
+            .setBandwidthMeter(bandwidthMeter)
+            .setTrackSelector(trackSelector)
+            .setLoadControl(DefaultLoadControl())
+            .build().apply {
+                repeatMode = Player.REPEAT_MODE_ALL
+                playWhenReady = true
+                setForegroundMode(true)
+            }
     }
 
     private fun buildMediaSource(streamUrl: String): BaseMediaSource {
-        val streamUri = Uri.parse(streamUrl)
+        val streamUri = MediaItem.Builder().setUri(Uri.parse(streamUrl))
         return when {
-            streamUrl.endsWith(".m3u8") -> HlsMediaSource.Factory(defaultDataSourceFactory())
-                .createMediaSource(streamUri)
-            else -> ProgressiveMediaSource.Factory(
-                CacheDataSourceFactory(cache, defaultDataSourceFactory(), CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
-            ).createMediaSource(streamUri)
+            streamUrl.endsWith(".m3u8") -> {
+                streamUri.setMimeType(MimeTypes.APPLICATION_M3U8)
+                HlsMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+            }
+            else -> {
+                streamUri.setMimeType(MimeTypes.APPLICATION_MP4)
+                ProgressiveMediaSource.Factory(
+                    CacheDataSource.Factory().setCache(cache)
+                        .setUpstreamDataSourceFactory(defaultDataSourceFactory())
+                        .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
+                ).createMediaSource(streamUri.build())
+            }
         }
     }
 }
@@ -160,7 +156,7 @@ class PlayerViewModel @Inject constructor(
 internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : VideoPlayer {
 
     // keep it for mapping different listeners
-    private val listeners: MutableList<Pair<VideoPlayer.Listener, Player.EventListener>> = mutableListOf()
+    private val listeners: MutableList<Pair<VideoPlayer.Listener, Player.Listener>> = mutableListOf()
 
     override fun play() {
         simpleExoPlayer.playWhenReady = true
@@ -189,7 +185,7 @@ internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : V
     }
 
     override fun addListener(listener: VideoPlayer.Listener) {
-        val exoListener = object : Player.EventListener {
+        val exoListener = object : Player.Listener {
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                 listener.onPlayerStateChanged(
                     when (playbackState) {
@@ -241,27 +237,33 @@ internal class ExoVideoPlayerView @JvmOverloads constructor(
 
 internal class ExoVideoPlayerProvider(private val context: Context) : VideoPlayerProvider {
 
-    private val defaultSourceFactory by lazy {
-        DefaultDataSourceFactory(
-            context,
-            Util.getUserAgent(context, "streamlayer"),
-            DefaultBandwidthMeter.Builder(context).build()
-        )
-    }
+    private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
+
+    private val agent by lazy { Util.getUserAgent(context, "streamlayer") }
+
+    private fun defaultDataSourceFactory(): DefaultDataSourceFactory =
+        DefaultDataSourceFactory(context, agent, bandwidthMeter)
 
     override fun getVideoPlayer(url: String, type: VideoPlayer.Type, mode: VideoPlayer.RepeatMode): VideoPlayer {
-        val player = ExoPlayerFactory.newSimpleInstance(context)
-        val streamUri = Uri.parse(url)
+        val player = SimpleExoPlayer.Builder(context).build()
+        val streamUri = MediaItem.Builder().setUri(url)
         val mediaSource = when (type) {
-            VideoPlayer.Type.HLS -> HlsMediaSource.Factory(defaultSourceFactory).createMediaSource(streamUri)
-            else -> ProgressiveMediaSource.Factory(defaultSourceFactory).createMediaSource(streamUri)
+            VideoPlayer.Type.HLS -> {
+                streamUri.setMimeType(MimeTypes.APPLICATION_M3U8)
+                HlsMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+            }
+            else -> {
+                streamUri.setMimeType(MimeTypes.APPLICATION_MP4)
+                ProgressiveMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+            }
         }
+        player.setMediaSource(mediaSource)
         player.repeatMode = when (mode) {
             VideoPlayer.RepeatMode.OFF -> Player.REPEAT_MODE_OFF
             VideoPlayer.RepeatMode.ONE -> Player.REPEAT_MODE_ONE
             VideoPlayer.RepeatMode.ALL -> Player.REPEAT_MODE_ALL
         }
-        player.prepare(mediaSource)
+        player.prepare()
         return ExoVideoPlayer(player)
     }
 

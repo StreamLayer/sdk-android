@@ -10,7 +10,10 @@ import io.streamlayer.sdk.StreamLayer
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
 import java.util.ArrayList
+import java.util.Date
+import java.util.Locale
 
 object LogUtils {
 
@@ -49,6 +52,10 @@ class SdkFileLogger(context: Context) : StreamLayer.LogListener {
         private const val FILE_NAME = "sdk.txt"
     }
 
+    private val fullDateFormat: SimpleDateFormat by lazy {
+        SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS", Locale.ENGLISH)
+    }
+
     private var outputStream: FileOutputStream? = null
 
     init {
@@ -69,7 +76,8 @@ class SdkFileLogger(context: Context) : StreamLayer.LogListener {
             try {
                 // we don't need to write VERBOSE and DEBUG messages in file
                 val formattedMsg = when (level) {
-                    StreamLayer.LogLevel.INFO, StreamLayer.LogLevel.WARNING, StreamLayer.LogLevel.ERROR -> "$msg\n"
+                    StreamLayer.LogLevel.INFO, StreamLayer.LogLevel.WARNING, StreamLayer.LogLevel.ERROR ->
+                        "${fullDateFormat.format(Date())} $msg\n"
                     else -> null
                 }
                 formattedMsg?.let { write(it.toByteArray()) }
