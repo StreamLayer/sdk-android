@@ -33,6 +33,8 @@ import io.streamlayer.demo.common.mvvm.ResourceState
 import io.streamlayer.demo.common.mvvm.Status
 import io.streamlayer.demo.common.network.NetworkConnectionLiveData
 import io.streamlayer.demo.repository.DemoStreamsRepository
+import io.streamlayer.sdk.EventSession
+import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.VideoPlayer
 import io.streamlayer.sdk.VideoPlayerProvider
 import io.streamlayer.sdk.VideoPlayerView
@@ -56,10 +58,11 @@ class PlayerViewModel @Inject constructor(
     val selectedStream: LiveData<StreamLayerDemo.Stream> = _selectedStream
 
     @SuppressLint("MissingPermission")
-    private val _networkConnectionLiveData = NetworkConnectionLiveData(context)
-    val networkConnectionLiveData: LiveData<Boolean> = _networkConnectionLiveData.distinctUntilChanged()
+    val networkConnectionLiveData: LiveData<Boolean> = NetworkConnectionLiveData(context).distinctUntilChanged()
 
     private var requestedStreamId: String? = null
+
+    private var eventSession: EventSession? = null
 
     init {
         refresh()
@@ -88,6 +91,8 @@ class PlayerViewModel @Inject constructor(
         _selectedStream.postValue(stream)
         exoPlayer.setMediaSource(buildMediaSource(stream.streamUrl), true)
         if (exoPlayer.playbackState == Player.STATE_IDLE) exoPlayer.prepare()
+        eventSession?.release()
+        eventSession = StreamLayer.createEventSession(stream.eventId.toString(), null)
         isPlaybackPaused = false
         exoPlayer.playWhenReady = true
     }
@@ -102,6 +107,7 @@ class PlayerViewModel @Inject constructor(
 
     override fun onCleared() {
         exoPlayer.release()
+        eventSession?.release()
         super.onCleared()
     }
 

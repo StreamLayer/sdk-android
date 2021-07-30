@@ -1,11 +1,15 @@
 package io.streamlayer.demo.player
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.doOnPreDraw
 import androidx.lifecycle.Observer
 import com.google.android.exoplayer2.ExoPlaybackException
@@ -15,8 +19,6 @@ import io.streamlayer.demo.R
 import io.streamlayer.demo.common.kotlin.gone
 import io.streamlayer.demo.common.kotlin.visible
 import io.streamlayer.demo.common.mvvm.BaseActivity
-import io.streamlayer.demo.common.mvvm.Status
-import io.streamlayer.demo.common.recyclerview.DashedDividerDecoration
 import io.streamlayer.demo.utils.DoubleClickListener
 import io.streamlayer.demo.utils.isScreenPortrait
 import io.streamlayer.sdk.StreamLayer
@@ -27,8 +29,6 @@ import kotlin.math.min
 private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
 
 class PlayerActivity : BaseActivity() {
-
-    private val streamsAdapter: StreamsAdapter by lazy { StreamsAdapter() }
 
     private val viewModel: PlayerViewModel by viewModels { viewModelFactory }
 
@@ -67,6 +67,7 @@ class PlayerActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                     or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
+        if (!isScreenPortrait(this)) setFullScreen()
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -93,8 +94,11 @@ class PlayerActivity : BaseActivity() {
                 }
             }
         ))
-        if (isScreenPortrait(this)) playerView.doOnPreDraw {
-            StreamLayerUI.setOverlayViewHeight(this, container.height - it.height)
+        if (isScreenPortrait(this)) {
+            if (playerView.height != 0) StreamLayerUI.setOverlayViewHeight(this, container.height - playerView.height)
+            else playerView.doOnPreDraw { playerView ->
+                StreamLayerUI.setOverlayViewHeight(this, container.height - playerView.height)
+            }
         }
         close_button.setOnClickListener { finish() }
         playback_button.setOnClickListener {
@@ -103,13 +107,6 @@ class PlayerActivity : BaseActivity() {
             setPlaybackIcon()
             showControls()
         }
-
-        recycler?.apply {
-            addItemDecoration(DashedDividerDecoration(baseContext))
-            adapter = streamsAdapter
-            streamsAdapter.onItemSelected = viewModel::selectStream
-        }
-        shareButton?.setOnClickListener { share() }
 
         StreamLayer.setAudioDuckingListener(object : StreamLayer.AudioDuckingListener {
 
@@ -142,17 +139,9 @@ class PlayerActivity : BaseActivity() {
 
     private fun bind() {
         viewModel.demoStreams.observe(this, Observer {
-            if (it.status == Status.LOADING) dataLoader?.show() else dataLoader?.hide()
-            it.data?.let { streamsAdapter.setItems(it) }
             it.error?.let { Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show() }
         })
-        viewModel.selectedStream.observe(this, Observer {
-            StreamLayer.changeStreamEvent(it.eventId.toString())
-            playingTitle?.text = it.title
-            shareButton?.visible()
-            playingTitle?.visible()
-        })
-        viewModel.networkConnectionLiveData.observe(this, Observer {
+        viewModel.networkConnectionLiveData.observe(this, {
             if (it) {
                 resumePlaying()
                 viewModel.refresh()
@@ -160,21 +149,11 @@ class PlayerActivity : BaseActivity() {
         })
     }
 
-    private fun share() {
-        val sendIntent: Intent = Intent().apply {
-            action = Intent.ACTION_SEND
-            putExtra(Intent.EXTRA_TEXT, getString(R.string.share_msg))
-            type = "text/plain"
-        }
-
-        val shareIntent = Intent.createChooser(sendIntent, null)
-        startActivity(shareIntent)
-    }
-
     private fun showControls() {
         controlsHandler.removeCallbacksAndMessages(null)
         playback_button?.visible()
         close_button?.visible()
+        player_shadow?.visible()
         if (!isScreenPortrait(this)) StreamLayerUI.hideLaunchButton(this)
         viewModel.isControlsVisible = true
         controlsHandler.postDelayed({ hideControls() }, CONTROLS_AUTO_HIDE_DELAY)
@@ -184,6 +163,7 @@ class PlayerActivity : BaseActivity() {
         controlsHandler.removeCallbacksAndMessages(null)
         playback_button?.gone()
         close_button?.gone()
+        player_shadow?.gone()
         if (!isScreenPortrait(this)) StreamLayerUI.showLaunchButton(this)
         viewModel.isControlsVisible = false
     }
@@ -201,6 +181,29 @@ class PlayerActivity : BaseActivity() {
 
     private fun pausePlaying() {
         if (viewModel.exoPlayer.isPlaying) viewModel.exoPlayer.playWhenReady = false
+    }
+
+    private fun AppCompatActivity.setFullScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.apply {
+                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                        // Set the content to appear under the system bars so that the
+                        // content doesn't resize when the system bars hide and show.
+                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        // Hide the nav bar and status bar
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN)
+                statusBarColor = Color.TRANSPARENT
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) setDecorFitsSystemWindows(true)
+            }
+        } else {
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
     }
 
     /**
@@ -221,11 +224,6 @@ class PlayerActivity : BaseActivity() {
         resumePlaying()
     }
 
-    override fun onStop() {
-        super.onStop()
-        pausePlaying()
-    }
-
     /**
      * If your activity launch mode is set to [Intent.FLAG_ACTIVITY_SINGLE_TOP], listen for [onNewIntent] as well
      * because the [onResume] will not be triggered if the activity is already running.
@@ -233,9 +231,15 @@ class PlayerActivity : BaseActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent == null) return
+        this.intent = intent
         if (!StreamLayer.handleDeepLink(intent, this)) {
             // do host logic if needed
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        pausePlaying()
     }
 
     override fun onDestroy() {

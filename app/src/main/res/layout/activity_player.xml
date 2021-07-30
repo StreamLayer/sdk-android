@@ -23,6 +23,14 @@
         app:use_controller="false"
         tools:background="@tools:sample/backgrounds/scenic">
 
+        <ImageView
+            android:id="@+id/player_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            tools:visibility="visible"
+            android:visibility="gone"/>
+
         <ImageButton
             android:id="@+id/playback_button"
             android:layout_width="100dp"
