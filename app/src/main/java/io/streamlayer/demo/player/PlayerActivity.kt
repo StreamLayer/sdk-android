@@ -141,6 +141,11 @@ class PlayerActivity : BaseActivity() {
         viewModel.demoStreams.observe(this, Observer {
             it.error?.let { Toast.makeText(this, it.errorMessage, Toast.LENGTH_SHORT).show() }
         })
+        viewModel.selectedStream.observe(this, {
+            playingTitle?.text = it.title
+            shareButton?.visible()
+            playingTitle?.visible()
+        })
         viewModel.networkConnectionLiveData.observe(this, {
             if (it) {
                 resumePlaying()
