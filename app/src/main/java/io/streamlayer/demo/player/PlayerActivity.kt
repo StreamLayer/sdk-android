@@ -2,7 +2,6 @@ package io.streamlayer.demo.player
 
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -67,7 +66,12 @@ class PlayerActivity : BaseActivity() {
             WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                     or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
         )
-        if (!isScreenPortrait(this)) setFullScreen()
+        if (!isScreenPortrait(this)) {
+            setFullScreen()
+            window.decorView.setOnSystemUiVisibilityChangeListener { visibility ->
+                if (visibility and View.SYSTEM_UI_FLAG_FULLSCREEN == 0) setFullScreen()
+            }
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -159,7 +163,7 @@ class PlayerActivity : BaseActivity() {
         playback_button?.visible()
         close_button?.visible()
         player_shadow?.visible()
-        if (!isScreenPortrait(this)) StreamLayerUI.hideLaunchButton(this)
+        if (!isScreenPortrait(this)) StreamLayerUI.hideLaunchButton(this, false)
         viewModel.isControlsVisible = true
         controlsHandler.postDelayed({ hideControls() }, CONTROLS_AUTO_HIDE_DELAY)
     }
@@ -169,7 +173,7 @@ class PlayerActivity : BaseActivity() {
         playback_button?.gone()
         close_button?.gone()
         player_shadow?.gone()
-        if (!isScreenPortrait(this)) StreamLayerUI.showLaunchButton(this)
+        if (!isScreenPortrait(this)) StreamLayerUI.hideLaunchButton(this, true)
         viewModel.isControlsVisible = false
     }
 
@@ -189,25 +193,20 @@ class PlayerActivity : BaseActivity() {
     }
 
     private fun AppCompatActivity.setFullScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.apply {
-                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-                setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // Hide the nav bar and status bar
-                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        or View.SYSTEM_UI_FLAG_FULLSCREEN)
-                statusBarColor = Color.TRANSPARENT
-                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) setDecorFitsSystemWindows(true)
-            }
-        } else {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+            setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_IMMERSIVE
+                    // Set the content to appear under the system bars so that the
+                    // content doesn't resize when the system bars hide and show.
+                    or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    // Hide the nav bar and status bar
+                    or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    or View.SYSTEM_UI_FLAG_FULLSCREEN)
+            statusBarColor = Color.TRANSPARENT
         }
     }
 
