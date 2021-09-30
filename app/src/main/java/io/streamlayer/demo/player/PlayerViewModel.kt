@@ -11,11 +11,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
-import com.google.android.exoplayer2.DefaultLoadControl
-import com.google.android.exoplayer2.ExoPlayer
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.BaseMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
@@ -99,7 +95,7 @@ class PlayerViewModel @Inject constructor(
 
     fun requestStreamEvent(eventId: String) {
         if (_demoStreams.value?.status == Status.SUCCESS && _demoStreams.value?.data != null)
-            _demoStreams.value?.data?.first { it.eventId.toString() == eventId }?.let {
+            _demoStreams.value?.data?.firstOrNull { it.eventId.toString() == eventId }?.let {
                 if (_selectedStream.value != it) selectStream(it)
             }
         else requestedStreamId = eventId
@@ -201,6 +197,11 @@ internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : V
                         else -> VideoPlayer.State.IDLE
                     }
                 )
+            }
+
+            override fun onPlayerError(error: ExoPlaybackException) {
+                super.onPlayerError(error)
+                listener.onPlayerError(error.cause)
             }
         }
         simpleExoPlayer.addListener(exoListener)
