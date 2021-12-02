@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_light">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -50,7 +50,6 @@
                     app:srcCompat="@drawable/placeholder_home_mlb" />
             </com.google.android.material.card.MaterialCardView>
 
-
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,11 +59,11 @@
                 app:cardCornerRadius="16dp">
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_marginTop="70dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginEnd="25dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_marginEnd="25dp"
                     android:background="@drawable/golf" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -74,5 +73,5 @@
             </com.google.android.material.card.MaterialCardView>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

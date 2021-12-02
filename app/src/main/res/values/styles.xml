@@ -26,12 +26,6 @@
         <item name="android:checkMark">@color/slr_blue80</item>
     </style>
 
-    <!--    Overriding Themes Example-->
-    <!--    <style name="StreamLayerSDK_OverlayStyle" parent="StreamLayerSDK_AppTheme">-->
-    <!--        <item name="slrOverlayToolbarBackGround">@color/slr_toolbar_bg</item>-->
-    <!--        <item name="slrOverlayPickerBackGround">@drawable/shape_rectangle_rounded24</item>-->
-    <!--        <item name="slrOverlayBackGround">@android:color/transparent</item>-->
-    <!--    </style>-->
     <style name="MainOverlayTheme" parent="StreamLayerSDK_MainTheme">
         <item name="slrOverlayMainSwipeDownBackgroundColor">@color/pink</item>
     </style>

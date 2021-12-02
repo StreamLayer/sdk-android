@@ -9,13 +9,13 @@
         android:icon="@drawable/ic_score_light"
         android:title="@string/menu_scores" />
     <item
-        android:id="@id/playerActivity"
-        android:icon="@drawable/ic_watch"
+        android:id="@id/watchFragment"
+        android:icon="@drawable/ic_watch_selector"
         android:title="@string/menu_watch" />
     <item
-        android:id="@id/extraFragment"
-        android:icon="@drawable/selector_ic_extras"
-        android:title="@string/menu_extras" />
+        android:id="@id/brandFragment"
+        android:icon="@drawable/ic_brand_selector"
+        android:title="@string/menu_brand" />
     <item
         android:id="@id/moreFragment"
         android:icon="@drawable/ic_more"

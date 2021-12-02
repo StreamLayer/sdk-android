@@ -7,9 +7,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_scores">Scores</string>
     <string name="menu_watch">Watch</string>
-    <string name="menu_extras">Extras</string>
+    <string name="menu_brand">ESPN+</string>
     <string name="menu_more">More</string>
-
+    <string name="stream">Stream</string>
+    <string name="articles">Articles</string>
+    <string name="streams_now">Streams now</string>
+    <string name="recommended_for_you">Recommended for you</string>
+    <string name="more_events">More events</string>
+    <string name="featured">Featured</string>
+    <string name="originals">Originals</string>
     <string name="auth_sync_btn">Let\'s Go</string>
     <string name="auth_sync_title">You need to sync before starting</string>
 </resources>

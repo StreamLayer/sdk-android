@@ -2,7 +2,6 @@ package io.streamlayer.demo.main
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.ColorRes
 import androidx.annotation.IdRes
@@ -14,10 +13,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.streamlayer.demo.R
+import io.streamlayer.demo.common.kotlin.gone
+import io.streamlayer.demo.common.kotlin.visible
 import io.streamlayer.demo.databinding.LayoutMainContentBinding
-import io.streamlayer.demo.utils.gone
-import io.streamlayer.demo.utils.setDrawable
-import io.streamlayer.demo.utils.visible
 
 class BottomNavHandler(private val binding: LayoutMainContentBinding) :
     BottomNavigationView.OnNavigationItemSelectedListener, NavController.OnDestinationChangedListener {
@@ -27,7 +25,8 @@ class BottomNavHandler(private val binding: LayoutMainContentBinding) :
     init {
         with(binding.bnv) {
             itemIconTintList = null
-            titleColor(R.id.extraFragment, R.color.menu_item_dark)
+            titleColor(R.id.watchFragment, R.color.menu_item_dark)
+            titleColor(R.id.brandFragment, R.color.menu_item_dark)
         }
         navController.addOnDestinationChangedListener(this)
     }
@@ -45,14 +44,13 @@ class BottomNavHandler(private val binding: LayoutMainContentBinding) :
     }
 
     private fun setBottomNavColor(id: Int) {
-        Log.d("BottomNavHandler", "item id $id")
-        var toolbarColor: Int = 0
+        var toolbarColor = 0
         when (id) {
-            R.id.extraFragment -> {
+            R.id.watchFragment, R.id.brandFragment -> {
                 toolbarColor = android.R.color.transparent
                 binding.bnv.setTheme(true)
             }
-            R.id.homeFragment, R.id.scoreFragment, R.id.moreFragment, R.id.playerActivity -> {
+            R.id.homeFragment, R.id.scoreFragment, R.id.moreFragment -> {
                 toolbarColor = android.R.color.black
                 binding.bnv.setTheme(false)
             }
@@ -70,16 +68,15 @@ class BottomNavHandler(private val binding: LayoutMainContentBinding) :
                     titleTV.visible()
                 }
                 R.id.homeFragment -> {
-                    titleIV.setDrawable(R.drawable.ic_logo)
+                    titleIV.setImageResource(R.drawable.ic_espn)
+                    titleIV.visible()
                 }
-                R.id.extraFragment -> {
+                R.id.watchFragment, R.id.brandFragment -> {
                     toolbar.setBackgroundColor(
-                        ContextCompat.getColor(
-                            binding.root.context,
-                            android.R.color.transparent
-                        )
+                        ContextCompat.getColor(binding.root.context, android.R.color.transparent)
                     )
-                    titleIV.setDrawable(R.drawable.ic_stars)
+                    titleIV.setImageResource(R.drawable.ic_espn_plus)
+                    titleIV.visible()
                     downloadIB.visible()
                     toolbar.menu.findItem(R.id.menu_calendar).isVisible = true
                 }
@@ -113,7 +110,7 @@ class BottomNavHandler(private val binding: LayoutMainContentBinding) :
             for (t in 0 until view.childCount) {
                 val child = view.getChildAt(t)
                 if (child is BottomNavigationItemView) {
-                    val id = child.itemData.itemId
+                    val id = child.itemData?.itemId
                     if (id == idRes) {
                         child.setTextColor(ContextCompat.getColorStateList(this.context, colorId))
                         return

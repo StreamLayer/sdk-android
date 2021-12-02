@@ -23,16 +23,32 @@
         app:use_controller="false"
         tools:background="@tools:sample/backgrounds/scenic">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/castThumbnailView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cast_placeholder"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <androidx.mediarouter.app.MediaRouteButton
+            android:id="@+id/castButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:mediaRouteTypes="user" />
+
         <ImageView
-            android:id="@+id/player_shadow"
+            android:id="@+id/playerShadow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#80000000"
-            tools:visibility="visible"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/playback_button"
+            android:id="@+id/playbackButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
@@ -42,7 +58,7 @@
             android:visibility="gone" />
 
         <ImageButton
-            android:id="@+id/close_button"
+            android:id="@+id/closeButton"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
@@ -72,4 +88,5 @@
         android:layout_height="match_parent"
         android:tag="StreamLayerFragment"
         app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

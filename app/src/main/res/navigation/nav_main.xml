@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_main"
     app:startDestination="@id/homeFragment">
+
     <fragment
         android:id="@+id/homeFragment"
-        android:name="io.streamlayer.demo.main.HomeFragment"
-        tools:layout="@layout/fragment_home"/>
+        android:name="io.streamlayer.demo.main.home.HomeFragment"
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/scoreFragment"
-        android:name="io.streamlayer.demo.main.ScoreFragment"
-        tools:layout="@layout/fragment_scores"/>
+        android:name="io.streamlayer.demo.main.scores.ScoreFragment"
+        tools:layout="@layout/fragment_scores" />
     <fragment
-        android:id="@+id/extraFragment"
-        android:name="io.streamlayer.demo.main.ExtrasFragment"
-        tools:layout="@layout/fragment_extras"/>
+        android:id="@+id/watchFragment"
+        android:name="io.streamlayer.demo.main.watch.WatchFragment"
+        tools:layout="@layout/fragment_watch" />
+    <fragment
+        android:id="@+id/brandFragment"
+        android:name="io.streamlayer.demo.main.brand.BrandFragment"
+        tools:layout="@layout/fragment_brand" />
     <fragment
         android:id="@+id/moreFragment"
-        android:name="io.streamlayer.demo.main.MoreFragment"
-        tools:layout="@layout/fragment_more"/>
-
-    <activity
-        android:id="@+id/playerActivity"
-        android:name="io.streamlayer.demo.player.PlayerActivity"
-        tools:layout="@layout/activity_player" />
+        android:name="io.streamlayer.demo.main.more.MoreFragment"
+        tools:layout="@layout/fragment_more" />
 </navigation>

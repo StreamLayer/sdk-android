@@ -11,9 +11,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.ArrayList
-import java.util.Date
-import java.util.Locale
+import java.util.*
+import java.util.logging.Level
+import java.util.logging.Logger
 
 object LogUtils {
 
@@ -50,6 +50,7 @@ class SdkFileLogger(context: Context) : StreamLayer.LogListener {
 
     companion object {
         private const val FILE_NAME = "sdk.txt"
+        var PRINT_TO_LOGCAT = false
     }
 
     private val fullDateFormat: SimpleDateFormat by lazy {
@@ -72,6 +73,7 @@ class SdkFileLogger(context: Context) : StreamLayer.LogListener {
     }
 
     override fun log(level: StreamLayer.LogLevel, msg: String) {
+        if (PRINT_TO_LOGCAT) Logger.getGlobal().log(Level.INFO, msg)
         outputStream?.apply {
             try {
                 // we don't need to write VERBOSE and DEBUG messages in file

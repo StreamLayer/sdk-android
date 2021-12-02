@@ -1,17 +1,20 @@
 package io.streamlayer.demo.player
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.viewModelScope
-import com.google.android.exoplayer2.*
+import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.ExoPlayer
+import com.google.android.exoplayer2.MediaItem
+import com.google.android.exoplayer2.PlaybackException
+import com.google.android.exoplayer2.Player
+import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.Timeline
+import com.google.android.exoplayer2.ext.cast.CastPlayer
 import com.google.android.exoplayer2.source.BaseMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
@@ -24,93 +27,58 @@ import com.google.android.exoplayer2.upstream.cache.CacheDataSource
 import com.google.android.exoplayer2.upstream.cache.SimpleCache
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
+import com.google.android.gms.cast.framework.CastContext
+import com.google.android.gms.cast.framework.CastSession
+import com.google.android.gms.cast.framework.SessionManagerListener
 import io.streamlayer.demo.R
-import io.streamlayer.demo.common.mvvm.ResourceState
-import io.streamlayer.demo.common.mvvm.Status
-import io.streamlayer.demo.common.network.NetworkConnectionLiveData
-import io.streamlayer.demo.repository.DemoStreamsRepository
+import io.streamlayer.demo.common.dispatcher.CoroutineDispatcherProvider
+import io.streamlayer.demo.common.mvvm.BaseError
+import io.streamlayer.demo.common.mvvm.BaseErrorEvent
+import io.streamlayer.demo.common.mvvm.MviViewModel
+import io.streamlayer.demo.common.network.NetworkConnectionUseCase
+import io.streamlayer.demo.repository.Stream
+import io.streamlayer.demo.repository.StreamsRepository
 import io.streamlayer.sdk.EventSession
 import io.streamlayer.sdk.StreamLayer
+import io.streamlayer.sdk.TimeCodeProvider
 import io.streamlayer.sdk.VideoPlayer
 import io.streamlayer.sdk.VideoPlayerProvider
 import io.streamlayer.sdk.VideoPlayerView
-import io.streamlayer.sdk.base.StreamLayerDemo
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
-import javax.inject.Inject
+import kotlin.math.min
 
-class PlayerViewModel @Inject constructor(
-    private val demoStreamsRepository: DemoStreamsRepository,
+data class State(
+    val streams: List<Stream> = emptyList(),
+    val selectedStream: Stream? = null,
+    val hasNetworkConnection: Boolean = true,
+    val isCastSupported: Boolean = false, // show if cast is supported
+    val isCastActive: Boolean = false, // show if cast is active
+)
+
+class PlayerViewModel(
+    private val streamsRepository: StreamsRepository,
     private val cache: SimpleCache,
-    private val context: Context
-) : ViewModel() {
+    private val networkConnectionUseCase: NetworkConnectionUseCase,
+    private val context: Context,
+    coroutineDispatcherProvider: CoroutineDispatcherProvider
+) : MviViewModel<State>(State(), coroutineDispatcherProvider) {
 
-    private var job: Job? = null
+    val streams = stateSlice { streams }
+    val selectedStream = stateSlice { selectedStream }.filterNotNull()
+    val castState = stateSlice { Pair(isCastSupported, isCastActive) }
+    val hasNetworkConnection = stateSlice { hasNetworkConnection }
 
-    private val _demoStreams: MutableLiveData<ResourceState<List<StreamLayerDemo.Stream>>> = MutableLiveData()
-    val demoStreams: LiveData<ResourceState<List<StreamLayerDemo.Stream>>> = _demoStreams
-
-    private var _selectedStream: MutableLiveData<StreamLayerDemo.Stream> = MutableLiveData()
-    val selectedStream: LiveData<StreamLayerDemo.Stream> = _selectedStream
-
-    @SuppressLint("MissingPermission")
-    val networkConnectionLiveData: LiveData<Boolean> = NetworkConnectionLiveData(context).distinctUntilChanged()
-
-    private var requestedStreamId: String? = null
+    private var requestedEventId: String? = null // requested event id from sdk
 
     private var eventSession: EventSession? = null
 
-    init {
-        refresh()
-    }
-
-    fun refresh() {
-        if (_demoStreams.value?.status == Status.LOADING || _demoStreams.value?.status == Status.SUCCESS) return
-        job?.cancel()
-        job = viewModelScope.launch {
-            _demoStreams.postValue(ResourceState.loading())
-            val result = demoStreamsRepository.getDemoStreams()
-            result.data?.let { list ->
-                if (_selectedStream.value == null) {
-                    selectStream(requestedStreamId?.let {
-                        list.firstOrNull { it.eventId.toString() == requestedStreamId } ?: list.firstOrNull()
-                    } ?: list.firstOrNull())
-                }
-                _demoStreams.postValue(ResourceState.success(list))
-            } ?: kotlin.run { result.error?.let { _demoStreams.postValue(result) } }
-        }
-    }
-
-    fun selectStream(stream: StreamLayerDemo.Stream?) {
-        if (stream == null) return
-        requestedStreamId = null
-        _selectedStream.postValue(stream)
-        exoPlayer.setMediaSource(buildMediaSource(stream.streamUrl), true)
-        if (exoPlayer.playbackState == Player.STATE_IDLE) exoPlayer.prepare()
-        eventSession?.release()
-        eventSession = StreamLayer.createEventSession(stream.eventId.toString(), null)
-        isPlaybackPaused = false
-        exoPlayer.playWhenReady = true
-    }
-
-    fun requestStreamEvent(eventId: String) {
-        if (_demoStreams.value?.status == Status.SUCCESS && _demoStreams.value?.data != null)
-            _demoStreams.value?.data?.firstOrNull { it.eventId.toString() == eventId }?.let {
-                if (_selectedStream.value != it) selectStream(it)
-            }
-        else requestedStreamId = eventId
-    }
-
-    override fun onCleared() {
-        exoPlayer.release()
-        eventSession?.release()
-        super.onCleared()
-    }
-
-    // exo player helpers
     var isPlaybackPaused = false // check if player was stopped by user
     var isControlsVisible = false // check if player controls are visible
-    var volumeBeforeDucking: Float? = null
+    private var volumeBeforeDucking: Float? = null
+
+    private var castContext: CastContext? = null  // chromecast session
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
@@ -119,7 +87,105 @@ class PlayerViewModel @Inject constructor(
     private fun defaultDataSourceFactory(): DefaultDataSourceFactory =
         DefaultDataSourceFactory(context, agent, bandwidthMeter)
 
-    val exoPlayer: ExoPlayer by lazy { initPlayer() }
+    // internal default instance of ExoPlayer
+    private val exoPlayer: ExoPlayer by lazy { initPlayer() }
+
+    // chrome cast can be not available - keep it as separated nullable instance
+    private var castPlayer: CastPlayer? = null
+
+    var player: Player = exoPlayer
+        private set
+
+    private val castSessionListener by lazy { initCastSessionListener() }
+
+    init {
+        initCast()
+        subToStreams()
+        subToNetworkChanges()
+    }
+
+    private fun initCast() {
+        try {
+            castContext = CastContext.getSharedInstance(context)
+            castContext?.let {
+                updateState(immediate = true) { copy(isCastSupported = true) }
+                it.sessionManager.addSessionManagerListener(castSessionListener, CastSession::class.java)
+            }
+        } catch (e: RuntimeException) {
+            // cast is not supported
+            _viewEvents.trySend(BaseErrorEvent(BaseError("Chromecast is not available.")))
+        }
+    }
+
+    private fun releaseCast() {
+        castContext?.let {
+            castPlayer?.release()
+            it.sessionManager.removeSessionManagerListener(castSessionListener, CastSession::class.java)
+        }
+    }
+
+    private fun subToNetworkChanges() {
+        viewModelScope.launch {
+            networkConnectionUseCase.state.collect {
+                if (it) streamsRepository.refresh()
+                updateState(immediate = true) { copy(hasNetworkConnection = it) }
+            }
+        }
+    }
+
+    private fun subToStreams() {
+        viewModelScope.launch {
+            streamsRepository.getStreams().collect {
+                it.consume { list ->
+                    updateState { copy(streams = list) }
+                    // in case when stream was requested before list was loaded
+                    if (currentState.selectedStream == null) selectStream(requestedEventId?.let {
+                        list.firstOrNull { it.eventId.toString() == requestedEventId } ?: list.firstOrNull()
+                    } ?: list.firstOrNull())
+                }
+            }
+        }
+    }
+
+    fun selectStream(stream: Stream?) {
+        if (stream == null) return
+        requestedEventId = null
+        updateState { copy(selectedStream = stream) }
+        attachStream(stream, 0)
+        eventSession?.release()
+        eventSession = StreamLayer.createEventSession(
+            stream.eventId.toString(),
+            if (streamsRepository.isPDTStream(stream.streamUrl)) getTimeCodeProvider() else null
+        )
+        isPlaybackPaused = false
+    }
+
+    private fun attachStream(stream: Stream, startPositionMs: Long) {
+        // cast and exo players has different api - exo player should be setup with media source,
+        // otherwise cache is not working properly and live streams can be broken
+        if (player == exoPlayer) {
+            val mediaSource = buildMediaSource(stream.streamUrl)
+            if (startPositionMs == C.TIME_UNSET) exoPlayer.setMediaSource(mediaSource, true)
+            else exoPlayer.setMediaSource(mediaSource, startPositionMs)
+        } else player.setMediaItem(mediaItemBuilder(stream.streamUrl).build(), startPositionMs)
+        player.playWhenReady = true
+        if (player.playbackState == Player.STATE_IDLE) player.prepare()
+    }
+
+    fun requestStreamEvent(eventId: String) {
+        with(currentState) {
+            if (streams.isNotEmpty()) streams.firstOrNull { it.eventId.toString() == eventId }
+                ?.let { if (selectedStream != it) selectStream(it) }
+            else requestedEventId = eventId
+        }
+    }
+
+    override fun onCleared() {
+        exoPlayer.release()
+        eventSession?.release()
+        releaseCast()
+        super.onCleared()
+    }
 
     private fun initPlayer(): ExoPlayer {
         val trackSelector = DefaultTrackSelector(context)
@@ -135,20 +201,106 @@ class PlayerViewModel @Inject constructor(
             }
     }
 
+    private fun initCastPlayer() {
+        if (castPlayer == null) castContext?.let {
+            castPlayer = CastPlayer(it).apply {
+                //don't use setSessionAvailabilityListener - it required to create instance of player
+                repeatMode = Player.REPEAT_MODE_ALL
+            }
+        }
+    }
+
     private fun buildMediaSource(streamUrl: String): BaseMediaSource {
-        val streamUri = MediaItem.Builder().setUri(Uri.parse(streamUrl))
+        val builder = mediaItemBuilder(streamUrl)
         return when {
-            streamUrl.endsWith(".m3u8") -> {
-                streamUri.setMimeType(MimeTypes.APPLICATION_M3U8)
-                HlsMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+            isHlsStream(streamUrl) -> {
+                HlsMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(builder.build())
             }
             else -> {
-                streamUri.setMimeType(MimeTypes.APPLICATION_MP4)
                 ProgressiveMediaSource.Factory(
                     CacheDataSource.Factory().setCache(cache)
                         .setUpstreamDataSourceFactory(defaultDataSourceFactory())
                         .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
-                ).createMediaSource(streamUri.build())
+                ).createMediaSource(builder.build())
+            }
+        }
+    }
+
+    private fun mediaItemBuilder(streamUrl: String) = MediaItem.Builder().setUri(Uri.parse(streamUrl)).apply {
+        when {
+            isHlsStream(streamUrl) -> setMimeType(MimeTypes.APPLICATION_M3U8)
+            else -> setMimeType(MimeTypes.APPLICATION_MP4)
+        }
+    }
+
+    private fun isHlsStream(streamUrl: String): Boolean = streamUrl.endsWith(".m3u8")
+
+    // timecode provider
+    private fun getTimeCodeProvider(): TimeCodeProvider = object : TimeCodeProvider {
+        override fun getEpochTimeCodeInMillis(): Long {
+            val timeline = player.currentTimeline
+            return if (!timeline.isEmpty) timeline.getWindow(
+                player.currentWindowIndex, Timeline.Window()
+            ).windowStartTimeMs + player.currentPosition
+            else player.currentPosition
+        }
+    }
+
+    private fun initCastSessionListener() = object : SessionManagerListener<CastSession> {
+        override fun onSessionStarting(p0: CastSession) {}
+
+        override fun onSessionStarted(p0: CastSession, p1: String) {
+            initCastPlayer()
+            castPlayer?.let { setCurrentPlayer(it) }
+        }
+
+        override fun onSessionStartFailed(p0: CastSession, p1: Int) {}
+
+        override fun onSessionEnding(p0: CastSession) {}
+
+        override fun onSessionEnded(p0: CastSession, p1: Int) {
+            setCurrentPlayer(exoPlayer)
+        }
+
+        override fun onSessionResuming(p0: CastSession, p1: String) {}
+
+        override fun onSessionResumed(p0: CastSession, p1: Boolean) {
+            initCastPlayer()
+            castPlayer?.let { setCurrentPlayer(it) }
+        }
+
+        override fun onSessionResumeFailed(p0: CastSession, p1: Int) {}
+
+        override fun onSessionSuspended(p0: CastSession, p1: Int) {
+            setCurrentPlayer(exoPlayer)
+            // optional: remove connection in case when session were suspended
+            castContext?.sessionManager?.let { if (it.currentCastSession == p0) it.endCurrentSession(true) }
+        }
+    }
+
+    private fun setCurrentPlayer(newPlayer: Player) {
+        if (player == newPlayer) return
+        val playbackPositionMs =
+            if (player.playbackState != Player.STATE_ENDED) player.currentPosition else C.TIME_UNSET
+        player.stop()
+        player.clearMediaItems()
+        player = newPlayer
+        currentState.selectedStream?.let { attachStream(it, playbackPositionMs) }
+        updateState { copy(isCastActive = newPlayer == castPlayer) }
+    }
+
+    fun notifyDuckingChanged(isEnabled: Boolean) {
+        // support ducking only for in-app player, ignore if chrome cast is active
+        if (player is ExoPlayer) (player as ExoPlayer).audioComponent?.also { audio ->
+            if (isEnabled) {
+                if (volumeBeforeDucking == null) {
+                    // decrease volume to 10% if louder, otherwise keep the current volume
+                    volumeBeforeDucking = audio.volume
+                    audio.volume = min(audio.volume, 0.1f)
+                }
+            } else volumeBeforeDucking?.let { volume ->
+                audio.volume = volume
+                volumeBeforeDucking = null
             }
         }
     }
@@ -199,8 +351,7 @@ internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : V
                 )
             }
 
-            override fun onPlayerError(error: ExoPlaybackException) {
-                super.onPlayerError(error)
+            override fun onPlayerError(error: PlaybackException) {
                 listener.onPlayerError(error.cause)
             }
         }
@@ -275,7 +426,8 @@ internal class ExoVideoPlayerProvider(private val context: Context) : VideoPlaye
     }
 
     override fun getVideoPlayerView(context: Context, type: VideoPlayerView.Type): VideoPlayerView = when (type) {
-        VideoPlayerView.Type.SURFACE -> ExoVideoPlayerView(context)
+        VideoPlayerView.Type.SURFACE -> LayoutInflater.from(context)
+            .inflate(R.layout.surface_player_view, null) as ExoVideoPlayerView
         VideoPlayerView.Type.TEXTURE -> LayoutInflater.from(context)
             .inflate(R.layout.texture_player_view, null) as ExoVideoPlayerView
     }

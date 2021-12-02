@@ -1,8 +1,6 @@
 //noinspection GradleDynamicVersion
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
@@ -23,12 +21,11 @@ android {
         unitTests.includeAndroidResources = true
     }
 
-    compileSdkVersion 30
-    buildToolsVersion '30.0.2'
+    compileSdkVersion 31
     defaultConfig {
         applicationId "io.streamlayer.demo"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -57,23 +54,24 @@ android {
 }
 
 dependencies {
-
     // StreamLayer SDK dependency ================================================
     implementation ("io.streamlayer:androidsdk:$versions.streamlayer") {
         exclude group: "com.google.protobuf", module: "protobuf-java"
     }
 
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.core:core-ktx:$versions.coreKtx"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.archLifecycle"
     implementation "androidx.lifecycle:lifecycle-common-java8:$versions.archLifecycle"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.archLifecycle"
     implementation "androidx.lifecycle:lifecycle-process:$versions.archLifecycle"
 
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+
+    //datastore
+    implementation "androidx.datastore:datastore-preferences:$versions.datastore"
 
     // Google Material Design Components
     implementation "com.google.android.material:material:$versions.material"
@@ -82,23 +80,22 @@ dependencies {
     implementation "com.google.firebase:firebase-crashlytics:$versions.crashlytics"
     implementation "com.google.firebase:firebase-messaging:$versions.firebaseMessaging"
 
-    // Exo player
     implementation "com.google.android.exoplayer:exoplayer:$versions.exoPlayer"
+    implementation "com.google.android.exoplayer:extension-cast:$versions.exoPlayer"
 
-    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    // Coil
+    implementation "io.coil-kt:coil:$versions.coil"
 
-    //Dagger
-    implementation "com.google.dagger:dagger:$versions.dagger"
-    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
-    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
-    implementation "com.google.dagger:dagger-android:$versions.dagger"
-    implementation "com.google.dagger:dagger-android-support:$versions.dagger"
-    kapt "com.google.dagger:dagger-android-processor:$versions.dagger"
+    //Koin
+    implementation "io.insert-koin:koin-core:$versions.koin"
+    implementation "io.insert-koin:koin-android:$versions.koin"
 
     // Vimeo
     implementation "com.github.ed-george:AndroidVimeoExtractor:$versions.vimeoExtractor"
 
     // Branch IO
     implementation "io.branch.sdk.android:library:$versions.branchIO"
+
+    //Testing
+    testImplementation "junit:junit:$versions.junit"
 }

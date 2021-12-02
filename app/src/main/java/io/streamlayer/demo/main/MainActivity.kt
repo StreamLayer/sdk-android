@@ -10,6 +10,7 @@ import io.branch.referral.Branch.BranchReferralInitListener
 import io.streamlayer.demo.R
 import io.streamlayer.demo.databinding.ActivityMainBinding
 import io.streamlayer.demo.databinding.LayoutMainContentBinding
+import io.streamlayer.demo.player.PlayerActivity
 import io.streamlayer.sdk.StreamLayer
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        LayoutMainContentBinding.bind(binding.root).toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_translate -> PlayerActivity.open(this)
+            }
+            true
+        }
     }
 
     private fun setupBottomNavView() {
