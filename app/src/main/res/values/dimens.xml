@@ -4,5 +4,5 @@
     <dimen name="divider_dash_width">2dp</dimen>
     <dimen name="divider_dash_spacing">2dp</dimen>
     <dimen name="player_height_portrait">210dp</dimen>
-    <dimen name="pd_menu_top">7dp</dimen>
+    <dimen name="menuButtonBottomMargin">16dp</dimen>
 </resources>

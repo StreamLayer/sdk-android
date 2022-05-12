@@ -1,21 +1,33 @@
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-    <string name="stream_live">LIVE</string>
-    <string name="share_msg">You have received a test message from StreamLayer. Please disregard. Thanks</string>
-    <string name="general">General</string>
-    <string name="general_notif_info">General notifications</string>
-    <string name="open_player">Open player</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_scores">Scores</string>
-    <string name="menu_watch">Watch</string>
-    <string name="menu_brand">ESPN+</string>
-    <string name="menu_more">More</string>
-    <string name="stream">Stream</string>
-    <string name="articles">Articles</string>
-    <string name="streams_now">Streams now</string>
-    <string name="recommended_for_you">Recommended for you</string>
-    <string name="more_events">More events</string>
-    <string name="featured">Featured</string>
-    <string name="originals">Originals</string>
+<resources>
+    <string name="app_name">StreamLayer DEMO</string>
+    <string name="auth_demo">Auth demo</string>
+    <string name="live_demo">Live demo</string>
+    <string name="managed_demo">Managed Watch Party demo</string>
+    <string name="participants">Participants</string>
+    <string name="messages">Messages</string>
+    <string name="user_is_authorized">User is authorized</string>
+    <string name="user_is_not_authorized">User is not authorized</string>
+    <string name="no_active_wp">No active watch party. Enter group id and press Subscribe button.</string>
+    <string name="enter_group_id">GroupId</string>
+    <string name="enter_token">Token</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="subscribe">Sub</string>
+    <string name="unsubscribe">Unsub</string>
+    <string name="open_wp">Open a Watch Party</string>
+    <string name="wp_participants">Watch party participants:</string>
+    <string name="user">User:</string>
+    <string name="status">Status:</string>
+    <string name="invite_to_wp_title">Welcome The StreamLayer Watch Party Experience</string>
+    <string name="invite_to_chat_title">Welcome The StreamLayer Chat Experience</string>
+    <string name="invite_title">Welcome The StreamLayer Interactive Experience</string>
     <string name="auth_sync_btn">Let\'s Go</string>
     <string name="auth_sync_title">You need to sync before starting</string>
+    <string name="no_active_watch_party">You don\'t have active an active watch party.</string>
+
+    <!-- customize StreamLayer SDK string resources -->
+    <string name="slr_app_name">StreamLayer DEMO</string>
+    <string name="invite_success_text">Send your friend a message, start a video chat or just check out the new Your app.</string>
+    <string name="invite_watch_party_ended_text">But you can still watch livestreams and send your friend a message to let them know you’re hanging out in the Your app.</string>
+    <string name="slr_statistics">Leader Board</string>
 </resources>

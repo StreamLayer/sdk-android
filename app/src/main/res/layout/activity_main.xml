@@ -4,26 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/authBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:text="@string/auth_demo"
+        app:layout_constraintBottom_toTopOf="@+id/liveBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <include layout="@layout/layout_main_content" />
+    <Button
+        android:id="@+id/liveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/live_demo"
+        app:layout_constraintBottom_toTopOf="@+id/managedBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/authBtn"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/streamlayerFragment"
-        android:name="io.streamlayer.sdk.lite.StreamLayerLiteFragment"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:elevation="10dp"
-        android:tag="StreamLayerFragment"
+    <Button
+        android:id="@+id/managedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/managed_demo"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@id/guideline" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liveBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

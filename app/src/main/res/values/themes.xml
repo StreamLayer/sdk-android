@@ -1,0 +1,260 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="materialButtonStyle">@style/Button</item>
+    </style>
+
+    <style name="Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/colorPrimary2</item>
+        <item name="cornerRadius">0dp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="BaseOverlayTheme" parent="StreamLayerSDK_AppTheme">
+        <item name="slrAppName">@string/slr_app_name</item>
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrCircleButtonColor">@color/colorPrimary2</item>
+        <item name="slrSenderMessageColor">@color/colorPrimary2</item>
+        <item name="slrReceiverMessageColor">#1AFFFFFF</item>
+        <item name="slrStartChattingIconColor">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor1">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor2">@color/colorPrimary2</item>
+        <item name="slrNotificationBadgeColor">@color/colorAccent2</item>
+        <item name="slrCheckColor">@color/colorPrimary1</item>
+        <item name="slrCheckBackgroundColor">@color/colorAccent2</item>
+        <item name="slrLastMessageColor">@color/colorSecondary2</item>
+        <item name="slrLastUnreadMessageColor">@color/colorSecondary1</item>
+        <item name="slrInviteViaColor">@color/colorPrimary2</item>
+        <item name="slrToolbarCancelColor">@color/colorSecondary1</item>
+        <item name="slrWhosWatchingSendMessageButtonColor">@color/colorPrimary2</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+        <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
+        <item name="slrChatMessageStatusReadColor">@color/colorPrimary2</item>
+        <item name="slrShareInviteLinkIconColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyReturnButtonBackgroundColor">@color/colorAccent1</item>
+        <item name="slrWhosWatchingViewActiveBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrInviteContactButtonBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrResendContactButtonTextColor">@color/colorPrimary2</item>
+        <item name="slrWhosWatchingWatchPartyStartIcon">@drawable/ic_ww_wp_start</item>
+        <item name="slrWhosWatchingChatStartIcon">@drawable/ic_ww_chat_start</item>
+    </style>
+
+    <style name="MainOverlayTheme" parent="StreamLayerSDK_MainTheme">
+        <item name="slrOverlayMainScrollIndicatorColor">@color/colorPrimary2</item>
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrOverlayMainStreamBtnRippleDrawable">@drawable/bg_menu_ripple</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrNotificationBadgeColor">@color/colorAccent2</item>
+        <item name="slrNotificationIconColor">@color/colorPrimary2</item>
+        <item name="slrMenuButtonBottomMargin">@dimen/menuButtonBottomMargin</item>
+        <item name="slrFactoidDefaultIcon">@drawable/slr_ic_logo</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+        <item name="slrOverlayInviteWatchPartyEndedIcon">@drawable/slr_ic_logo</item>
+        <item name="slrOverlayInviteWatchPartyEndedText">@string/invite_watch_party_ended_text</item>
+        <item name="slrWatchPartyReturnButtonBackgroundColor">@color/colorAccent1</item>
+        <item name="slrWhosWatchingViewActiveBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrGeneralErrorMessageButtonColor">@color/colorPrimary2</item>
+    </style>
+
+    <style name="WatchPartyOverlayTheme" parent="StreamLayerSDK_WatchPartyTheme">
+        <item name="slrAppName">@string/slr_app_name</item>
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrContactItemButtonColor">@color/button_color</item>
+        <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrInviteFriendsButtonColor">@color/colorPrimary2</item>
+        <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyIconColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyIconBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyContactsNotSyncIconColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyMessageIconColor">@color/colorPrimary2</item>
+        <item name="slrWatchPartyMessageProgressColor">@color/colorPrimary2</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+        <item name="slrToolbarCancelColor">@color/colorSecondary1</item>
+        <item name="slrShareInviteLinkIconColor">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor1">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor2">@color/colorPrimary2</item>
+        <item name="slrWatchPartyReturnButtonBackgroundColor">@color/colorAccent1</item>
+        <item name="slrWatchPartyParticipantsHeaderColor">@color/colorPrimary2</item>
+        <item name="slrInviteFromContactsIcon">@drawable/ic_invite_from_contacts</item>
+        <item name="slrWatchPartyLiveBackgroundColor">@color/colorAccent1</item>
+    </style>
+
+    <style name="ProfileOverlayTheme" parent="StreamLayerSDK_ProfileTheme">
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrOverlayProfileAvatarColor">@color/colorPrimary2</item>
+        <item name="slrNotificationIconColor">@color/colorPrimary2</item>
+        <item name="colorAccent">@color/colorAccent2</item>
+        <item name="slrCheckColor">@color/colorPrimary1</item>
+        <item name="slrOverlayProfileNameInputBorderColor">@color/colorPrimary2</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+    </style>
+
+    <style name="AuthOverlayTheme" parent="StreamLayerSDK_AuthTheme">
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+    </style>
+
+    <style name="InviteOverlayTheme" parent="StreamLayerSDK_InviteTheme">
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
+        <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+        <item name="slrOverlayInviteSuccessDescriptionText">@string/invite_success_text</item>
+        <item name="slrOverlayInviteWatchPartyEndedText">@string/invite_watch_party_ended_text</item>
+        <item name="slrOverlayInviteSuccessIcon">@drawable/slr_ic_logo</item>
+        <item name="slrOverlayInviteWatchPartyEndedIcon">@drawable/slr_ic_logo</item>
+    </style>
+
+    <style name="PredictionsOverlayTheme" parent="StreamLayerSDK_PredictionsTheme">
+        <item name="slrAppName">@string/slr_app_name</item>
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrCheckColor">@color/colorPrimary1</item>
+        <item name="slrCheckBackgroundColor">@color/colorAccent2</item>
+        <item name="slrPickHistoryAnswerButtonColor">@color/colorPrimary2</item>
+        <item name="slrPickHistoryWonColor">@color/colorPrimary2</item>
+        <item name="slrPickHistoryLostColor">@color/colorAccent1</item>
+        <item name="slrPickHistoryDNPColor">@color/colorSecondary1</item>
+        <item name="slrLeaderboardTabUnderscoreColor">@color/colorPrimary2</item>
+        <item name="slrPredictionsWrongAnswerColor">@color/slr_predictions_incorrect</item>
+        <item name="slrPredictionsTimerColor">@color/colorSecondary1</item>
+        <item name="slrPredictionsTimerFinishColor">@color/colorAccent2</item>
+        <item name="slrAvatarColors">@array/avatar_colors</item>
+    </style>
+
+    <style name="StatisticsOverlayTheme" parent="StreamLayerSDK_StatisticsTheme">
+        <item name="fontFamily">@font/benton_sans</item>
+        <item name="slrToolbarBackground">@color/colorPrimary1</item>
+        <item name="slrSwipeHandleColor">@color/colorPrimary2</item>
+        <item name="slrActionColor">@color/button_color</item>
+        <item name="slrCheckColor">@color/colorPrimary1</item>
+        <item name="slrGolfPlayerNegativeColor">@color/colorAccent1</item>
+        <item name="slrGolfPlayerDefaultColor">@color/colorSecondary1_alpha_50</item>
+        <item name="slrGolfPlayerPositiveColor">@color/colorPrimary2</item>
+    </style>
+
+    <style name="MessengerOverlayTheme" parent="BaseOverlayTheme">
+        <item name="slrAppName">@string/slr_app_name</item>
+        <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
+        <item name="slrChatStickerButtonColor">@color/colorPrimary2</item>
+        <item name="slrChatToolbarWPIconColor">@color/colorSecondary1</item>
+        <item name="slrCircleButtonColor">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor1">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor2">@color/colorPrimary2</item>
+        <item name="slrToolbarCancelColor">@color/colorSecondary1</item>
+        <item name="slrChatKeyboardTabBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatKeyboardEmojiTabBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatKeyboardBackgroundColor">#161A1F</item>
+        <item name="slrChatUnreadCircleBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrInviteFromContactsIcon">@drawable/ic_invite_from_contacts</item>
+        <item name="slrChatMutedButtonBackgroundColor">@color/slr_white_alpha_40</item>
+        <item name="slrChatUnMutedButtonBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatDeleteButtonBackgroundColor">@color/colorAccent1</item>
+        <item name="slrChatsEmptyIcon">@drawable/ic_chats_empty</item>
+        <item name="slrChatsToolbarBackgroundColor">@color/colorPrimary1</item>
+    </style>
+
+    <style name="AuthSyncTheme" parent="StreamLayerSDK_AuthTheme">
+        <item name="slrOverlayButton">@style/AuthSync_Button</item>
+        <item name="slrOverlayBackground">#DA1A13D8</item>
+        <item name="slrOverlayAuthSyncLottieInfoView">@style/AuthSync_Info</item>
+        <item name="slrOverlayAuthCountryPickerItemTitleStyle">@style/ItemList</item>
+    </style>
+
+    <style name="ItemList" parent="StreamLayerSDK_ItemList">
+        <item name="android:textColor">#57FF2A</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="AuthSync_Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">#FF1A1A</item>
+        <item name="cornerRadius">6dp</item>
+        <item name="android:textColor">@color/slr_white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:text">@string/auth_sync_btn</item>
+        <item name="android:layout_margin">0dp</item>
+        <item name="android:textAppearance">@style/StreamLayerSDK_Button.TextAppearance</item>
+    </style>
+
+    <style name="AuthSync_Info" parent="StreamLayerSDK_AuthTheme.LottieInfoView">
+        <item name="slrLottieInfoTitle">@string/auth_sync_title</item>
+        <item name="slrLottieInfoMessageStyle">@style/AuthSyncTheme.Message</item>
+        <item name="slrLottieInfoTitleStyle">@style/AuthSyncTheme.Title</item>
+    </style>
+
+    <style name="AuthSyncTheme.Title">
+        <item name="android:textSize">45sp</item>
+        <item name="android:textColor">#FFD813</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AuthSyncTheme.Message">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/slr_red</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="InviteActionButton" parent="StreamLayerSDK_Button">
+        <item name="backgroundTint">@color/button_color</item>
+        <item name="android:textAppearance">@style/InviteButtonTextAppearance</item>
+    </style>
+    
+    <style name="InviteText">
+        <item name="android:fontFamily">@font/benton_sans</item>
+        <item name="android:textColor">@color/slr_white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="InviteButtonTextAppearance">
+        <item name="android:textColor">@color/slr_white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/benton_sans</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
+
+</resources>

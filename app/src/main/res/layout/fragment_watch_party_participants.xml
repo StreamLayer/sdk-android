@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/slGroupIdView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:background="@drawable/slr_shape_chat_input"
+        android:hint="@string/enter_group_id"
+        android:imeOptions="flagNoExtractUi"
+        android:includeFontPadding="false"
+        android:inputType="textCapSentences"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="1"
+        android:minHeight="40dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="40dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/slSubscribeButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/slSubscribeButton"
+        style="@style/StreamLayerSDK_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/subscribe"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/slr_blue"
+        app:iconGravity="textStart"
+        app:iconTint="@color/slr_white"
+        app:layout_constraintEnd_toStartOf="@+id/slUnsubscribeButton"
+        app:layout_constraintTop_toTopOf="@+id/slGroupIdView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/slUnsubscribeButton"
+        style="@style/StreamLayerSDK_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/unsubscribe"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/slr_blue"
+        app:iconGravity="textStart"
+        app:iconTint="@color/slr_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/slGroupIdView" />
+
+    <TextView
+        android:id="@+id/slrEmptyView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="32dp"
+        android:text="@string/no_active_wp"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/slrOpenWatchPartyBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slGroupIdView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/slrParticipantsView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/slrOpenWatchPartyBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slGroupIdView" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/slrOpenWatchPartyBtn"
+        style="@style/StreamLayerSDK_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/slr_activity_vertical_margin"
+        android:text="@string/open_wp"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/slr_blue"
+        app:iconGravity="textStart"
+        app:iconTint="@color/slr_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

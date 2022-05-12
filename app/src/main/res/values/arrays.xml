@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="avatar_colors">
+        <item>@color/avatar_color_1</item>
+        <item>@color/avatar_color_2</item>
+        <item>@color/avatar_color_3</item>
+        <item>@color/avatar_color_4</item>
+        <item>@color/avatar_color_5</item>
+        <item>@color/avatar_color_6</item>
+        <item>@color/avatar_color_7</item>
+        <item>@color/avatar_color_8</item>
+        <item>@color/avatar_color_9</item>
+        <item>@color/avatar_color_10</item>
+    </array>
+</resources>

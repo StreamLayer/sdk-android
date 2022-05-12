@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    tools:context=".fantasy.FantasyActivity">
+
+    <com.google.android.exoplayer2.ui.PlayerView
+        android:id="@+id/playerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:auto_show="false"
+        app:hide_on_touch="false"
+        app:keep_content_on_player_reset="true"
+        app:layout_constraintDimensionRatio="H,16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="zoom"
+        app:surface_type="surface_view"
+        app:use_controller="false"
+        tools:background="@tools:sample/backgrounds/scenic">
+
+        <ImageView
+            android:id="@+id/playerShadow"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/playbackButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/sl_pause_ic"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/transparent"
+            android:scaleType="fitXY"
+            android:src="@drawable/sl_close_ic"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </com.google.android.exoplayer2.ui.PlayerView>
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/videoLoader"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundTint="#fff"
+        app:layout_constraintBottom_toBottomOf="@id/playerView"
+        app:layout_constraintEnd_toEndOf="@id/playerView"
+        app:layout_constraintStart_toStartOf="@id/playerView"
+        app:layout_constraintTop_toTopOf="@id/playerView" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/wpApiFragment"
+        android:name="io.streamlayer.demo.managed.api.WatchPartyFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:tag="WatchPartyFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerView" />
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/leaderboardButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/slr_ic_statistics"
+        android:background="@drawable/slr_bg_menu_item"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/streamLayerFragment"
+        android:name="io.streamlayer.sdk.main.StreamLayerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:tag="StreamLayerFragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

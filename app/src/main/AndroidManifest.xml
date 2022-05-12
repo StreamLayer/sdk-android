@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.streamlayer.demo">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
     <application
         android:name=".App"
         android:allowBackup="false"
@@ -52,17 +49,27 @@
                     android:host="${branchIoAlternateHost}"
                     android:scheme="https" />
             </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="${branchIoScheme}"/>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
 
         <activity
-            android:name=".player.PlayerActivity"
+            android:name=".live.LiveActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:exported="true"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize">
 
             <!-- to enable StreamLayer push notifications with deep linking,
             add this intent filter to your activity which is the host for StreamLayerFragment.
-            Also, add the StreamLayer.handleDeepLink() to onResume of this activity. -->
+            Also, add the StreamLayer.handleDeepLinkIntent() to onResume of this activity. -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -72,7 +79,28 @@
                     android:scheme="streamlayer" />
             </intent-filter>
 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="${applicationId}"
+                    android:pathPrefix="/invite"
+                    android:scheme="streamlayer" />
+            </intent-filter>
+
         </activity>
+
+        <activity
+            android:name=".managed.ManagedWatchPartyActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".auth.AuthActivity"
+            android:exported="false"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize" />
 
         <service
             android:name=".common.firebase.MyFirebaseMessagingService"
@@ -90,18 +118,11 @@
             android:name="io.branch.sdk.TestMode"
             android:value="false" />
         <meta-data
-            android:name="firebase_crashlytics_collection_enabled"
-            android:value="${enableCrashlytics}" />
-        <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_logo" />
+            android:resource="@drawable/slr_ic_logo" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
-
-        <meta-data
-            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.google.android.exoplayer2.ext.cast.DefaultCastOptionsProvider" />
+            android:resource="@color/colorPrimary1" />
 
     </application>
 </manifest>

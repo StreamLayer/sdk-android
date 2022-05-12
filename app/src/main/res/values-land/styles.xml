@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MessengerOverlayTheme" parent="BaseOverlayTheme">
+        <item name="slrAppName">@string/slr_app_name</item>
+        <item name="slrToolbarBackground">@android:color/transparent</item>
+        <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
+        <item name="slrToolbarCancelColor">@color/colorSecondary1</item>
+        <item name="slrChatStickerButtonColor">@color/colorPrimary2</item>
+        <item name="slrChatToolbarWPIconColor">@color/colorSecondary1</item>
+        <item name="slrCircleButtonColor">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor1">@color/colorPrimary2</item>
+        <item name="slrShareFriendsIconColor2">@color/colorPrimary2</item>
+        <item name="slrChatKeyboardTabBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatKeyboardEmojiTabBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatKeyboardBackgroundColor">#161A1F</item>
+        <item name="slrChatUnreadCircleBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrInviteFromContactsIcon">@drawable/ic_invite_from_contacts</item>
+        <item name="slrChatMutedButtonBackgroundColor">@color/slr_white_alpha_40</item>
+        <item name="slrChatUnMutedButtonBackgroundColor">@color/colorPrimary2</item>
+        <item name="slrChatDeleteButtonBackgroundColor">@color/colorAccent1</item>
+        <item name="slrChatsToolbarBackgroundColor">@color/colorPrimary1</item>
+    </style>
+</resources>

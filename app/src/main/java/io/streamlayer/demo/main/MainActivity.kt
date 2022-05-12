@@ -3,26 +3,28 @@ package io.streamlayer.demo.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupWithNavController
 import io.branch.referral.Branch
-import io.branch.referral.Branch.BranchReferralInitListener
-import io.streamlayer.demo.R
+import io.streamlayer.demo.auth.AuthActivity
 import io.streamlayer.demo.databinding.ActivityMainBinding
-import io.streamlayer.demo.databinding.LayoutMainContentBinding
-import io.streamlayer.demo.player.PlayerActivity
+import io.streamlayer.demo.live.LiveActivity
+import io.streamlayer.demo.managed.ManagedWatchPartyActivity
 import io.streamlayer.sdk.StreamLayer
+import io.streamlayer.sdk.model.deeplink.InviteData
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
     private val branchReferralInitListener =
-        BranchReferralInitListener { linkProperties, error ->
+        Branch.BranchReferralInitListener { linkProperties, error ->
             if (error == null) linkProperties?.let {
                 StreamLayer.getInvite(it.toString())?.let {
-                    // do host logic if needed first and than call this method
-                    StreamLayer.handleInvite(it, this)
+                    // 1. remember InviteData link here - it's an entry point to StreamLayer Invite flow
+                    // 2. forward user to logic/registration flow first or check if user is authorized
+                    // 3. show some ui dialog/screen which contains additional info about StreamLayer Invite
+                    // or call StreamLayer.handleInvite(it, this) here to start StreamLayer Invite flow.
+                    if (StreamLayer.isUserAuthorized()) StreamLayer.handleInvite(it, this)
+                    else openInviteDescription(it)
                 }
             }
         }
@@ -31,23 +33,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        LayoutMainContentBinding.bind(binding.root).toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.menu_translate -> PlayerActivity.open(this)
-            }
-            true
-        }
-    }
-
-    private fun setupBottomNavView() {
-        val merged = LayoutMainContentBinding.bind(binding.root)
-        merged.bnv.setupWithNavController(findNavController(R.id.nav_host_fragment))
-        merged.bnv.setOnNavigationItemSelectedListener(BottomNavHandler(merged))
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
+        binding.authBtn.setOnClickListener { AuthActivity.open(this) }
+        binding.liveBtn.setOnClickListener { LiveActivity.open(this) }
+        binding.managedBtn.setOnClickListener { ManagedWatchPartyActivity.open(this) }
     }
 
     override fun onStart() {
@@ -57,14 +45,6 @@ class MainActivity : AppCompatActivity() {
             .withData(this.intent?.data).init()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setupBottomNavView()
-        if (!StreamLayer.handleDeepLink(intent, this)) {
-            // do host logic if needed
-        }
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         if (intent == null) return
@@ -72,8 +52,10 @@ class MainActivity : AppCompatActivity() {
         Branch.sessionBuilder(this)
             .withCallback(branchReferralInitListener)
             .reInit()
-        if (!StreamLayer.handleDeepLink(intent, this)) {
-            // do host logic if needed
-        }
+    }
+
+    private fun openInviteDescription(inviteData: InviteData) {
+        val fragment = InviteWelcomeFragment.newInstance(inviteData)
+        fragment.show(supportFragmentManager, "InviteWelcomeFragment")
     }
 }

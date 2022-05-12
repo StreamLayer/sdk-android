@@ -14,4 +14,26 @@
     <color name="pink">#F0EF7474</color>
     <color name="background_light">#F1F1F1</color>
     <color name="brand">#FFAD02</color>
+
+    <color name="colorPrimary1">#006747</color>
+    <color name="colorPrimary2">#009B77</color>
+    <color name="colorSecondary1">#FFFFFF</color>
+    <color name="colorSecondary2">#888B8D</color>
+    <color name="colorSecondary2_alpha_40">#66888B8D</color>
+    <color name="colorSecondary1_alpha_50">#80FFFFFF</color>
+    <color name="colorAccent1">#EF3340</color>
+    <color name="colorAccent2">#FCE300</color>
+
+    <color name="avatar_color_1">#DCCC59</color>
+    <color name="avatar_color_2">#E8AF43</color>
+    <color name="avatar_color_3">#CC8466</color>
+    <color name="avatar_color_4">#244E84</color>
+    <color name="avatar_color_5">#797B8E</color>
+    <color name="avatar_color_6">#84905B</color>
+    <color name="avatar_color_7">#C15093</color>
+    <color name="avatar_color_8">#B2312F</color>
+    <color name="avatar_color_9">#7C2E54</color>
+    <color name="avatar_color_10">#8B2825</color>
+
+    <color name="slr_push_color">#009B77</color>
 </resources>
