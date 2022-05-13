@@ -1,320 +1,335 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>io.streamlayer.sdk</title>
     <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
-    <link href="../../styles/style.css" rel="Stylesheet">
-    <script type="text/javascript" src="../../scripts/navigationLoader.js" async="async"></script>
-    <script type="text/javascript" src="../../scripts/platformContentHandler.js" async="async"></script>
-    <script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
-    <script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
-    <link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
     <script>var pathToRoot = "../../";</script>
-  </head>
-  <body>
-    <div id="container">
-      <div id="leftColumn">
-        <div id="logo"></div>
-        <div id="paneSearch"></div>
-        <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+const savedDarkMode = storage ? JSON.parse(storage) : false
+if(savedDarkMode === true){
+    document.getElementsByTagName("html")[0].classList.add("theme-dark")
+}</script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../index.html">
+                    <span>sdk</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
-        <script type="text/javascript" src="../../scripts/pages.js"></script>
-        <script type="text/javascript" src="../../scripts/main.js"></script>
-        <div id="content" pageIds="io.streamlayer.sdk////PointingToDeclaration/">
-          <div class="breadcrumbs"><a href="../index.html">sdk</a>/<a href="index.html">io.streamlayer.sdk</a></div>
-          <div class="cover ">
-            <div class="filter-section" id="filter-section"><button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtml/stagingRelease">androidJvm</button></div>
-            <h1 class="cover"><a data-name="packageio.streamlayer.sdk"></a><span>Package io.</span><wbr></wbr><span>streamlayer.</span><wbr></wbr><span>sdk</span></h1>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
-            <div class="tabs-section-body">
-              <h2 class=""><a data-name="types"></a>Types</h2>
-              <div class="table" data-togglable="Types"><a data-name="io.streamlayer.sdk/EventSession///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-event-session/index.html">EventSession</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/EventSession///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Interface for providing current event session.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">interface <a href="-event-session/index.html">EventSession</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk////PointingToDeclaration//-198636595">
+  <div class="breadcrumbs"><a href="../../index.html">sdk</a><span class="delimiter">/</span><a href="index.html">io.streamlayer.sdk</a></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Package io.</span><wbr></wbr><span>streamlayer.</span><wbr></wbr><span>sdk</span></h1>
   </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/StreamLayer///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-stream-layer/index.html">StreamLayer</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/StreamLayer///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Use this class as an entry point for StreamLayer SDK initialization.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">object <a href="-stream-layer/index.html">StreamLayer</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/StreamLayerAuth///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-stream-layer-auth/index.html">StreamLayerAuth</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/StreamLayerAuth///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Use this class as an entry point for forwarding StreamLayer SDK auth.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">object <a href="-stream-layer-auth/index.html">StreamLayerAuth</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/StreamLayerEvents///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-stream-layer-events/index.html">StreamLayerEvents</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/StreamLayerEvents///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Provide SDK events bus.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">object <a href="-stream-layer-events/index.html">StreamLayerEvents</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/StreamLayerUI///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-stream-layer-u-i/index.html">StreamLayerUI</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/StreamLayerUI///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Use this class as an entry point for configuring and managing the StreamLayer SDK UI.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">object <a href="-stream-layer-u-i/index.html">StreamLayerUI</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/TimeCodeProvider///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-time-code-provider/index.html">TimeCodeProvider</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/TimeCodeProvider///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Interface for providing player current epoch time.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">interface <a href="-time-code-provider/index.html">TimeCodeProvider</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/VideoPlayer///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-video-player/index.html">VideoPlayer</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/VideoPlayer///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Interface for providing video player. Api based on <code>ExoPlayer</code> library.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">interface <a href="-video-player/index.html">VideoPlayer</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/VideoPlayerProvider///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-video-player-provider/index.html">VideoPlayerProvider</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/VideoPlayerProvider///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Interface for supporting video playback. Host app should implement it and add to SDK.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">interface <a href="-video-player-provider/index.html">VideoPlayerProvider</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
-<a data-name="io.streamlayer.sdk/VideoPlayerView///PointingToDeclaration/"></a>
-                <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
-                  <div class="main-subrow "><span><a href="-video-player-view/index.html">VideoPlayerView</a><span class="anchor-wrapper"><span class="anchor-icon" pointing-to="io.streamlayer.sdk/VideoPlayerView///PointingToDeclaration/"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21.2496 5.3C20.3496 4.5 19.2496 4 18.0496 4C16.8496 4 15.6496 4.5 14.8496 5.3L10.3496 9.8L11.7496 11.2L16.2496 6.7C17.2496 5.7 18.8496 5.7 19.8496 6.7C20.8496 7.7 20.8496 9.3 19.8496 10.3L15.3496 14.8L16.7496 16.2L21.2496 11.7C22.1496 10.8 22.5496 9.7 22.5496 8.5C22.5496 7.3 22.1496 6.2 21.2496 5.3Z"/>
-    <path d="M8.35 16.7998C7.35 17.7998 5.75 17.7998 4.75 16.7998C3.75 15.7998 3.75 14.1998 4.75 13.1998L9.25 8.6998L7.85 7.2998L3.35 11.7998C1.55 13.5998 1.55 16.3998 3.35 18.1998C4.25 19.0998 5.35 19.4998 6.55 19.4998C7.75 19.4998 8.85 19.0998 9.75 18.1998L14.25 13.6998L12.85 12.2998L8.35 16.7998Z"/>
-</svg></span>
-                        <div class="copy-popup-wrapper "><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Link copied to clipboard</span></div>
-                      </span></span>
-                    <div class="platform-tags">
-                      <div class="platform-tag jvm-like">androidJvm</div>
-                    </div>
-                  </div>
-                  <div class="platform-dependent-row keyValue">
-                    <div></div>
-                    <div class="title"><div class="divergent-group" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease"><div class="brief-with-platform-tags"><div class="inner-brief-with-platform-tags"><div class="brief "><p class="paragraph">Interface for providing <a href="-video-player/index.html">VideoPlayer</a> ui view. Api based on <code>ExoPlayer</code> library.</p></div></div>
-<span class="pull-right"></span></div>
-
-  <div class="main-subrow">
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace">interface <a href="-video-player-view/index.html">VideoPlayerView</a><span class="top-right-position"><span class="copy-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5 4H15V16H5V4ZM17 7H19V18V20H17H8V18H17V7Z" fill="black"/>
-                       </svg></span><div class="copy-popup-wrapper popup-to-left"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18 9C18 14 14 18 9 18C4 18 0 14 0 9C0 4 4 0 9 0C14 0 18 4 18 9ZM14.2 6.2L12.8 4.8L7.5 10.1L5.3 7.8L3.8 9.2L7.5 13L14.2 6.2Z" fill="#4DBB5F"/>
-</svg><span>Content copied to clipboard</span></div></span></div></div></div>
-  </div>
-</div>
-</div>
-                  </div>
-                </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="1093714151%2FClasslikes%2F-198636595" anchor-label="SLRAppHost" id="1093714151%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-app-host/index.html"><span>SLRApp</span><wbr></wbr><span><span>Host</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1093714151%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-app-host/index.html">SLRAppHost</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface which get access to all available options of single StreamLayerFragment instance.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#container"><svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11.3337 9.66683H0.666992L6.00033 3.66683L11.3337 9.66683Z" fill="black"/>
-    <path d="M0.666992 0.333496H11.3337V1.66683H0.666992V0.333496Z" fill="black"/>
-</svg></a></span><span>© 2020 Copyright</span><span class="pull-right"><span>Sponsored and developed by dokka</span><a href="https://github.com/Kotlin/dokka"><span class="padded-icon"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 0H2.3949L4.84076 2.44586L0 7.28662L0.713376 8L5.55414 3.15924L8 5.6051V0Z" fill="black"/>
-</svg></span></a></span></div>
+<a data-name="1297550027%2FClasslikes%2F-198636595" anchor-label="SLRAudioDuckingListener" id="1297550027%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-audio-ducking-listener/index.html"><span>SLRAudio</span><wbr></wbr><span>Ducking</span><wbr></wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1297550027%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-audio-ducking-listener/index.html">SLRAudioDuckingListener</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Callback interface invoked when the call is toggled and the user should toggle sound ducking on or off.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-341581994%2FClasslikes%2F-198636595" anchor-label="SLRCustomNotification" id="-341581994%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-custom-notification/index.html"><span>SLRCustom</span><wbr></wbr><span><span>Notification</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341581994%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-s-l-r-custom-notification/index.html">SLRCustomNotification</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>title<span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>description<span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/LayoutRes.html"><span class="token annotation">LayoutRes</span></a> </span><span class="token keyword">val </span>layoutId<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/IdRes.html"><span class="token annotation">IdRes</span></a> </span><span class="token keyword">val </span>actionId<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/ColorRes.html"><span class="token annotation">ColorRes</span></a> </span><span class="token keyword">val </span>iconBackgroundColor<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>iconUrl<span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span> : <span data-unresolved-link="io.streamlayer.sdk.model.notifications/NotificationBuilder///PointingToDeclaration/">NotificationBuilder</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Extendable class. Used to send custom notifications to the StreamLayer SDK overlay.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="778648113%2FClasslikes%2F-198636595" anchor-label="SLRCustomOverlay" id="778648113%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-custom-overlay/index.html"><span>SLRCustom</span><wbr></wbr><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="778648113%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-s-l-r-custom-overlay/index.html">SLRCustomOverlay</a><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/IdRes.html"><span class="token annotation">IdRes</span></a> </span><span class="token keyword">val </span>actionId<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/StringRes.html"><span class="token annotation">StringRes</span></a> </span><span class="token keyword">val </span>titleId<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span><span class="token annotation">@</span><a href="https://developer.android.com/reference/kotlin/androidx/annotation/DrawableRes.html"><span class="token annotation">DrawableRes</span></a> </span><span class="token keyword">val </span>iconId<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>fullClassName<span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Sets the custom overlay to the list menu.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-864728654%2FClasslikes%2F-198636595" anchor-label="SLREventChangeListener" id="-864728654%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-event-change-listener/index.html"><span>SLREvent</span><wbr></wbr><span>Change</span><wbr></wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-864728654%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-event-change-listener/index.html">SLREventChangeListener</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface callback invoked when new stream playback has been requested.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="57499766%2FClasslikes%2F-198636595" anchor-label="SLREventSession" id="57499766%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-event-session/index.html"><span>SLREvent</span><wbr></wbr><span><span>Session</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="57499766%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-event-session/index.html">SLREventSession</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface for providing current event session.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2058096266%2FClasslikes%2F-198636595" anchor-label="SLRLoginRequiredOverlay" id="2058096266%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-login-required-overlay/index.html"><span>SLRLogin</span><wbr></wbr><span>Required</span><wbr></wbr><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2058096266%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-s-l-r-login-required-overlay/index.html">SLRLoginRequiredOverlay</a> : <span data-unresolved-link="io.streamlayer.common.eventbus/SLRSDKEvent///PointingToDeclaration/">SLRSDKEvent</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">StreamLayer Overlay Main fragment opened, user is not logged in HOST app define <span data-unresolved-link="io.streamlayer.sdk.main/StreamLayerFragment///PointingToDeclaration/">io.streamlayer.sdk.main.StreamLayerFragment</span> this event check user logged in status.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-749930126%2FClasslikes%2F-198636595" anchor-label="SLRLogLevel" id="-749930126%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-log-level/index.html"><span>SLRLog</span><wbr></wbr><span><span>Level</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-749930126%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-s-l-r-log-level/index.html">SLRLogLevel</a> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-s-l-r-log-level/index.html">SLRLogLevel</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Enum class that defines supported levels of error and message handling.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2080874392%2FClasslikes%2F-198636595" anchor-label="SLRLogListener" id="2080874392%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-log-listener/index.html"><span>SLRLog</span><wbr></wbr><span><span>Listener</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2080874392%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-log-listener/index.html">SLRLogListener</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface definition for a callback to be invoked when StreamLayer SDK will log any message or error.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-61660828%2FClasslikes%2F-198636595" anchor-label="SLRLogoutButtonClick" id="-61660828%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-logout-button-click/index.html"><span>SLRLogout</span><wbr></wbr><span>Button</span><wbr></wbr><span><span>Click</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-61660828%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-s-l-r-logout-button-click/index.html">SLRLogoutButtonClick</a> : <span data-unresolved-link="io.streamlayer.common.eventbus/SLRSDKEvent///PointingToDeclaration/">SLRSDKEvent</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">User has clicked logout button in the profile overlay. HOST app may observe this event, navigate to other screen.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1997818628%2FClasslikes%2F-198636595" anchor-label="SLRSyncContinueButtonClick" id="-1997818628%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-sync-continue-button-click/index.html"><span>SLRSync</span><wbr></wbr><span>Continue</span><wbr></wbr><span>Button</span><wbr></wbr><span><span>Click</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1997818628%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-s-l-r-sync-continue-button-click/index.html">SLRSyncContinueButtonClick</a> : <span data-unresolved-link="io.streamlayer.common.eventbus/SLRSDKEvent///PointingToDeclaration/">SLRSDKEvent</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">User has clicked continue button in the Sync overlay. In case StreamLayerAuth.setExternalAuthEnabled set true, it's prevent start SDK Auth flow, HOST may observe this event and start HOST application auth flow.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1556015545%2FClasslikes%2F-198636595" anchor-label="SLRTheme" id="-1556015545%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-theme/index.html"><span><span>SLRTheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1556015545%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="-s-l-r-theme/index.html">SLRTheme</a> <span><span class="token annotation">@</span><span data-unresolved-link="kotlin.jvm/JvmOverloads///PointingToDeclaration/"><span class="token annotation">JvmOverloads</span></span> </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters wrapped"><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>authTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>mainTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>profileTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>baseTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>watchPartyTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>inviteTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>predictionsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>statisticsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>messengerTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter indented">&nbsp;&nbsp;&nbsp;&nbsp;<span class="token keyword">val </span>notificationsStyle<span class="token operator">: </span><a href="-s-l-r-theme/-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Sets the parameters for the custom theme in the application.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="178163463%2FClasslikes%2F-198636595" anchor-label="SLRTimeCodeProvider" id="178163463%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-time-code-provider/index.html"><span>SLRTime</span><wbr></wbr><span>Code</span><wbr></wbr><span><span>Provider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="178163463%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-time-code-provider/index.html">SLRTimeCodeProvider</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface for providing player current epoch time.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="868345076%2FClasslikes%2F-198636595" anchor-label="SLRVideoPlayer" id="868345076%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-video-player/index.html"><span>SLRVideo</span><wbr></wbr><span><span>Player</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="868345076%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-video-player/index.html">SLRVideoPlayer</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface for providing video player. Api based on <code class="lang-kotlin">ExoPlayer</code> library.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="521129219%2FClasslikes%2F-198636595" anchor-label="SLRVideoPlayerProvider" id="521129219%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-video-player-provider/index.html"><span>SLRVideo</span><wbr></wbr><span>Player</span><wbr></wbr><span><span>Provider</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="521129219%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-video-player-provider/index.html">SLRVideoPlayerProvider</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface for supporting video playback. Host app should implement it and add to SDK.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1805309007%2FClasslikes%2F-198636595" anchor-label="SLRVideoPlayerView" id="1805309007%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-video-player-view/index.html"><span>SLRVideo</span><wbr></wbr><span>Player</span><wbr></wbr><span><span>View</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1805309007%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-video-player-view/index.html">SLRVideoPlayerView</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface for providing <a href="-s-l-r-video-player/index.html">SLRVideoPlayer</a> ui view. Api based on <code class="lang-kotlin">ExoPlayer</code> library.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1839305967%2FClasslikes%2F-198636595" anchor-label="SLRWatchPartySession" id="-1839305967%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-s-l-r-watch-party-session/index.html"><span>SLRWatch</span><wbr></wbr><span>Party</span><wbr></wbr><span><span>Session</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1839305967%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="-s-l-r-watch-party-session/index.html">SLRWatchPartySession</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Interface which provides access to managed watch party.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="374438330%2FClasslikes%2F-198636595" anchor-label="StreamLayer" id="374438330%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-stream-layer/index.html"><span>Stream</span><wbr></wbr><span><span>Layer</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="374438330%2FClasslikes%2F-198636595"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">object </span><a href="-stream-layer/index.html">StreamLayer</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Use this class as an entry point for StreamLayer SDK.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+        </div>
+    </div>
+</div>
+</body>
 </html>
-
