@@ -61,7 +61,7 @@ def coreKtx = "1.7.0"
 def constraintLayout = "2.1.2"
 def recyclerview = "1.2.1"
 def fragment = "1.4.0"
-def streamLayer = "2.13.0-beta.294"
+def streamLayer = "2.13.0"
 def branchIO = "5.1.3"
 def firebase = "23.0.3"
 

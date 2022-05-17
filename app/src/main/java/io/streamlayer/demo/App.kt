@@ -4,7 +4,6 @@ import android.app.Application
 import android.util.Log
 import io.branch.referral.Branch
 import io.streamlayer.demo.common.exo.ExoVideoPlayerProvider
-import io.streamlayer.sdk.SLRLogLevel
 import io.streamlayer.sdk.SLRLogListener
 import io.streamlayer.sdk.SLRTheme
 import io.streamlayer.sdk.StreamLayer
@@ -23,12 +22,12 @@ class App : Application() {
         Branch.getAutoInstance(this)
         // add log listener - it can be done before sdk init
         StreamLayer.setLogListener(object : SLRLogListener {
-            override fun log(level: SLRLogLevel, msg: String) {
+            override fun log(level: SLRLogListener.Level, msg: String) {
                 when (level) {
-                    SLRLogLevel.VERBOSE -> Log.v(TAG, msg)
-                    SLRLogLevel.DEBUG -> Log.d(TAG, msg)
-                    SLRLogLevel.INFO -> Log.i(TAG, msg)
-                    SLRLogLevel.ERROR -> Log.e(TAG, msg)
+                    SLRLogListener.Level.VERBOSE -> Log.v(TAG, msg)
+                    SLRLogListener.Level.DEBUG -> Log.d(TAG, msg)
+                    SLRLogListener.Level.INFO -> Log.i(TAG, msg)
+                    SLRLogListener.Level.ERROR -> Log.e(TAG, msg)
                 }
             }
         })
