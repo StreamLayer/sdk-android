@@ -153,16 +153,12 @@ class LiveViewModel : MviViewModel<State>(State(), Dispatchers.Default) {
         }
     }
 
-    fun notifyDuckingChanged(isEnabled: Boolean) {
+    fun notifyDuckingChanged(isEnabled: Boolean, level: Float = 0f) {
         player.audioComponent?.also { audio ->
             if (isEnabled) {
-                if (volumeBeforeDucking == null) {
-                    // decrease volume to 10% if louder, otherwise keep the current volume
-                    volumeBeforeDucking = audio.volume
-                    audio.volume = min(audio.volume, 0.1f)
-                }
+                if (volumeBeforeDucking == null) volumeBeforeDucking = audio.volume
+                audio.volume = min(audio.volume, level)
             } else volumeBeforeDucking?.let { volume ->
-                // reset volume
                 audio.volume = volume
                 volumeBeforeDucking = null
             }

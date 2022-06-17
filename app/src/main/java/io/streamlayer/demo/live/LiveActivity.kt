@@ -70,8 +70,8 @@ class LiveActivity : AppCompatActivity() {
 
     private val audioDuckingListener = object : SLRAudioDuckingListener {
 
-        override fun requestAudioDucking() {
-            viewModel.notifyDuckingChanged(true)
+        override fun requestAudioDucking(level: Float) {
+            viewModel.notifyDuckingChanged(true, level)
         }
 
         override fun disableAudioDucking() {

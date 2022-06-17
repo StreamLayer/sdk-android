@@ -40,7 +40,7 @@ class App : Application() {
         // set custom media provider base on your exo player api
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
         // set custom themes
-        StreamLayer.theme = SLRTheme(
+        StreamLayer.setCustomTheme(SLRTheme(
             authTheme = R.style.AuthOverlayTheme,
             mainTheme = R.style.MainOverlayTheme,
             profileTheme = R.style.ProfileOverlayTheme,
@@ -51,6 +51,6 @@ class App : Application() {
             statisticsTheme = R.style.StatisticsOverlayTheme,
             messengerTheme = R.style.MessengerOverlayTheme,
             notificationsStyle = SLRTheme.NotificationsStyle.DESIGN_NUMBER_ONE
-        )
+        ))
     }
 }
