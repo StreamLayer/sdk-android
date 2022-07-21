@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+
+    compileOptions {
+        sourceCompatibility = versions.java
+        targetCompatibility = versions.java
+    }
+
+    kotlinOptions {
+        jvmTarget = versions.java.toString()
+    }
+
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    // Jetpack
+    api "androidx.appcompat:appcompat:$versions.appcompat"
+    api "androidx.core:core-ktx:$versions.coreKtx"
+    // Exo player
+    api "com.google.android.exoplayer:exoplayer:$versions.exoPlayer"
+    // StreamLayer
+    api "io.streamlayer:androidsdk:$versions.streamlayer"
+}

@@ -4,27 +4,27 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import com.google.android.exoplayer2.MediaItem
-import com.google.android.exoplayer2.PlaybackException
-import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
+import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
+import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
-import com.google.android.exoplayer2.ui.PlayerView
+import com.google.android.exoplayer2.ui.StyledPlayerView
 import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
+import com.google.android.exoplayer2.upstream.DefaultDataSource
+import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import io.streamlayer.demo.R
+import io.streamlayer.demo.common.R
 import io.streamlayer.sdk.SLRVideoPlayer
 import io.streamlayer.sdk.SLRVideoPlayerProvider
 import io.streamlayer.sdk.SLRVideoPlayerView
 
-internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : SLRVideoPlayer {
+class ExoVideoPlayer(internal val simpleExoPlayer: ExoPlayer) : SLRVideoPlayer {
 
     // keep it for mapping different listeners
-    private val listeners: MutableList<Pair<SLRVideoPlayer.Listener, Player.Listener>> = mutableListOf()
+    private val listeners: MutableList<Pair<SLRVideoPlayer.Listener, Player.Listener>> =
+        mutableListOf()
 
     override fun play() {
         simpleExoPlayer.playWhenReady = true
@@ -54,6 +54,7 @@ internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : S
 
     override fun addListener(listener: SLRVideoPlayer.Listener) {
         val exoListener = object : Player.Listener {
+
             override fun onPlayerStateChanged(playWhenReady: Boolean, playbackState: Int) {
                 listener.onPlayerStateChanged(
                     when (playbackState) {
@@ -81,9 +82,9 @@ internal class ExoVideoPlayer(internal val simpleExoPlayer: SimpleExoPlayer) : S
     }
 }
 
-internal class ExoVideoPlayerView @JvmOverloads constructor(
+class ExoVideoPlayerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
-) : PlayerView(context, attrs, defStyleAttr), SLRVideoPlayerView {
+) : StyledPlayerView(context, attrs, defStyleAttr), SLRVideoPlayerView {
 
     override fun getView(): View = this
 
@@ -107,27 +108,38 @@ internal class ExoVideoPlayerView @JvmOverloads constructor(
     }
 }
 
-
-internal class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPlayerProvider {
+class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPlayerProvider {
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
     private val agent by lazy { Util.getUserAgent(context, "streamlayer") }
 
-    private fun defaultDataSourceFactory(): DefaultDataSourceFactory =
-        DefaultDataSourceFactory(context, agent, bandwidthMeter)
+    private fun defaultDataSourceFactory(): DefaultDataSource.Factory =
+        DefaultDataSource.Factory(context, DefaultHttpDataSource.Factory().setUserAgent(agent))
 
-    override fun getVideoPlayer(url: String, type: SLRVideoPlayer.Type, mode: SLRVideoPlayer.RepeatMode): SLRVideoPlayer {
-        val player = SimpleExoPlayer.Builder(context).build()
+    override fun getVideoPlayer(
+        url: String,
+        type: SLRVideoPlayer.Type,
+        mode: SLRVideoPlayer.RepeatMode
+    ): SLRVideoPlayer {
+        val trackSelector = DefaultTrackSelector(context)
+        trackSelector.setParameters(trackSelector.buildUponParameters().setMaxVideoSizeSd())
+        val player = ExoPlayer.Builder(context)
+            .setBandwidthMeter(bandwidthMeter)
+            .setTrackSelector(trackSelector)
+            .setLoadControl(DefaultLoadControl())
+            .build()
         val streamUri = MediaItem.Builder().setUri(url)
         val mediaSource = when (type) {
             SLRVideoPlayer.Type.HLS -> {
                 streamUri.setMimeType(MimeTypes.APPLICATION_M3U8)
-                HlsMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+                HlsMediaSource.Factory(defaultDataSourceFactory())
+                    .createMediaSource(streamUri.build())
             }
             else -> {
                 streamUri.setMimeType(MimeTypes.APPLICATION_MP4)
-                ProgressiveMediaSource.Factory(defaultDataSourceFactory()).createMediaSource(streamUri.build())
+                ProgressiveMediaSource.Factory(defaultDataSourceFactory())
+                    .createMediaSource(streamUri.build())
             }
         }
         player.setMediaSource(mediaSource)
@@ -140,7 +152,10 @@ internal class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPl
         return ExoVideoPlayer(player)
     }
 
-    override fun getVideoPlayerView(context: Context, type: SLRVideoPlayerView.Type): SLRVideoPlayerView = when (type) {
+    override fun getVideoPlayerView(
+        context: Context,
+        type: SLRVideoPlayerView.Type
+    ): SLRVideoPlayerView = when (type) {
         SLRVideoPlayerView.Type.SURFACE -> LayoutInflater.from(context)
             .inflate(R.layout.surface_player_view, null) as ExoVideoPlayerView
         SLRVideoPlayerView.Type.TEXTURE -> LayoutInflater.from(context)

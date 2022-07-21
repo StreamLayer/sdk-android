@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="CommonAppTheme" parent="Theme.MaterialComponents.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/slColorPrimary</item>
+        <item name="colorPrimaryDark">@color/slColorPrimaryDark</item>
+        <item name="colorAccent">@color/slColorAccent</item>
+    </style>
+</resources>

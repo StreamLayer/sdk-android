@@ -17,8 +17,6 @@ import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.common.ext.DoubleTapListener
 import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.databinding.ActivityManagedWatchPartyBinding
-import io.streamlayer.sdk.SLRAudioDuckingListener
-import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 
 private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
@@ -58,27 +56,11 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
         }
     }
 
-    private val audioDuckingListener = object : SLRAudioDuckingListener {
-
-        override fun requestAudioDucking(level: Float) {
-            viewModel.notifyDuckingChanged(true, level)
-        }
-
-        override fun disableAudioDucking() {
-            viewModel.notifyDuckingChanged(false)
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManagedWatchPartyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
-        bind()
-        window.addFlags(
-            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-        )
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -126,16 +108,11 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
                 setPlaybackIcon()
                 showControls()
             }
-            StreamLayer.addAudioDuckingListener(audioDuckingListener)
         }
-    }
-
-    private fun bind() {
-        viewModel.viewEvents.collectWhenResumed(this) {
-            when (it) {
-                is BaseErrorEvent -> Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
-            }
-        }
+        window.addFlags(
+            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+        )
     }
 
     private fun showControls() {
@@ -188,6 +165,5 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
         super.onDestroy()
         controlsHandler.removeCallbacksAndMessages(null)
         viewModel.player.removeListener(playerListener)
-        StreamLayer.removeAudioDuckingListener(audioDuckingListener)
     }
 }

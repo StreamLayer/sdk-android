@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">StreamLayer DEMO</string>
+    <string name="app_name">SL Demo</string>
     <string name="auth_demo">Auth demo</string>
     <string name="live_demo">Live demo</string>
     <string name="managed_demo">Managed Watch Party demo</string>

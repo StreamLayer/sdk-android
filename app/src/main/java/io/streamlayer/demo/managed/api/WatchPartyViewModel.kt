@@ -19,7 +19,7 @@ data class Participant(
     val status: SLRWatchPartySession.Participant.Status
 )
 
-data class Message(val userId:String, val content: String, val isLocal: Boolean)
+data class Message(val userId: String, val content: String, val isLocal: Boolean)
 
 data class WatchPartyState(
     val isActive: Boolean = false,
@@ -56,13 +56,15 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
                             is SLRWatchPartySession.Event.ParticipantUpdated -> {
                                 updateState {
                                     val mutable = participants.toMutableList()
-                                    val index = mutable.indexOfFirst { it.user == event.participant.user }
+                                    val index =
+                                        mutable.indexOfFirst { it.user == event.participant.user }
                                     if (event.isRemoved) {
                                         // remove participant from list
                                         if (index != -1) mutable.removeAt(index)
                                     } else {
                                         // add or update participant in list
-                                        if (index != -1) mutable[index] = event.participant.toDomain()
+                                        if (index != -1) mutable[index] =
+                                            event.participant.toDomain()
                                         else mutable.add(event.participant.toDomain())
                                     }
                                     copy(participants = mutable)
@@ -163,7 +165,7 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
         } catch (e: Throwable) {
             onError()
             Log.e(TAG, "error ${e.message}", e)
-            _viewEvents.offer(BaseErrorEvent(e.message ?: "Unknown error"))
+            _viewEvents.trySend(BaseErrorEvent(e.message ?: "Unknown error"))
         }
     }
 }

@@ -1,25 +1,29 @@
 //noinspection GradleDynamicVersion
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.google.gms.google-services'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    // TODO: apply this plugin only if you have a valid google-services.json file - otherwise build will be failed
+    // id 'com.google.gms.google-services'
+}
 
 android {
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = versions.java
+        targetCompatibility = versions.java
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = versions.java.toString()
     }
 
-    compileSdkVersion 31
+    compileSdkVersion versions.compileSdk
+
     defaultConfig {
         applicationId "io.streamlayer.demo"
 
-        minSdk 21
-        targetSdk 31
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
         versionCode 1
         versionName "1.0"
 
@@ -53,39 +57,17 @@ android {
     }
 }
 
-// dependencies
-def appCompat = "1.4.2"
-def exoPlayer = "2.18.0"
-def archLifecycle = "2.5.0"
-def coreKtx = "1.8.0"
-def constraintLayout = "2.1.4"
-def recyclerview = "1.2.1"
-def fragment = "1.5.0"
-def streamLayer = "2.13.1"
-def branchIO = "5.2.0"
-def firebase = "23.0.6"
-
 dependencies {
+    implementation(project(":common"))
     // Jetpack
-    implementation "androidx.appcompat:appcompat:$appCompat"
-    implementation "androidx.core:core-ktx:$coreKtx"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayout"
-    implementation "androidx.recyclerview:recyclerview:$recyclerview"
-    implementation "androidx.fragment:fragment-ktx:$fragment"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycle"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$archLifecycle"
-
-    // StreamLayer
-    implementation "io.streamlayer:androidsdk:$streamLayer"
-
-    // Exo player
-    implementation "com.google.android.exoplayer:exoplayer:$exoPlayer"
-
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    implementation "androidx.fragment:fragment-ktx:$versions.fragment"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.archLifecycle"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.archLifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.archLifecycle"
     // Branch IO
-    implementation "io.branch.sdk.android:library:$branchIO"
-
+    implementation "io.branch.sdk.android:library:$versions.branchIO"
     // Firebase
-    implementation "com.google.firebase:firebase-messaging:$firebase"
+    implementation "com.google.firebase:firebase-messaging:$versions.firebase"
 }
 

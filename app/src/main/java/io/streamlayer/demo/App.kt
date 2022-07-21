@@ -12,7 +12,6 @@ class App : Application() {
 
     companion object {
         private const val TAG = "STREAM_LAYER_SDK"
-        internal const val DEMO_STREAM = "https://hls.next.streamlayer.io/live/index.m3u8"
         var instance: Application? = null
     }
 
@@ -28,6 +27,7 @@ class App : Application() {
                     SLRLogListener.Level.DEBUG -> Log.d(TAG, msg)
                     SLRLogListener.Level.INFO -> Log.i(TAG, msg)
                     SLRLogListener.Level.ERROR -> Log.e(TAG, msg)
+                    else -> {}
                 }
             }
         })
@@ -40,17 +40,19 @@ class App : Application() {
         // set custom media provider base on your exo player api
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
         // set custom themes
-        StreamLayer.setCustomTheme(SLRTheme(
-            authTheme = R.style.AuthOverlayTheme,
-            mainTheme = R.style.MainOverlayTheme,
-            profileTheme = R.style.ProfileOverlayTheme,
-            baseTheme = R.style.BaseOverlayTheme,
-            watchPartyTheme = R.style.WatchPartyOverlayTheme,
-            inviteTheme = R.style.InviteOverlayTheme,
-            predictionsTheme = R.style.PredictionsOverlayTheme,
-            statisticsTheme = R.style.StatisticsOverlayTheme,
-            messengerTheme = R.style.MessengerOverlayTheme,
-            notificationsStyle = SLRTheme.NotificationsStyle.DESIGN_NUMBER_ONE
-        ))
+        StreamLayer.setCustomTheme(
+            SLRTheme(
+                authTheme = R.style.AuthOverlayTheme,
+                mainTheme = R.style.MainOverlayTheme,
+                profileTheme = R.style.ProfileOverlayTheme,
+                baseTheme = R.style.BaseOverlayTheme,
+                watchPartyTheme = R.style.WatchPartyOverlayTheme,
+                inviteTheme = R.style.InviteOverlayTheme,
+                predictionsTheme = R.style.PredictionsOverlayTheme,
+                statisticsTheme = R.style.StatisticsOverlayTheme,
+                messengerTheme = R.style.MessengerOverlayTheme,
+                notificationsStyle = SLRTheme.NotificationsStyle.DESIGN_NUMBER_ONE
+            )
+        )
     }
 }

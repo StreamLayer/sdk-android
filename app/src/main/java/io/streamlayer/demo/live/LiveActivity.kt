@@ -26,7 +26,6 @@ import io.streamlayer.demo.common.ext.isMultiWindowOrPiPModeEnabled
 import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.common.ext.windowController
 import io.streamlayer.demo.databinding.ActivityLiveBinding
-import io.streamlayer.sdk.SLRAudioDuckingListener
 import io.streamlayer.sdk.SLREventChangeListener
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
@@ -65,17 +64,6 @@ class LiveActivity : AppCompatActivity() {
                 if (playWhenReady && playbackState == Player.STATE_READY || viewModel.isPlaybackPaused) videoLoader.hide()
                 else videoLoader.show()
             }
-        }
-    }
-
-    private val audioDuckingListener = object : SLRAudioDuckingListener {
-
-        override fun requestAudioDucking(level: Float) {
-            viewModel.notifyDuckingChanged(true, level)
-        }
-
-        override fun disableAudioDucking() {
-            viewModel.notifyDuckingChanged(false)
         }
     }
 
@@ -150,8 +138,6 @@ class LiveActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-
-            StreamLayer.addAudioDuckingListener(audioDuckingListener)
 
             StreamLayer.setEventChangeListener(object : SLREventChangeListener {
 
@@ -236,14 +222,14 @@ class LiveActivity : AppCompatActivity() {
         pausePlaying()
     }
 
-    override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean, newConfig: Configuration?) {
+    override fun onMultiWindowModeChanged(isInMultiWindowMode: Boolean, newConfig: Configuration) {
         super.onMultiWindowModeChanged(isInMultiWindowMode, newConfig)
         if (isInMultiWindowMode) hideControls()
     }
 
     override fun onPictureInPictureModeChanged(
         isInPictureInPictureMode: Boolean,
-        newConfig: Configuration?
+        newConfig: Configuration
     ) {
         super.onPictureInPictureModeChanged(isInPictureInPictureMode, newConfig)
         if (isInPictureInPictureMode) hideControls()
@@ -275,7 +261,6 @@ class LiveActivity : AppCompatActivity() {
         binding.container.removeOnLayoutChangeListener(containerLayoutBoundsListener)
         controlsHandler.removeCallbacksAndMessages(null)
         viewModel.player.removeListener(playerListener)
-        StreamLayer.removeAudioDuckingListener(audioDuckingListener)
         StreamLayer.setEventChangeListener(null)
     }
 }

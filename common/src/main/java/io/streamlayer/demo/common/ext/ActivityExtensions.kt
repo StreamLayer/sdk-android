@@ -1,22 +1,47 @@
 package io.streamlayer.demo.common.ext
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.res.Configuration
 import android.graphics.Rect
-import android.view.View
-import android.view.ViewGroup
-import android.view.ViewTreeObserver
-import android.view.WindowManager
+import android.os.Build
+import android.view.*
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 
 private const val KEYBOARD_MIN_HEIGHT_RATIO = 0.15f
 
-/**
- * Determine if keyboard is visible
- *
- * @return Whether keyboard is visible or not
- */
-internal fun FragmentActivity.isKeyboardVisible(): Boolean {
+fun Context.isScreenPortrait(): Boolean {
+    return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+}
+
+val FragmentActivity.windowController: WindowInsetsControllerCompat
+    get() = WindowInsetsControllerCompat(window, window.decorView).apply {
+        systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+    }
+
+fun Window.changeFullScreen(
+    windowController: WindowInsetsControllerCompat,
+    isEnter: Boolean
+) {
+    WindowCompat.setDecorFitsSystemWindows(this, !isEnter)
+    if (isEnter) windowController.hide(WindowInsetsCompat.Type.systemBars())
+    else windowController.show(WindowInsetsCompat.Type.systemBars())
+}
+
+@SuppressLint("NewApi")
+fun FragmentActivity.isMultiWindowOrPiPModeEnabled(): Boolean = kotlin.runCatching {
+    val supportFeatures = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
+    val isMultiWindow = if (supportFeatures) isInMultiWindowMode else false
+    val isPictureInPicture = if (supportFeatures) isInPictureInPictureMode else false
+    isMultiWindow || isPictureInPicture
+}.getOrDefault(false)
+
+fun FragmentActivity.isKeyboardVisible(): Boolean {
     val r = Rect()
     val activityRoot = getActivityRoot()
     activityRoot.getWindowVisibleDisplayFrame(r)
@@ -31,15 +56,15 @@ internal fun FragmentActivity.isKeyboardVisible(): Boolean {
     return heightDiff > screenHeight * KEYBOARD_MIN_HEIGHT_RATIO
 }
 
-internal fun FragmentActivity.getActivityRoot(): View {
+fun FragmentActivity.getActivityRoot(): View {
     return getContentRoot().rootView
 }
 
-internal fun FragmentActivity.getContentRoot(): ViewGroup {
+fun FragmentActivity.getContentRoot(): ViewGroup {
     return findViewById(android.R.id.content)
 }
 
-internal fun FragmentActivity.setInputKeyboardEventListener(listener: (Boolean) -> Unit) {
+fun FragmentActivity.setInputKeyboardEventListener(listener: (Boolean) -> Unit) {
     val softInputAdjust =
         this.window.attributes.softInputMode and WindowManager.LayoutParams.SOFT_INPUT_MASK_ADJUST
 

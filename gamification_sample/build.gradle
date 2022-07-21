@@ -1,0 +1,54 @@
+//noinspection GradleDynamicVersion
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+
+    compileOptions {
+        sourceCompatibility = versions.java
+        targetCompatibility = versions.java
+    }
+
+    kotlinOptions {
+        jvmTarget = versions.java.toString()
+    }
+
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId "io.streamlayer.demo.gamification"
+
+        minSdk versions.minSdk
+        targetSdk versions.targetSdk
+        versionCode 1
+        versionName "1.0"
+
+        buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
+        buildConfigField "String", "SL_EVENT_ID", "\"your-streamlayer-event-id\""
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-debug-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation(project(":common"))
+}

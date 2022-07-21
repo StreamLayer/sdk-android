@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="slLauncherBackground">#fff</color>
+    <color name="slColorPrimary">#13161A</color>
+    <color name="slColorPrimaryDark">#080808</color>
+    <color name="slColorAccent">#388EFE</color>
+</resources>

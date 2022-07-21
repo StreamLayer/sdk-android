@@ -1,1 +1,4 @@
 include ':app'
+include ':twitter_sample'
+include ':common'
+include ':gamification_sample'

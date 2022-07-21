@@ -7,7 +7,6 @@ import io.streamlayer.demo.common.ext.BaseErrorEvent
 import io.streamlayer.demo.common.ext.MviViewModel
 import io.streamlayer.sdk.StreamLayer
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 private const val TAG = "AuthViewModel"
