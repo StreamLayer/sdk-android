@@ -47,7 +47,7 @@ class GamificationViewModel : ViewModel() {
         createEventSessionJob = viewModelScope.launch {
             try {
                 eventSession?.release()
-                eventSession = StreamLayer.createEventSession(id, exoHelper)
+                eventSession = StreamLayer.createEventSession(id, null)
             } catch (t: Throwable) {
                 Log.e(TAG, "createEventSession failed:", t)
             }
