@@ -12,7 +12,7 @@
         android:theme="@style/CommonAppTheme">
 
         <activity
-            android:name=".ui.DemoActivity"
+            android:name=".ui.TwitterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

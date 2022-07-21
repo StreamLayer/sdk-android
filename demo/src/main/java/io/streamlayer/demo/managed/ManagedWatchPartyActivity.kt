@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -109,10 +108,7 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
                 showControls()
             }
         }
-        window.addFlags(
-            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-        )
+        window.keepOnScreen()
     }
 
     private fun showControls() {

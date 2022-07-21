@@ -15,9 +15,9 @@ import io.streamlayer.sdk.StreamLayer
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-private const val TAG = "DemoViewModel"
+private const val TAG = "GamificationViewModel"
 
-class DemoViewModel : ViewModel() {
+class GamificationViewModel : ViewModel() {
 
     private val context: Context
         get() = App.instance!!

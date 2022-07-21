@@ -9,7 +9,7 @@ import io.streamlayer.demo.twitter.App
 import io.streamlayer.demo.twitter.R
 import io.streamlayer.sdk.StreamLayer
 
-class DemoViewModel : ViewModel() {
+class TwitterViewModel : ViewModel() {
 
     private val context: Context
         get() = App.instance!!

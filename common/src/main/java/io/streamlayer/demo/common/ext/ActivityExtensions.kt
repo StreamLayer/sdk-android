@@ -33,6 +33,12 @@ fun Window.changeFullScreen(
     else windowController.show(WindowInsetsCompat.Type.systemBars())
 }
 
+fun Window.keepOnScreen() {
+    addFlags(
+        WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+    )
+}
+
 @SuppressLint("NewApi")
 fun FragmentActivity.isMultiWindowOrPiPModeEnabled(): Boolean = kotlin.runCatching {
     val supportFeatures = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N

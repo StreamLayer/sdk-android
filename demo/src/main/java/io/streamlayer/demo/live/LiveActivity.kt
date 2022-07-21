@@ -9,7 +9,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -84,10 +83,7 @@ class LiveActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUI()
         bind()
-        window.addFlags(
-            WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
-                    or WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
-        )
+        window.keepOnScreen()
         window.changeFullScreen(windowController, !isScreenPortrait())
         setInputKeyboardEventListener {
             // show fullscreen mode only if keyboard is closed in landscape

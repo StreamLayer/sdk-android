@@ -2,7 +2,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    // TODO: apply this plugin only if you have a valid google-services.json file - otherwise build will be failed
+    // apply this plugin only if you have a valid google-services.json file - otherwise build will be failed
     // id 'com.google.gms.google-services'
 }
 
