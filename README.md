@@ -1,15 +1,20 @@
-# StreamLayer Android DEMO app
+# StreamLayer Android
 
 Welcome!
-This is a StreamLayer Android DEMO app repository.
-Here you will find implementation sample of StreamLayer SDK library for Android.
+This is a StreamLayer Android demo apps repository.
+Here you will find implementation samples of the StreamLayer SDK for Android:
+1) [demo](https://github.com/StreamLayer/sdk-android/tree/demo-app/demo) - full customizable integration of the StreamLayer SDK.
+2) [gamification](https://github.com/StreamLayer/sdk-android/tree/demo-app/gamification) - demo of the Twitter StreamLayer SDK feature.
+3) [twitter](https://github.com/StreamLayer/sdk-android/tree/demo-app/gamification) - demo of the Gamification StreamLayer SDK feature.
 
-For a quick start-up:
+System Requirements:
+1) Android Studio 4.0+
+2) Target SDK version 31 or higher
+3) Minimum SDK version 21
+4) Kotlin or Java
 
-1. Clone the repository
-2. Add your own google-services.json to project. It's required for Firebase services.
-3. Replace the SDK_KEY in [app/build.gradle](https://github.com/StreamLayer/sdk-android/blob/demo-app/app/build.gradle) script with your own.
-4. Run the project!
+All demo apps require StreamLayer SDK key - contact us at [support@streamlayer.io](mailto:support@streamlayer.io) for getting them.
+For a quick start-up please select demo app and check README file - you will find following steps.
 
-For more details, follow our [integration guides](https://streamlayer.github.io/sdk-android/) or contact us at [support@streamlayer.io](mailto:support@streamlayer.io).
+For more details, follow our [integration guides](https://docs.streamlayer.io/docs/android_introduction) or contact us at [support@streamlayer.io](mailto:support@streamlayer.io).
  
