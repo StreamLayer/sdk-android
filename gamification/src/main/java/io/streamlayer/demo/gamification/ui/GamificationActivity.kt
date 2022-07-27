@@ -9,6 +9,7 @@ import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.common.ext.keepOnScreen
 import io.streamlayer.demo.common.ext.windowController
 import io.streamlayer.demo.gamification.databinding.ActivityGamificationBinding
+import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 
 class GamificationActivity : AppCompatActivity() {
@@ -33,6 +34,9 @@ class GamificationActivity : AppCompatActivity() {
             isWatchPartyReturnButtonEnabled = false
             isTooltipsEnabled = false
             isMenuProfileEnabled = false
+            inAppNotificationsMode = SLRAppHost.NotificationMode.List(
+                listOf(SLRAppHost.NotificationMode.Feature.GAMIFICATION)
+            )
         }
     }
 

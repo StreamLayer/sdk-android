@@ -16,6 +16,7 @@ import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.common.ext.DoubleTapListener
 import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.databinding.ActivityManagedWatchPartyBinding
+import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 
 private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
@@ -70,7 +71,7 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
         withStreamLayerUI {
             isLaunchButtonEnabled = false
             isWhoIsWatchingViewEnabled = false
-            isInAppNotificationsEnabled = false
+            inAppNotificationsMode = SLRAppHost.NotificationMode.Silent
             isPredictionsPointsEnabled = false
             isWatchPartyReturnButtonEnabled = false
             isTooltipsEnabled = false
