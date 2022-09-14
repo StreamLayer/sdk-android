@@ -29,6 +29,7 @@ class TwitterActivity : AppCompatActivity() {
         super.onPostCreate(savedInstanceState)
         // disable sdk ui views
         withStreamLayerUI {
+            isLaunchButtonEnabled = false
             isWhoIsWatchingViewEnabled = false
             isPredictionsPointsEnabled = false
             isWatchPartyReturnButtonEnabled = false
@@ -54,8 +55,7 @@ class TwitterActivity : AppCompatActivity() {
         with(binding) {
             playerView.player = viewModel.player
             window.keepOnScreen()
-            val isScreenPortrait = isScreenPortrait()
-            if (isScreenPortrait) {
+            if (isScreenPortrait()) {
                 // check if screen orientation is portrait and set overlay height when it will be available
                 playerView.doOnPreDraw {
                     val newHeight = container.height - it.height
@@ -64,6 +64,9 @@ class TwitterActivity : AppCompatActivity() {
             } else {
                 // setup fullscreen mode for better ux in landscape
                 window.changeFullScreen(windowController, true)
+            }
+            twitterBtn.setOnClickListener {
+                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Twitter) }
             }
         }
     }

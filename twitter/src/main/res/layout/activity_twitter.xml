@@ -22,6 +22,18 @@
         app:use_controller="false"
         tools:background="@tools:sample/backgrounds/scenic" />
 
+    <ImageButton
+        android:id="@+id/twitterBtn"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_twitter_button"
+        android:padding="6dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_twitter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/streamLayerFragment"
         android:name="io.streamlayer.sdk.main.StreamLayerFragment"

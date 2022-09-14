@@ -24,8 +24,6 @@ android {
         targetSdk versions.targetSdk
         versionCode 1
         versionName "1.0"
-
-        buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
     }
     buildTypes {
         debug {
