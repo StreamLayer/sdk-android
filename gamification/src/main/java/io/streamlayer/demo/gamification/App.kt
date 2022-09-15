@@ -8,13 +8,15 @@ class App : Application() {
 
     companion object {
         var instance: Application? = null
+        const val SL_SDK_KEY = "SL_SDK_KEY"
+        const val DEMO_EVENT_ID = "demo"
     }
 
     override fun onCreate() {
         super.onCreate()
         instance = this
         // initialize sdk with your key
-        StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
+        StreamLayer.initializeApp(this, SL_SDK_KEY)
         // set video player provider
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
     }

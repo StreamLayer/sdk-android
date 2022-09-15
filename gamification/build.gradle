@@ -24,9 +24,6 @@ android {
         targetSdk versions.targetSdk
         versionCode 1
         versionName "1.0"
-
-        buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
-        buildConfigField "String", "SL_EVENT_ID", "\"your-streamlayer-event-id\""
     }
     buildTypes {
         debug {

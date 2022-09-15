@@ -8,7 +8,6 @@ import com.google.android.exoplayer2.ExoPlayer
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.gamification.App
-import io.streamlayer.demo.gamification.BuildConfig
 import io.streamlayer.demo.gamification.R
 import io.streamlayer.sdk.SLREventSession
 import io.streamlayer.sdk.StreamLayer
@@ -34,7 +33,7 @@ class GamificationViewModel : ViewModel() {
 
     init {
         exoHelper.init(DEMO_HLS_STREAM)
-        createEventSession(BuildConfig.SL_EVENT_ID)
+        createEventSession(App.DEMO_EVENT_ID)
         StreamLayer.addAudioDuckingListener(exoHelper)
     }
 
