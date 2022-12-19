@@ -6,10 +6,18 @@
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
 <link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -42,256 +51,271 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk/SLRAppHost///PointingToDeclaration//-198636595">
-  <div class="breadcrumbs"><a href="../../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">io.streamlayer.sdk</a><span class="delimiter">/</span><a href="index.html">SLRAppHost</a></div>
+<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk/SLRAppHost///PointingToDeclaration//1900173323">
+  <div class="breadcrumbs"><a href="../../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">io.streamlayer.sdk</a><span class="delimiter">/</span><span class="current">SLRAppHost</span></div>
   <div class="cover ">
     <h1 class="cover"><span>SLRApp</span><wbr></wbr><span><span>Host</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">SLRAppHost</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Interface which get access to all available options of single StreamLayerFragment instance.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">SLRAppHost</a></div><p class="paragraph">Interface which get access to all available options of single StreamLayerFragment instance.</p></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
     <div class="tabs-section-body">
       <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="2048109797%2FClasslikes%2F-198636595" anchor-label="Overlay" id="2048109797%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+      <div class="table" data-togglable="Types"><a data-name="-1788059585%2FClasslikes%2F1900173323" anchor-label="NotificationMode" id="-1788059585%2FClasslikes%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="-overlay/index.html"><span><span>Overlay</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2048109797%2FClasslikes%2F-198636595"></span>
+                <div><a href="-notification-mode/index.html"><span>Notification</span><wbr></wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1788059585%2FClasslikes%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-overlay/index.html">Overlay</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-notification-mode/index.html">NotificationMode</a></div><div class="brief "><p class="paragraph">Behavior of in-app notifications view.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="415455930%2FClasslikes%2F-198636595" anchor-label="WatchPartyVideoSide" id="415455930%2FClasslikes%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="2048109797%2FClasslikes%2F1900173323" anchor-label="Overlay" id="2048109797%2FClasslikes%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="-watch-party-video-side/index.html"><span>Watch</span><wbr></wbr><span>Party</span><wbr></wbr><span>Video</span><wbr></wbr><span><span>Side</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="415455930%2FClasslikes%2F-198636595"></span>
+                <div><a href="-overlay/index.html"><span><span>Overlay</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2048109797%2FClasslikes%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-watch-party-video-side/index.html">WatchPartyVideoSide</a> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-watch-party-video-side/index.html">SLRAppHost.WatchPartyVideoSide</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">sealed </span><span class="token keyword">class </span><a href="-overlay/index.html">Overlay</a></div><div class="brief "><p class="paragraph">Overlays which can be opened from host app.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="415455930%2FClasslikes%2F1900173323" anchor-label="WatchPartyVideoSide" id="415455930%2FClasslikes%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-watch-party-video-side/index.html"><span>Watch</span><wbr></wbr><span>Party</span><wbr></wbr><span>Video</span><wbr></wbr><span><span>Side</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="415455930%2FClasslikes%2F1900173323"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-watch-party-video-side/index.html">WatchPartyVideoSide</a> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-watch-party-video-side/index.html">SLRAppHost.WatchPartyVideoSide</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Positions of the Watch party video views in landscape</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <h2 class="">Functions</h2>
-      <div class="table" data-togglable="Functions"><a data-name="-1034404649%2FFunctions%2F-198636595" anchor-label="hideMenu" id="-1034404649%2FFunctions%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+      <div class="table" data-togglable="Functions"><a data-name="-1034404649%2FFunctions%2F1900173323" anchor-label="hideMenu" id="-1034404649%2FFunctions%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="hide-menu.html"><span>hide</span><wbr></wbr><span><span>Menu</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1034404649%2FFunctions%2F-198636595"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1034404649%2FFunctions%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="hide-menu.html"><span class="token function">hideMenu</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">A function to close SDK ui menu.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="hide-menu.html"><span class="token function">hideMenu</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A function to close SDK ui menu.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-1738337996%2FFunctions%2F-198636595" anchor-label="hideOverlay" id="-1738337996%2FFunctions%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-1738337996%2FFunctions%2F1900173323" anchor-label="hideOverlay" id="-1738337996%2FFunctions%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="hide-overlay.html"><span>hide</span><wbr></wbr><span><span>Overlay</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1738337996%2FFunctions%2F-198636595"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1738337996%2FFunctions%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="hide-overlay.html"><span class="token function">hideOverlay</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">A function to close SDK ui overlay.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="hide-overlay.html"><span class="token function">hideOverlay</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A function to close SDK ui overlay.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-1687429496%2FFunctions%2F-198636595" anchor-label="showOverlay" id="-1687429496%2FFunctions%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-1687429496%2FFunctions%2F1900173323" anchor-label="showOverlay" id="-1687429496%2FFunctions%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
                 <div><a href="show-overlay.html"><span>show</span><wbr></wbr><span><span>Overlay</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687429496%2FFunctions%2F-198636595"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1687429496%2FFunctions%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="show-overlay.html"><span class="token function">showOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">overlay<span class="token operator">: </span><a href="-overlay/index.html">SLRAppHost.Overlay</a></span></span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">A function to open SDK ui overlay.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="show-overlay.html"><span class="token function">showOverlay</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">overlay<span class="token operator">: </span><a href="-overlay/index.html">SLRAppHost.Overlay</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">A function to open SDK ui overlay.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="1952429687%2FProperties%2F-198636595" anchor-label="isInAppNotificationsEnabled" id="1952429687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+      <div class="table" data-togglable="Properties"><a data-name="715838409%2FProperties%2F1900173323" anchor-label="inAppNotificationsMode" id="715838409%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-in-app-notifications-enabled.html">isInAppNotificationsEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1952429687%2FProperties%2F-198636595"></span>
+                <div><a href="in-app-notifications-mode.html"><span>in</span><wbr></wbr><span>App</span><wbr></wbr><span>Notifications</span><wbr></wbr><span><span>Mode</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="715838409%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="1952429687%2FProperties%2F-198636595" anchor-label="isInAppNotificationsEnabled" id="1952429687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-in-app-notifications-enabled.html">isInAppNotificationsEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1952429687%2FProperties%2F-198636595" anchor-label="isInAppNotificationsEnabled" id="1952429687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Notifications. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="715838409%2FProperties%2F1900173323" anchor-label="inAppNotificationsMode" id="715838409%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="in-app-notifications-mode.html">inAppNotificationsMode</a><span class="token operator">: </span><a href="-notification-mode/index.html">SLRAppHost.NotificationMode</a></div><div class="brief "><a data-name="715838409%2FProperties%2F1900173323" anchor-label="inAppNotificationsMode" id="715838409%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Behavior of in-app notifications view. By default it's NotificationMode.ALL .</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-59255056%2FProperties%2F-198636595" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-59255056%2FProperties%2F1900173323" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-launch-button-enabled.html">isLaunchButtonEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-59255056%2FProperties%2F-198636595"></span>
+                <div><a href="is-launch-button-enabled.html"><span>is</span><wbr></wbr><span>Launch</span><wbr></wbr><span>Button</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-59255056%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-59255056%2FProperties%2F-198636595" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-launch-button-enabled.html">isLaunchButtonEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-59255056%2FProperties%2F-198636595" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Launch button. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-59255056%2FProperties%2F1900173323" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-launch-button-enabled.html">isLaunchButtonEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-59255056%2FProperties%2F1900173323" anchor-label="isLaunchButtonEnabled" id="-59255056%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Launch button. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="1825542455%2FProperties%2F-198636595" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="1825542455%2FProperties%2F1900173323" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-menu-always-opened.html">isMenuAlwaysOpened</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1825542455%2FProperties%2F-198636595"></span>
+                <div><a href="is-menu-always-opened.html"><span>is</span><wbr></wbr><span>Menu</span><wbr></wbr><span>Always</span><wbr></wbr><span><span>Opened</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1825542455%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="1825542455%2FProperties%2F-198636595" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-menu-always-opened.html">isMenuAlwaysOpened</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1825542455%2FProperties%2F-198636595" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">State of the Menu - can it be closed or not. By default it's false.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="1825542455%2FProperties%2F1900173323" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-menu-always-opened.html">isMenuAlwaysOpened</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="1825542455%2FProperties%2F1900173323" anchor-label="isMenuAlwaysOpened" id="1825542455%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">State of the Menu - can it be closed or not. By default it's false.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="812501687%2FProperties%2F-198636595" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="812501687%2FProperties%2F1900173323" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-menu-profile-enabled.html">isMenuProfileEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="812501687%2FProperties%2F-198636595"></span>
+                <div><a href="is-menu-profile-enabled.html"><span>is</span><wbr></wbr><span>Menu</span><wbr></wbr><span>Profile</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="812501687%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="812501687%2FProperties%2F-198636595" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-menu-profile-enabled.html">isMenuProfileEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="812501687%2FProperties%2F-198636595" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Profile menu item. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="812501687%2FProperties%2F1900173323" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-menu-profile-enabled.html">isMenuProfileEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="812501687%2FProperties%2F1900173323" anchor-label="isMenuProfileEnabled" id="812501687%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Profile menu item. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-516279963%2FProperties%2F-198636595" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-516279963%2FProperties%2F1900173323" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-overlay-start-side.html">isOverlayStartSide</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-516279963%2FProperties%2F-198636595"></span>
+                <div><a href="is-overlay-start-side.html"><span>is</span><wbr></wbr><span>Overlay</span><wbr></wbr><span>Start</span><wbr></wbr><span><span>Side</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-516279963%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-516279963%2FProperties%2F-198636595" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-overlay-start-side.html">isOverlayStartSide</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-516279963%2FProperties%2F-198636595" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Position of the Overlay in landscape. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-516279963%2FProperties%2F1900173323" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-overlay-start-side.html">isOverlayStartSide</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-516279963%2FProperties%2F1900173323" anchor-label="isOverlayStartSide" id="-516279963%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Position of the Overlay in landscape. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-285857164%2FProperties%2F-198636595" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-285857164%2FProperties%2F1900173323" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-predictions-points-enabled.html">isPredictionsPointsEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-285857164%2FProperties%2F-198636595"></span>
+                <div><a href="is-predictions-points-enabled.html"><span>is</span><wbr></wbr><span>Predictions</span><wbr></wbr><span>Points</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-285857164%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-285857164%2FProperties%2F-198636595" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-predictions-points-enabled.html">isPredictionsPointsEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-285857164%2FProperties%2F-198636595" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Predictions point button. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-285857164%2FProperties%2F1900173323" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-predictions-points-enabled.html">isPredictionsPointsEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-285857164%2FProperties%2F1900173323" anchor-label="isPredictionsPointsEnabled" id="-285857164%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Predictions point button. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-2012985733%2FProperties%2F-198636595" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-2012985733%2FProperties%2F1900173323" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-tooltips-enabled.html">isTooltipsEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2012985733%2FProperties%2F-198636595"></span>
+                <div><a href="is-tooltips-enabled.html"><span>is</span><wbr></wbr><span>Tooltips</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2012985733%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-2012985733%2FProperties%2F-198636595" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-tooltips-enabled.html">isTooltipsEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2012985733%2FProperties%2F-198636595" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Tooltips. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-2012985733%2FProperties%2F1900173323" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-tooltips-enabled.html">isTooltipsEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-2012985733%2FProperties%2F1900173323" anchor-label="isTooltipsEnabled" id="-2012985733%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Tooltips. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-1975686940%2FProperties%2F-198636595" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-1975686940%2FProperties%2F1900173323" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-watch-party-return-button-enabled.html">isWatchPartyReturnButtonEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1975686940%2FProperties%2F-198636595"></span>
+                <div><a href="is-watch-party-return-button-enabled.html"><span>is</span><wbr></wbr><span>Watch</span><wbr></wbr><span>Party</span><wbr></wbr><span>Return</span><wbr></wbr><span>Button</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1975686940%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-1975686940%2FProperties%2F-198636595" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-watch-party-return-button-enabled.html">isWatchPartyReturnButtonEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1975686940%2FProperties%2F-198636595" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Watch party return button. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-1975686940%2FProperties%2F1900173323" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-watch-party-return-button-enabled.html">isWatchPartyReturnButtonEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-1975686940%2FProperties%2F1900173323" anchor-label="isWatchPartyReturnButtonEnabled" id="-1975686940%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Watch party return button. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-210811315%2FProperties%2F-198636595" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-210811315%2FProperties%2F1900173323" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="is-who-is-watching-view-enabled.html">isWhoIsWatchingViewEnabled</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-210811315%2FProperties%2F-198636595"></span>
+                <div><a href="is-who-is-watching-view-enabled.html"><span>is</span><wbr></wbr><span>Who</span><wbr></wbr><span>Is</span><wbr></wbr><span>Watching</span><wbr></wbr><span>View</span><wbr></wbr><span><span>Enabled</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-210811315%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-210811315%2FProperties%2F-198636595" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-who-is-watching-view-enabled.html">isWhoIsWatchingViewEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-210811315%2FProperties%2F-198636595" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Visibility of the Whos is watching view. By default it's true.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-210811315%2FProperties%2F1900173323" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="is-who-is-watching-view-enabled.html">isWhoIsWatchingViewEnabled</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Boolean///PointingToDeclaration/">Boolean</span></div><div class="brief "><a data-name="-210811315%2FProperties%2F1900173323" anchor-label="isWhoIsWatchingViewEnabled" id="-210811315%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Visibility of the Whos is watching view. By default it's true.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-1086464213%2FProperties%2F-198636595" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-1086464213%2FProperties%2F1900173323" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="overlay-height.html">overlayHeight</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1086464213%2FProperties%2F-198636595"></span>
+                <div><a href="overlay-height.html"><span>overlay</span><wbr></wbr><span><span>Height</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1086464213%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-1086464213%2FProperties%2F-198636595" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="overlay-height.html">overlayHeight</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1086464213%2FProperties%2F-198636595" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Height of the Overlay in portrait. By default it's 0.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-1086464213%2FProperties%2F1900173323" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="overlay-height.html">overlayHeight</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span></div><div class="brief "><a data-name="-1086464213%2FProperties%2F1900173323" anchor-label="overlayHeight" id="-1086464213%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Height of the Overlay in portrait. By default it's 0.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="1088329383%2FProperties%2F-198636595" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="1088329383%2FProperties%2F1900173323" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="watch-party-video-side.html">watchPartyVideoSide</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1088329383%2FProperties%2F-198636595"></span>
+                <div><a href="watch-party-video-side.html"><span>watch</span><wbr></wbr><span>Party</span><wbr></wbr><span>Video</span><wbr></wbr><span><span>Side</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1088329383%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="1088329383%2FProperties%2F-198636595" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="watch-party-video-side.html">watchPartyVideoSide</a><span class="token operator">: </span><a href="-watch-party-video-side/index.html">SLRAppHost.WatchPartyVideoSide</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1088329383%2FProperties%2F-198636595" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><p class="paragraph">Position of the Watch party video views in landscape. By default it's START.</p></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="1088329383%2FProperties%2F1900173323" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">var </span><a href="watch-party-video-side.html">watchPartyVideoSide</a><span class="token operator">: </span><a href="-watch-party-video-side/index.html">SLRAppHost.WatchPartyVideoSide</a></div><div class="brief "><a data-name="1088329383%2FProperties%2F1900173323" anchor-label="watchPartyVideoSide" id="1088329383%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><p class="paragraph">Position of the Watch party video views in landscape. By default it's START.</p></div></div></div>
               </div>
             </div>
           </div>
@@ -300,10 +324,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      </div>
     </div>
 </div>
 </body>

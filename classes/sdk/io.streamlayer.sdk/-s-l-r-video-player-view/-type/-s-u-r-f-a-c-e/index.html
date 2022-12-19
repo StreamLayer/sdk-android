@@ -6,10 +6,18 @@
     <link href="../../../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../../../";</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
 <script type="text/javascript" src="../../../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../../../styles/style.css" rel="Stylesheet">
 <link href="../../../../../styles/jetbrains-mono.css" rel="Stylesheet">
@@ -21,6 +29,7 @@ if(savedDarkMode === true){
 <script type="text/javascript" src="../../../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
 </head>
 <body>
 <div class="navigation-wrapper" id="navigation-wrapper">
@@ -42,42 +51,42 @@ if(savedDarkMode === true){
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk/SLRVideoPlayerView.Type.SURFACE///PointingToDeclaration/{&quot;org.jetbrains.dokka.links.EnumEntryDRIExtra&quot;:{&quot;key&quot;:&quot;org.jetbrains.dokka.links.EnumEntryDRIExtra&quot;}}/-198636595">
-  <div class="breadcrumbs"><a href="../../../../../index.html">sdk</a><span class="delimiter">/</span><a href="../../../index.html">io.streamlayer.sdk</a><span class="delimiter">/</span><a href="../../index.html">SLRVideoPlayerView</a><span class="delimiter">/</span><a href="../index.html">Type</a><span class="delimiter">/</span><a href="index.html">SURFACE</a></div>
+<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk/SLRVideoPlayerView.Type.SURFACE///PointingToDeclaration/{&quot;org.jetbrains.dokka.links.EnumEntryDRIExtra&quot;:{&quot;key&quot;:&quot;org.jetbrains.dokka.links.EnumEntryDRIExtra&quot;}}/1900173323">
+  <div class="breadcrumbs"><a href="../../../../../index.html">sdk</a><span class="delimiter">/</span><a href="../../../index.html">io.streamlayer.sdk</a><span class="delimiter">/</span><a href="../../index.html">SLRVideoPlayerView</a><span class="delimiter">/</span><a href="../index.html">Type</a><span class="delimiter">/</span><span class="current">SURFACE</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>SURFACE</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><div class="symbol monospace"><div class="block"><a href="index.html">SURFACE</a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><div class="block"><a href="index.html">SURFACE</a></div></div></div></div>
   </div>
   <div class="tabbedcontent">
     <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Properties">Properties</button></div>
     <div class="tabs-section-body">
       <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="-372974862%2FProperties%2F-198636595" anchor-label="name" id="-372974862%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+      <div class="table" data-togglable="Properties"><a data-name="-372974862%2FProperties%2F1900173323" anchor-label="name" id="-372974862%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="../../../-s-l-r-app-host/-watch-party-video-side/-s-t-a-r-t/index.html#-372974862%2FProperties%2F-198636595">name</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F-198636595"></span>
+                <div><a href="../../../-s-l-r-app-host/-notification-mode/-feature/-c-u-s-t-o-m/index.html#-372974862%2FProperties%2F1900173323"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-372974862%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-372974862%2FProperties%2F-198636595" anchor-label="name" id="-372974862%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../../-s-l-r-app-host/-watch-party-video-side/-s-t-a-r-t/index.html#-372974862%2FProperties%2F-198636595">name</a><span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-372974862%2FProperties%2F1900173323" anchor-label="name" id="-372974862%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../../-s-l-r-app-host/-notification-mode/-feature/-c-u-s-t-o-m/index.html#-372974862%2FProperties%2F1900173323">name</a><span class="token operator">: </span><span data-unresolved-link="kotlin/String///PointingToDeclaration/">String</span></div></div></div>
               </div>
             </div>
           </div>
         </div>
-<a data-name="-739389684%2FProperties%2F-198636595" anchor-label="ordinal" id="-739389684%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/stagingRelease" data-filterable-set=":sdk:dokkaHtml/stagingRelease">
+<a data-name="-739389684%2FProperties%2F1900173323" anchor-label="ordinal" id="-739389684%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
           <div class="main-subrow keyValue ">
             <div class=""><span class="inline-flex">
-                <div><a href="../../../-s-l-r-app-host/-watch-party-video-side/-s-t-a-r-t/index.html#-739389684%2FProperties%2F-198636595">ordinal</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F-198636595"></span>
+                <div><a href="../../../-s-l-r-app-host/-notification-mode/-feature/-c-u-s-t-o-m/index.html#-739389684%2FProperties%2F1900173323"><span><span>ordinal</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-739389684%2FProperties%2F1900173323"></span>
                   <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                 </span></span></div>
             <div>
               <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":sdk:dokkaHtml/stagingRelease"><a data-name="-739389684%2FProperties%2F-198636595" anchor-label="ordinal" id="-739389684%2FProperties%2F-198636595" data-filterable-set=":sdk:dokkaHtml/stagingRelease"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../../-s-l-r-app-host/-watch-party-video-side/-s-t-a-r-t/index.html#-739389684%2FProperties%2F-198636595">ordinal</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-739389684%2FProperties%2F1900173323" anchor-label="ordinal" id="-739389684%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="../../../-s-l-r-app-host/-notification-mode/-feature/-c-u-s-t-o-m/index.html#-739389684%2FProperties%2F1900173323">ordinal</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span></div></div></div>
               </div>
             </div>
           </div>
@@ -86,10 +95,11 @@ if(savedDarkMode === true){
     </div>
   </div>
 </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-        </div>
+      </div>
     </div>
 </div>
 </body>
