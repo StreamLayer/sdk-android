@@ -32,8 +32,6 @@
         <item name="slrNotificationBadgeColor">@color/colorAccent2</item>
         <item name="slrCheckColor">@color/colorPrimary1</item>
         <item name="slrCheckBackgroundColor">@color/colorAccent2</item>
-        <item name="slrLastMessageColor">@color/colorSecondary2</item>
-        <item name="slrLastUnreadMessageColor">@color/colorSecondary1</item>
         <item name="slrInviteViaColor">@color/colorPrimary2</item>
         <item name="slrToolbarCancelColor">@color/colorSecondary1</item>
         <item name="slrWhosWatchingSendMessageButtonColor">@color/colorPrimary2</item>
@@ -83,9 +81,6 @@
         <item name="slrViewTooltipActionColor">#66FFFFFF</item>
         <item name="slrInviteFriendsButtonColor">@color/colorPrimary2</item>
         <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
-        <item name="slrWatchPartyIconColor">@color/colorPrimary2</item>
-        <item name="slrWatchPartyIconBackgroundColor">@color/colorPrimary2</item>
-        <item name="slrWatchPartyContactsNotSyncIconColor">@color/colorPrimary2</item>
         <item name="slrWatchPartyMessageIconColor">@color/colorPrimary2</item>
         <item name="slrWatchPartyMessageProgressColor">@color/colorPrimary2</item>
         <item name="slrAvatarColors">@array/avatar_colors</item>

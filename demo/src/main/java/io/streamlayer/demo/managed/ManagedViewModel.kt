@@ -9,7 +9,7 @@ import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.sdk.StreamLayer
 
-class ManagedWatchPartyViewModel : ViewModel() {
+class ManagedViewModel : ViewModel() {
 
     var isPlaybackPaused = false // check if player was stopped by user
     var isControlsVisible = false // check if player controls are visible

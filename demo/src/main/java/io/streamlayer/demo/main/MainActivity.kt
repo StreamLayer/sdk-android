@@ -7,7 +7,7 @@ import io.branch.referral.Branch
 import io.streamlayer.demo.auth.AuthActivity
 import io.streamlayer.demo.databinding.ActivityMainBinding
 import io.streamlayer.demo.live.LiveActivity
-import io.streamlayer.demo.managed.ManagedWatchPartyActivity
+import io.streamlayer.demo.managed.ManagedGroupActivity
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.model.deeplink.InviteData
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.authBtn.setOnClickListener { AuthActivity.open(this) }
         binding.liveBtn.setOnClickListener { LiveActivity.open(this) }
-        binding.managedBtn.setOnClickListener { ManagedWatchPartyActivity.open(this) }
+        binding.managedBtn.setOnClickListener { ManagedGroupActivity.open(this) }
     }
 
     override fun onStart() {

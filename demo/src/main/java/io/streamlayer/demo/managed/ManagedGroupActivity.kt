@@ -15,24 +15,24 @@ import io.streamlayer.demo.R
 import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.common.ext.DoubleTapListener
 import io.streamlayer.demo.common.ext.isScreenPortrait
-import io.streamlayer.demo.databinding.ActivityManagedWatchPartyBinding
+import io.streamlayer.demo.databinding.ActivityManagedGroupBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 
 private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
 
-class ManagedWatchPartyActivity : AppCompatActivity() {
+class ManagedGroupActivity : AppCompatActivity() {
 
     companion object {
 
         fun open(context: Context) {
-            context.startActivity(Intent(context, ManagedWatchPartyActivity::class.java))
+            context.startActivity(Intent(context, ManagedGroupActivity::class.java))
         }
     }
 
-    private val viewModel: ManagedWatchPartyViewModel by viewModels()
+    private val viewModel: ManagedViewModel by viewModels()
 
-    private lateinit var binding: ActivityManagedWatchPartyBinding
+    private lateinit var binding: ActivityManagedGroupBinding
 
     private val controlsHandler = Handler()
 
@@ -40,7 +40,7 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
 
         override fun onPlayerError(error: PlaybackException) {
             Toast.makeText(
-                this@ManagedWatchPartyActivity,
+                this@ManagedGroupActivity,
                 "Exo error: core=" + error.errorCode + " message=" + error.localizedMessage,
                 Toast.LENGTH_LONG
             ).show()
@@ -58,7 +58,7 @@ class ManagedWatchPartyActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityManagedWatchPartyBinding.inflate(layoutInflater)
+        binding = ActivityManagedGroupBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
     }

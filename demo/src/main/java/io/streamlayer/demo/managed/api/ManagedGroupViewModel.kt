@@ -5,18 +5,18 @@ import androidx.lifecycle.viewModelScope
 import io.streamlayer.demo.common.ext.BaseErrorEvent
 import io.streamlayer.demo.common.ext.MviViewModel
 import io.streamlayer.demo.common.ext.ViewEvent
-import io.streamlayer.sdk.SLRWatchPartySession
+import io.streamlayer.sdk.SLRManagedGroupSession
 import io.streamlayer.sdk.StreamLayer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collect
 
-private const val TAG = "WatchPartyViewModel"
+private const val TAG = "ManagedGroupViewModel"
 
 data class Participant(
-    val user: SLRWatchPartySession.User,
-    val status: SLRWatchPartySession.Participant.Status
+    val userId: String,
+    val bypassId: String,
+    val status: SLRManagedGroupSession.Participant.Status
 )
 
 data class Message(val userId: String, val content: String, val isLocal: Boolean)
@@ -28,11 +28,12 @@ data class WatchPartyState(
     val messages: List<Message> = emptyList()
 )
 
-data class ShowWatchParty(val watchPartySession: SLRWatchPartySession) : ViewEvent
+data class ShowWatchParty(val session: SLRManagedGroupSession) : ViewEvent
+data class ShowChat(val session: SLRManagedGroupSession) : ViewEvent
 
-class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dispatchers.Default) {
+class ManagedGroupViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dispatchers.Default) {
 
-    private var watchPartySession: SLRWatchPartySession? = null
+    private var managedGroupSession: SLRManagedGroupSession? = null
 
     private var messagesJob: Job? = null
     private var eventsJob: Job? = null
@@ -45,19 +46,19 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
 
     private fun subToSessionUpdates() {
         catch {
-            watchPartySession?.let {
+            managedGroupSession?.let {
                 eventsJob = viewModelScope.launch {
                     it.getEvents().collect { event ->
                         Log.d(TAG, "getEvents $event")
                         when (event) {
-                            is SLRWatchPartySession.Event.ParticipantsLoaded -> updateState {
+                            is SLRManagedGroupSession.Event.ParticipantsLoaded -> updateState {
                                 copy(participants = event.participants.map { it.toDomain() })
                             }
-                            is SLRWatchPartySession.Event.ParticipantUpdated -> {
+                            is SLRManagedGroupSession.Event.ParticipantUpdated -> {
                                 updateState {
                                     val mutable = participants.toMutableList()
                                     val index =
-                                        mutable.indexOfFirst { it.user == event.participant.user }
+                                        mutable.indexOfFirst { it.userId == event.participant.userId }
                                     if (event.isRemoved) {
                                         // remove participant from list
                                         if (index != -1) mutable.removeAt(index)
@@ -70,18 +71,18 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
                                     copy(participants = mutable)
                                 }
                             }
-                            is SLRWatchPartySession.Event.SessionStateUpdated -> {
+                            is SLRManagedGroupSession.Event.SessionStateUpdated -> {
                                 _viewEvents.trySend(BaseErrorEvent("Session state is changed ${event.state}"))
-                                if (event.state == SLRWatchPartySession.State.RELEASED) {
+                                if (event.state == SLRManagedGroupSession.State.RELEASED) {
                                     unSubFromSessionUpdates()
-                                    watchPartySession = null
+                                    managedGroupSession = null
                                 }
                             }
                         }
                     }
                 }
                 messagesJob = viewModelScope.launch {
-                    it.getMessages().collect {
+                    it.getInfoMessages().collect {
                         addNewMessage(Message(it.userId, it.content, false))
                     }
                 }
@@ -97,25 +98,25 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
     private fun unSubFromSessionUpdates() {
         eventsJob?.cancel()
         messagesJob?.cancel()
-        watchPartySession?.release()
-        watchPartySession = null
+        managedGroupSession?.release()
+        managedGroupSession = null
         updateState { copy(isActive = false, participants = emptyList(), messages = emptyList()) }
     }
 
     fun subscribe(groupId: String) {
         Log.d(
             TAG,
-            "subscribe $groupId ${watchPartySession?.getGroupId()} ${currentState.isLoading}"
+            "subscribe $groupId ${managedGroupSession?.getGroupId()} ${currentState.isLoading}"
         )
-        if (watchPartySession?.getGroupId() == groupId || currentState.isLoading) return
+        if (managedGroupSession?.getGroupId() == groupId || currentState.isLoading) return
         updateState { copy(isLoading = true) }
         subscribeJob?.cancel()
         subscribeJob = viewModelScope.launch {
-            watchPartySession?.let { unSubFromSessionUpdates() }
+            managedGroupSession?.let { unSubFromSessionUpdates() }
             catch(onError = { updateState { copy(isLoading = false) } }) {
-                StreamLayer.createWatchPartySession(groupId).let {
+                StreamLayer.createManagedGroupSession(groupId, null).let {
                     updateState { copy(isLoading = false) }
-                    watchPartySession = it
+                    managedGroupSession = it
                     subToSessionUpdates()
                 }
             }
@@ -123,22 +124,26 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
     }
 
     fun unsubscribe() {
-        watchPartySession?.let { unSubFromSessionUpdates() }
+        managedGroupSession?.let { unSubFromSessionUpdates() }
         Log.d(
             TAG,
-            "unsubscribe ${watchPartySession?.getGroupId()} ${currentState.isLoading}"
+            "unsubscribe ${managedGroupSession?.getGroupId()} ${currentState.isLoading}"
         )
     }
 
     fun openWatchParty() {
-        watchPartySession?.let { _viewEvents.trySend(ShowWatchParty(watchPartySession = it)) }
+        managedGroupSession?.let { _viewEvents.trySend(ShowWatchParty(session = it)) }
+    }
+
+    fun openChat() {
+        managedGroupSession?.let { _viewEvents.trySend(ShowChat(session = it)) }
     }
 
     fun sendMessage(content: String) {
         viewModelScope.launch {
             catch {
-                watchPartySession?.let {
-                    if (it.sendMessage(content)) addNewMessage(
+                managedGroupSession?.let {
+                    if (it.sendInfoMessage(content)) addNewMessage(
                         Message("local", content, true)
                     )
                     else _viewEvents.trySend(BaseErrorEvent("Can not send message"))
@@ -170,4 +175,4 @@ class WatchPartyViewModel : MviViewModel<WatchPartyState>(WatchPartyState(), Dis
     }
 }
 
-private fun SLRWatchPartySession.Participant.toDomain() = Participant(user, status)
+private fun SLRManagedGroupSession.Participant.toDomain() = Participant(userId, bypassId, status)

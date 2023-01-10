@@ -3,7 +3,6 @@ package io.streamlayer.demo.managed.api
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +14,14 @@ import io.streamlayer.demo.R
 import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.common.ext.bindingDelegate
 import io.streamlayer.demo.common.ext.visibleIf
-import io.streamlayer.demo.databinding.FragmentWatchPartyParticipantsBinding
-import io.streamlayer.demo.databinding.ItemWatchPartyParticipantBinding
+import io.streamlayer.demo.databinding.FragmentManagedGroupParticipantsBinding
+import io.streamlayer.demo.databinding.ItemManagedGroupParticipantBinding
 
-class WatchPartyParticipantsFragment : BaseFragment(R.layout.fragment_watch_party_participants) {
+class ManagedGroupParticipantsFragment : BaseFragment(R.layout.fragment_managed_group_participants) {
 
-    private val viewModel: WatchPartyViewModel by viewModels(ownerProducer = { requireParentFragment() })
+    private val viewModel: ManagedGroupViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
-    private val binding by bindingDelegate(FragmentWatchPartyParticipantsBinding::bind)
+    private val binding by bindingDelegate(FragmentManagedGroupParticipantsBinding::bind)
 
     private val participantsAdapter: ParticipantsAdapter by lazy { ParticipantsAdapter() }
 
@@ -52,6 +51,7 @@ class WatchPartyParticipantsFragment : BaseFragment(R.layout.fragment_watch_part
             }
             slUnsubscribeButton.setOnClickListener { viewModel.unsubscribe() }
             slrOpenWatchPartyBtn.setOnClickListener { viewModel.openWatchParty() }
+            slrOpenChatBtn.setOnClickListener { viewModel.openChat() }
         }
     }
 
@@ -61,17 +61,21 @@ class WatchPartyParticipantsFragment : BaseFragment(R.layout.fragment_watch_part
                 slrEmptyView.visibleIf(!it)
                 slrParticipantsView.visibleIf(it)
                 slrOpenWatchPartyBtn.visibleIf(it)
+                slrOpenChatBtn.visibleIf(it)
             }
         }
         viewModel.participants.collectWhenStarted(viewLifecycleOwner) {
-            Log.d("WatchPartySession", "participants $it")
             participantsAdapter.setItems(it)
         }
         viewModel.viewEvents.collectWhenResumed(viewLifecycleOwner) {
             when (it) {
                 is ShowWatchParty -> {
                     view.hideKeyboard()
-                    it.watchPartySession.show(requireActivity())
+                    it.session.showWatchParty(requireActivity())
+                }
+                is ShowChat -> {
+                    view.hideKeyboard()
+                    it.session.showChat(requireActivity())
                 }
                 is BaseErrorEvent -> Toast.makeText(requireContext(), it.error, Toast.LENGTH_SHORT)
                     .show()
@@ -88,7 +92,7 @@ private class ParticipantsAdapter : RecyclerView.Adapter<ParticipantsAdapter.Vie
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            ItemWatchPartyParticipantBinding.inflate(
+            ItemManagedGroupParticipantBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -105,11 +109,11 @@ private class ParticipantsAdapter : RecyclerView.Adapter<ParticipantsAdapter.Vie
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ItemWatchPartyParticipantBinding) :
+    inner class ViewHolder(private val binding: ItemManagedGroupParticipantBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(participant: Participant) {
-            binding.participantId.text = "${participant.user.bypassId}\n${participant.user.id}"
+            binding.participantId.text = "${participant.bypassId}\n${participant.userId}"
             binding.statusView.text = "${participant.status}"
         }
     }

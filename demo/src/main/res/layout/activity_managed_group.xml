@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".fantasy.FantasyActivity">
+    tools:context=".managed.ManagedGroupActivity">
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
@@ -69,7 +69,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/wpApiFragment"
-        android:name="io.streamlayer.demo.managed.api.WatchPartyFragment"
+        android:name="io.streamlayer.demo.managed.api.ManagedGroupFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:tag="WatchPartyFragment"

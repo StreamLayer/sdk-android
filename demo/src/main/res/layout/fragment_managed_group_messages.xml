@@ -31,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_watch_party_message" />
+        tools:listitem="@layout/item_managed_group_message" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/messageInput"

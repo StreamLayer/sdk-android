@@ -95,7 +95,7 @@
         </activity>
 
         <activity
-            android:name=".managed.ManagedWatchPartyActivity"
+            android:name=".managed.ManagedGroupActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize" />

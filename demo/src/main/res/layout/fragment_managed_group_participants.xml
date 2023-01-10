@@ -94,7 +94,23 @@
         app:backgroundTint="@color/slr_blue"
         app:iconGravity="textStart"
         app:iconTint="@color/slr_white"
+        app:layout_constraintBottom_toTopOf="@+id/slrOpenChatBtn"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/slrOpenChatBtn"
+        style="@style/StreamLayerSDK_Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/slr_activity_vertical_margin"
+        android:text="@string/open_chat"
+        android:textSize="16sp"
+        android:visibility="visible"
+        app:backgroundTint="@color/slr_blue"
+        app:iconGravity="textStart"
+        app:iconTint="@color/slr_white"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:visibility="visible" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

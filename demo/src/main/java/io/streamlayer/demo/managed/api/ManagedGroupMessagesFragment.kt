@@ -14,14 +14,14 @@ import io.streamlayer.demo.common.ext.BaseFragment
 import io.streamlayer.demo.common.ext.bindingDelegate
 import io.streamlayer.demo.common.ext.collectWhenStarted
 import io.streamlayer.demo.common.ext.visibleIf
-import io.streamlayer.demo.databinding.FragmentWatchPartyMessagesBinding
-import io.streamlayer.demo.databinding.ItemWatchPartyMessageBinding
+import io.streamlayer.demo.databinding.FragmentManagedGroupMessagesBinding
+import io.streamlayer.demo.databinding.ItemManagedGroupMessageBinding
 
-class WatchPartyMessagesFragment : BaseFragment(R.layout.fragment_watch_party_messages) {
+class ManagedGroupMessagesFragment : BaseFragment(R.layout.fragment_managed_group_messages) {
 
-    private val viewModel: WatchPartyViewModel by viewModels(ownerProducer = { requireParentFragment() })
+    private val viewModel: ManagedGroupViewModel by viewModels(ownerProducer = { requireParentFragment() })
 
-    private val binding by bindingDelegate(FragmentWatchPartyMessagesBinding::bind)
+    private val binding by bindingDelegate(FragmentManagedGroupMessagesBinding::bind)
 
     private val messagesAdapter: MessagesAdapter by lazy { MessagesAdapter() }
 
@@ -74,7 +74,7 @@ private class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>
     override fun getItemCount(): Int = items.count()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(ItemWatchPartyMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(ItemManagedGroupMessageBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(items[position])
@@ -86,7 +86,7 @@ private class MessagesAdapter : RecyclerView.Adapter<MessagesAdapter.ViewHolder>
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: ItemWatchPartyMessageBinding) :
+    inner class ViewHolder(private val binding: ItemManagedGroupMessageBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(message: Message) {

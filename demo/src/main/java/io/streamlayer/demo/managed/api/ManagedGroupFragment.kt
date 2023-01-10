@@ -11,14 +11,14 @@ import io.streamlayer.demo.R
 import io.streamlayer.demo.common.ext.BaseFragment
 import io.streamlayer.demo.common.ext.bindingDelegate
 import io.streamlayer.demo.common.ext.collectWhenStarted
-import io.streamlayer.demo.databinding.FragmentWatchPartyBinding
+import io.streamlayer.demo.databinding.FragmentManagedGroupBinding
 import kotlin.reflect.KClass
 
-class WatchPartyFragment : BaseFragment(R.layout.fragment_watch_party) {
+class ManagedGroupFragment : BaseFragment(R.layout.fragment_managed_group) {
 
-    private val viewModel: WatchPartyViewModel by viewModels()
+    private val viewModel: ManagedGroupViewModel by viewModels()
 
-    private val binding by bindingDelegate(FragmentWatchPartyBinding::bind)
+    private val binding by bindingDelegate(FragmentManagedGroupBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,8 +29,8 @@ class WatchPartyFragment : BaseFragment(R.layout.fragment_watch_party) {
     private fun setupUI() {
         val adapter = Adapter(
             this, listOf(
-                getString(R.string.participants) to WatchPartyParticipantsFragment::class,
-                getString(R.string.messages) to WatchPartyMessagesFragment::class,
+                getString(R.string.participants) to ManagedGroupParticipantsFragment::class,
+                getString(R.string.messages) to ManagedGroupMessagesFragment::class,
             )
         )
         with(binding) {

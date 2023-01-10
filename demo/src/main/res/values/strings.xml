@@ -2,7 +2,7 @@
     <string name="app_name">SL Demo</string>
     <string name="auth_demo">Auth demo</string>
     <string name="live_demo">Live demo</string>
-    <string name="managed_demo">Managed Watch Party demo</string>
+    <string name="managed_demo">Managed Group demo</string>
     <string name="participants">Participants</string>
     <string name="messages">Messages</string>
     <string name="user_is_authorized">User is authorized</string>
@@ -15,6 +15,7 @@
     <string name="subscribe">Sub</string>
     <string name="unsubscribe">Unsub</string>
     <string name="open_wp">Open a Watch Party</string>
+    <string name="open_chat">Open a Chat</string>
     <string name="wp_participants">Watch party participants:</string>
     <string name="user">User:</string>
     <string name="status">Status:</string>
