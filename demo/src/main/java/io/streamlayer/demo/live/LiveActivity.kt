@@ -21,11 +21,9 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import io.streamlayer.demo.R
 import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.common.ext.changeFullScreen
-import io.streamlayer.demo.common.ext.isMultiWindowOrPiPModeEnabled
 import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.common.ext.windowController
 import io.streamlayer.demo.databinding.ActivityLiveBinding
-import io.streamlayer.sdk.SLREventChangeListener
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 
@@ -66,16 +64,13 @@ class LiveActivity : AppCompatActivity() {
         }
     }
 
-    private val containerLayoutBoundsListener =
-        View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
-            view?.let {
-                val playerHeight = binding.playerView.height
-                if (it.height != 0 && playerHeight != 0 && isScreenPortrait() && !isMultiWindowOrPiPModeEnabled()) {
-                    val newHeight = it.height - playerHeight
-                    withStreamLayerUI { if (overlayHeight != newHeight) overlayHeight = newHeight }
-                }
+    private val layoutListener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
+        view?.let {
+            if (view.height > 0 && isScreenPortrait()) {
+                withStreamLayerUI { overlayHeightSpace = view.height }
             }
         }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,7 +84,7 @@ class LiveActivity : AppCompatActivity() {
             // show fullscreen mode only if keyboard is closed in landscape
             if (!it && !isScreenPortrait()) window.changeFullScreen(windowController, true)
         }
-        binding.container.addOnLayoutChangeListener(containerLayoutBoundsListener)
+        withStreamLayerUI { player = viewModel.appHostPlayer }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -134,14 +129,7 @@ class LiveActivity : AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
             }
-
-            StreamLayer.setEventChangeListener(object : SLREventChangeListener {
-
-                override fun onChanged(id: String) {
-                    // SDK requested stream changes - id is id of your stream
-                }
-
-            })
+            binding.playerView.addOnLayoutChangeListener(layoutListener)
         }
     }
 
@@ -253,10 +241,10 @@ class LiveActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+        withStreamLayerUI { player = null }
         super.onDestroy()
-        binding.container.removeOnLayoutChangeListener(containerLayoutBoundsListener)
+        binding.playerView.removeOnLayoutChangeListener(layoutListener)
         controlsHandler.removeCallbacksAndMessages(null)
         viewModel.player.removeListener(playerListener)
-        StreamLayer.setEventChangeListener(null)
     }
 }

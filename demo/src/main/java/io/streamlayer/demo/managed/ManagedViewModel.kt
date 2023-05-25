@@ -7,7 +7,6 @@ import io.streamlayer.demo.App
 import io.streamlayer.demo.R
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
-import io.streamlayer.sdk.StreamLayer
 
 class ManagedViewModel : ViewModel() {
 
@@ -18,10 +17,7 @@ class ManagedViewModel : ViewModel() {
         get() = App.instance!!
 
     private val exoHelper: ExoPlayerHelper by lazy {
-        ExoPlayerHelper(
-            context,
-            context.getString(R.string.app_name)
-        )
+        ExoPlayerHelper(context, context.getString(R.string.app_name))
     }
 
     val player: ExoPlayer
@@ -29,7 +25,6 @@ class ManagedViewModel : ViewModel() {
 
     init {
         selectStream(DEMO_HLS_STREAM)
-        StreamLayer.addAudioDuckingListener(exoHelper)
     }
 
     private fun selectStream(stream: String) {
@@ -39,7 +34,6 @@ class ManagedViewModel : ViewModel() {
 
     override fun onCleared() {
         exoHelper.release()
-        StreamLayer.removeAudioDuckingListener(exoHelper)
         super.onCleared()
     }
 }

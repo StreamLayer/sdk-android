@@ -85,7 +85,7 @@ fun StreamLayerUI(playerHeight: Int, modifier: Modifier) {
     AndroidViewBinding(FragmentStreamlayerBinding::inflate, modifier = modifier) {
         with(fragmentContainerView.getFragment<StreamLayerFragment>()) {
             isMenuProfileEnabled = true
-            overlayHeight = root.height - playerHeight
+            overlayHeightSpace = playerHeight
         }
     }
 }

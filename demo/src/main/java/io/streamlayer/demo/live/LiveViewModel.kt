@@ -10,6 +10,7 @@ import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.common.ext.BaseErrorEvent
 import io.streamlayer.demo.common.ext.MviViewModel
+import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.base.StreamLayerDemo
@@ -41,14 +42,16 @@ class LiveViewModel : MviViewModel<State>(State(), Dispatchers.Default) {
     private var eventSession: SLREventSession? = null
 
     private val exoHelper: ExoPlayerHelper by lazy {
-        ExoPlayerHelper(
-            context,
-            context.getString(R.string.app_name)
-        )
+        ExoPlayerHelper(context, context.getString(R.string.app_name)) { id ->
+            // sdk requested new event - process it's if needed
+        }
     }
 
     val player: ExoPlayer
         get() = exoHelper.player
+
+    val appHostPlayer: SLRAppHost.Player
+        get() = exoHelper.appHostPlayer
 
     init {
         loadDemoStream()

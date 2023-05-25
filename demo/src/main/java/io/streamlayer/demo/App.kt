@@ -33,8 +33,8 @@ class App : Application() {
         })
         // initialize sdk with your key
         StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
-        // enable external auth
-        StreamLayer.setExternalAuthEnabled(true)
+        // enable external auth - set true or false based on app
+        StreamLayer.setExternalAuthEnabled(false)
         // set phone contacts options
         StreamLayer.setPhoneContactsOptions(isUiEnabled = true, isSyncEnabled = false)
         // set custom media provider base on your exo player api

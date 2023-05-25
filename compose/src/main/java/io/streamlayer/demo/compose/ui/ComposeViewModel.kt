@@ -7,7 +7,7 @@ import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.compose.App
 import io.streamlayer.demo.compose.R
-import io.streamlayer.sdk.StreamLayer
+import io.streamlayer.sdk.SLRAppHost
 
 class ComposeViewModel : ViewModel() {
 
@@ -24,14 +24,15 @@ class ComposeViewModel : ViewModel() {
     val player: ExoPlayer
         get() = exoHelper.player
 
+    val appHostPlayer: SLRAppHost.Player
+        get() = exoHelper.appHostPlayer
+
     init {
         exoHelper.init(DEMO_HLS_STREAM)
-        StreamLayer.addAudioDuckingListener(exoHelper)
     }
 
     override fun onCleared() {
         exoHelper.release()
-        StreamLayer.removeAudioDuckingListener(exoHelper)
         super.onCleared()
     }
 

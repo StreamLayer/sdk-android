@@ -1,12 +1,13 @@
 package io.streamlayer.demo.gamification.ui
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.doOnPreDraw
 import io.streamlayer.demo.common.ext.changeFullScreen
 import io.streamlayer.demo.common.ext.isScreenPortrait
 import io.streamlayer.demo.common.ext.keepOnScreen
+import io.streamlayer.demo.common.ext.setInputKeyboardEventListener
 import io.streamlayer.demo.common.ext.windowController
 import io.streamlayer.demo.gamification.databinding.ActivityGamificationBinding
 import io.streamlayer.sdk.SLRAppHost
@@ -18,11 +19,26 @@ class GamificationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityGamificationBinding
 
+    private val layoutListener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
+        view?.let {
+            if (view.height > 0 && isScreenPortrait()) {
+                withStreamLayerUI { overlayHeightSpace = view.height }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGamificationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupUI()
+        window.keepOnScreen()
+        window.changeFullScreen(windowController, !isScreenPortrait())
+        setInputKeyboardEventListener {
+            // show fullscreen mode only if keyboard is closed in landscape
+            if (!it && !isScreenPortrait()) window.changeFullScreen(windowController, true)
+        }
+        withStreamLayerUI { player = viewModel.appHostPlayer }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -53,18 +69,13 @@ class GamificationActivity : AppCompatActivity() {
     private fun setupUI() {
         with(binding) {
             playerView.player = viewModel.player
-            window.keepOnScreen()
-            val isScreenPortrait = isScreenPortrait()
-            if (isScreenPortrait) {
-                // check if screen orientation is portrait and set overlay height when it will be available
-                playerView.doOnPreDraw {
-                    val newHeight = container.height - it.height
-                    withStreamLayerUI { if (overlayHeight != newHeight) overlayHeight = newHeight }
-                }
-            } else {
-                // setup fullscreen mode for better ux in landscape
-                window.changeFullScreen(windowController, true)
-            }
+            playerView.addOnLayoutChangeListener(layoutListener)
         }
+    }
+
+    override fun onDestroy() {
+        withStreamLayerUI { player = null }
+        super.onDestroy()
+        binding.playerView.removeOnLayoutChangeListener(layoutListener)
     }
 }

@@ -9,6 +9,7 @@ import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.gamification.App
 import io.streamlayer.demo.gamification.R
+import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
 import io.streamlayer.sdk.StreamLayer
 import kotlinx.coroutines.Job
@@ -31,10 +32,12 @@ class GamificationViewModel : ViewModel() {
     val player: ExoPlayer
         get() = exoHelper.player
 
+    val appHostPlayer: SLRAppHost.Player
+        get() = exoHelper.appHostPlayer
+
     init {
         exoHelper.init(DEMO_HLS_STREAM)
         createEventSession(App.DEMO_EVENT_ID)
-        StreamLayer.addAudioDuckingListener(exoHelper)
     }
 
     private var createEventSessionJob: Job? = null
@@ -56,7 +59,6 @@ class GamificationViewModel : ViewModel() {
     override fun onCleared() {
         exoHelper.release()
         eventSession?.release()
-        StreamLayer.removeAudioDuckingListener(exoHelper)
         super.onCleared()
     }
 

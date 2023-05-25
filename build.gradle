@@ -13,7 +13,7 @@ buildscript {
             'fragment'        : "1.5.5",
             'archLifecycle'   : "2.5.1",
             'firebase'        : "23.1.1",
-            'streamlayer'     : "2.15.0-beta.62",
+            'streamlayer'     : "2.15.2",
             'exoPlayer'       : "2.18.0",
             'branchIO'        : "5.2.0",
             'compose'         : "1.3.0-rc02",

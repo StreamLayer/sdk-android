@@ -13,12 +13,18 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import io.streamlayer.sdk.SLRAudioDuckingListener
+import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLRTimeCodeProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import java.lang.Float.min
 
-class ExoPlayerHelper(private val context: Context, private val appName: String) :
-    SLRAudioDuckingListener, SLRTimeCodeProvider {
+class ExoPlayerHelper(
+    private val context: Context,
+    private val appName: String,
+    private val onStreamRequested: ((String) -> Unit)? = null
+) : SLRTimeCodeProvider {
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
@@ -36,6 +42,7 @@ class ExoPlayerHelper(private val context: Context, private val appName: String)
     }
 
     fun release() {
+        player.removeListener(playerAudioVolumeListener)
         player.release()
         volumeBeforeDucking = null
     }
@@ -51,6 +58,7 @@ class ExoPlayerHelper(private val context: Context, private val appName: String)
                 repeatMode = Player.REPEAT_MODE_ALL
                 playWhenReady = true
                 setForegroundMode(true)
+                addListener(playerAudioVolumeListener)
             }
     }
 
@@ -79,15 +87,38 @@ class ExoPlayerHelper(private val context: Context, private val appName: String)
 
     private fun isDashStream(streamUrl: String): Boolean = streamUrl.endsWith(".mpd")
 
-    // audio ducking implementation
-    private var volumeBeforeDucking: Float? = null
+    // app host player implementation
+    val appHostPlayer by lazy {
+        object : SLRAppHost.Player {
 
-    override fun requestAudioDucking(level: Float) {
-        notifyDuckingChanged(true, level)
+            override fun requestAudioDucking(level: Float) {
+                notifyDuckingChanged(true, level)
+            }
+
+            override fun disableAudioDucking() {
+                notifyDuckingChanged(false)
+            }
+
+            override fun setAudioVolume(value: Float) {
+                player.volume = value
+            }
+
+            override fun getAudioVolumeListener(): Flow<Float> = audioVolumeListener.asStateFlow()
+
+            override fun requestStream(id: String) {
+                onStreamRequested?.invoke(id)
+            }
+        }
     }
 
-    override fun disableAudioDucking() {
-        notifyDuckingChanged(false)
+    private var volumeBeforeDucking: Float? = null
+
+    private val audioVolumeListener = MutableStateFlow(1f)
+
+    private val playerAudioVolumeListener = object : Player.Listener {
+        override fun onVolumeChanged(volume: Float) {
+            audioVolumeListener.value = volume
+        }
     }
 
     private fun notifyDuckingChanged(isEnabled: Boolean, level: Float = 0f) = with(player) {

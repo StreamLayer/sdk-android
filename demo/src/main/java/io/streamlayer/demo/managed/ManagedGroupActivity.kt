@@ -4,10 +4,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.doOnPreDraw
 import com.google.android.exoplayer2.PlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
@@ -56,6 +56,14 @@ class ManagedGroupActivity : AppCompatActivity() {
         }
     }
 
+    private val layoutListener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
+        view?.let {
+            if (view.height > 0 && isScreenPortrait()) {
+                withStreamLayerUI { overlayHeightSpace = view.height }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityManagedGroupBinding.inflate(layoutInflater)
@@ -96,11 +104,7 @@ class ManagedGroupActivity : AppCompatActivity() {
                     }
                 }
             })
-            if (isScreenPortrait()) playerView.doOnPreDraw {
-                val playerHeight = binding.playerView.height
-                val newHeight = it.height - playerHeight
-                withStreamLayerUI { if (overlayHeight != newHeight) overlayHeight = newHeight }
-            }
+            binding.playerView.addOnLayoutChangeListener(layoutListener)
             closeButton.setOnClickListener { finish() }
             playbackButton.setOnClickListener {
                 viewModel.isPlaybackPaused = !viewModel.isPlaybackPaused
@@ -160,6 +164,7 @@ class ManagedGroupActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        binding.playerView.removeOnLayoutChangeListener(layoutListener)
         controlsHandler.removeCallbacksAndMessages(null)
         viewModel.player.removeListener(playerListener)
     }
