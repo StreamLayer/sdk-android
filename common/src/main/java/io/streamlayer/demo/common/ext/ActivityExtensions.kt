@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.graphics.Rect
 import android.os.Build
 import android.view.*
+import android.widget.Toast
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -17,6 +18,10 @@ private const val KEYBOARD_MIN_HEIGHT_RATIO = 0.15f
 
 fun Context.isScreenPortrait(): Boolean {
     return resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT
+}
+
+fun Context.toast(message: String) {
+    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
 }
 
 val FragmentActivity.windowController: WindowInsetsControllerCompat

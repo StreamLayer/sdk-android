@@ -13,18 +13,13 @@ import com.google.android.exoplayer2.upstream.DefaultDataSource
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSource
 import com.google.android.exoplayer2.util.MimeTypes
 import com.google.android.exoplayer2.util.Util
-import io.streamlayer.sdk.SLRAppHost
-import io.streamlayer.sdk.SLRTimeCodeProvider
+import io.streamlayer.demo.common.ext.toast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import java.lang.Float.min
 
-class ExoPlayerHelper(
-    private val context: Context,
-    private val appName: String,
-    private val onStreamRequested: ((String) -> Unit)? = null
-) : SLRTimeCodeProvider {
+class ExoPlayerHelper(private val context: Context, private val appName: String) {
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
@@ -32,6 +27,14 @@ class ExoPlayerHelper(
 
     private fun defaultDataSourceFactory(): DefaultDataSource.Factory =
         DefaultDataSource.Factory(context, DefaultHttpDataSource.Factory().setUserAgent(agent))
+
+    private val errorListener = object : Player.Listener {
+
+        override fun onPlayerError(error: PlaybackException) {
+            context.toast("Exo error: core=${error.errorCode} message=$error.localizedMessage")
+        }
+    }
+
 
     val player: ExoPlayer by lazy { initPlayer() }
 
@@ -42,7 +45,8 @@ class ExoPlayerHelper(
     }
 
     fun release() {
-        player.removeListener(playerAudioVolumeListener)
+        player.removeListener(errorListener)
+        player.removeListener(audioListener)
         player.release()
         volumeBeforeDucking = null
     }
@@ -58,7 +62,8 @@ class ExoPlayerHelper(
                 repeatMode = Player.REPEAT_MODE_ALL
                 playWhenReady = true
                 setForegroundMode(true)
-                addListener(playerAudioVolumeListener)
+                addListener(errorListener)
+                addListener(audioListener)
             }
     }
 
@@ -87,41 +92,20 @@ class ExoPlayerHelper(
 
     private fun isDashStream(streamUrl: String): Boolean = streamUrl.endsWith(".mpd")
 
-    // app host player implementation
-    val appHostPlayer by lazy {
-        object : SLRAppHost.Player {
-
-            override fun requestAudioDucking(level: Float) {
-                notifyDuckingChanged(true, level)
-            }
-
-            override fun disableAudioDucking() {
-                notifyDuckingChanged(false)
-            }
-
-            override fun setAudioVolume(value: Float) {
-                player.volume = value
-            }
-
-            override fun getAudioVolumeListener(): Flow<Float> = audioVolumeListener.asStateFlow()
-
-            override fun requestStream(id: String) {
-                onStreamRequested?.invoke(id)
-            }
-        }
-    }
-
+    // audio ducking support
     private var volumeBeforeDucking: Float? = null
 
     private val audioVolumeListener = MutableStateFlow(1f)
 
-    private val playerAudioVolumeListener = object : Player.Listener {
+    private val audioListener = object : Player.Listener {
         override fun onVolumeChanged(volume: Float) {
             audioVolumeListener.value = volume
         }
     }
 
-    private fun notifyDuckingChanged(isEnabled: Boolean, level: Float = 0f) = with(player) {
+    fun getAudioVolumeListener(): Flow<Float> = audioVolumeListener.asStateFlow()
+
+    fun notifyDuckingChanged(isEnabled: Boolean, level: Float = 0f) = with(player) {
         if (isEnabled) {
             if (volumeBeforeDucking == null) volumeBeforeDucking = volume
             volume = min(volume, level)
@@ -131,8 +115,8 @@ class ExoPlayerHelper(
         }
     }
 
-    // timecode provider implementation
-    override fun getEpochTimeCodeInMillis(): Long {
+    // epoch time code provider
+    fun getEpochTimeCodeInMillis(): Long {
         val timeline = player.currentTimeline
         return if (!timeline.isEmpty) timeline.getWindow(
             player.currentWindowIndex, Timeline.Window()

@@ -1,3 +1,3 @@
 package io.streamlayer.demo.common
 
-const val DEMO_HLS_STREAM = "https://hls.next.streamlayer.io/live/index.m3u8"
+const val DEMO_HLS_STREAM = "https://owncast.next.streamlayer.io/hls/stream.m3u8"

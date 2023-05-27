@@ -112,7 +112,7 @@ class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPlayerProvi
 
     private val bandwidthMeter by lazy { DefaultBandwidthMeter.Builder(context).build() }
 
-    private val agent by lazy { Util.getUserAgent(context, "streamlayer") }
+    private val agent by lazy { Util.getUserAgent(context, "ExoVideoPlayerProvider") }
 
     private fun defaultDataSourceFactory(): DefaultDataSource.Factory =
         DefaultDataSource.Factory(context, DefaultHttpDataSource.Factory().setUserAgent(agent))

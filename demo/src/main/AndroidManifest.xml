@@ -12,11 +12,14 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".ui.LiveActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
             android:exported="true"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true"
             android:windowSoftInputMode="adjustResize">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -24,18 +27,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- to enable StreamLayer push notifications with deep linking,
-            add this intent filter to your activity which is the host for StreamLayerFragment.
-            Also, add the StreamLayer.handleDeepLink() to onResume of this activity. -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <data
-                    android:host="${applicationId}"
-                    android:pathPrefix="/invite"
-                    android:scheme="streamlayer" />
-            </intent-filter>
-
+            <!--Configure branch io links start-->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
 
@@ -60,20 +52,9 @@
                     android:host="open"
                     android:scheme="${branchIoScheme}" />
             </intent-filter>
-        </activity>
+            <!--Configure branch io links end-->
 
-        <activity
-            android:name=".live.LiveActivity"
-            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:resizeableActivity="true"
-            android:supportsPictureInPicture="true"
-            android:windowSoftInputMode="adjustResize">
-
-            <!-- to enable StreamLayer push notifications with deep linking,
-            add this intent filter to your activity which is the host for StreamLayerFragment.
-            Also, add the StreamLayer.handleDeepLinkIntent() to onResume of this activity. -->
+            <!--Configure StreamLayer deep links start-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -91,6 +72,7 @@
                     android:pathPrefix="/invite"
                     android:scheme="streamlayer" />
             </intent-filter>
+            <!--Configure StreamLayer deep links end-->
 
         </activity>
 
@@ -100,14 +82,8 @@
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity
-            android:name=".auth.AuthActivity"
-            android:exported="false"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize" />
-
         <service
-            android:name=".common.firebase.MyFirebaseMessagingService"
+            android:name=".firebase.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

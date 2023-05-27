@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".live.LiveActivity">
+    tools:context=".ui.LiveActivity">
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
@@ -67,19 +67,7 @@
             android:visibility="gone"
             tools:visibility="visible" />
 
-
     </com.google.android.exoplayer2.ui.PlayerView>
-
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/videoLoader"
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:foregroundTint="#fff"
-        app:layout_constraintBottom_toBottomOf="@id/playerView"
-        app:layout_constraintEnd_toEndOf="@id/playerView"
-        app:layout_constraintStart_toStartOf="@id/playerView"
-        app:layout_constraintTop_toTopOf="@id/playerView" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/streamLayerFragment"

@@ -36,7 +36,7 @@ class App : Application() {
         // enable external auth - set true or false based on app
         StreamLayer.setExternalAuthEnabled(false)
         // set phone contacts options
-        StreamLayer.setPhoneContactsOptions(isUiEnabled = true, isSyncEnabled = false)
+        StreamLayer.setPhoneContactsOptions(isUiEnabled = true, isSyncEnabled = true)
         // set custom media provider base on your exo player api
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
         // set custom themes

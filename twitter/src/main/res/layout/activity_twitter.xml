@@ -24,15 +24,15 @@
 
     <ImageButton
         android:id="@+id/twitterBtn"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_margin="16dp"
         android:background="@drawable/bg_twitter_button"
         android:padding="6dp"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_twitter"
+        android:src="@drawable/slr_ic_twitter"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/streamLayerFragment"

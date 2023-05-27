@@ -1,4 +1,4 @@
-package io.streamlayer.demo.common.firebase
+package io.streamlayer.demo.firebase
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage

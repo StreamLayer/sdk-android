@@ -9,9 +9,6 @@
     <string name="user_is_not_authorized">User is not authorized</string>
     <string name="no_active_wp">No active watch party. Enter group id and press Subscribe button.</string>
     <string name="enter_group_id">GroupId</string>
-    <string name="enter_token">Token</string>
-    <string name="login">Login</string>
-    <string name="logout">Logout</string>
     <string name="subscribe">Sub</string>
     <string name="unsubscribe">Unsub</string>
     <string name="open_wp">Open a Watch Party</string>

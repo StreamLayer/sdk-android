@@ -232,24 +232,4 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
-    <style name="InviteActionButton" parent="StreamLayerSDK_Button">
-        <item name="backgroundTint">@color/button_color</item>
-        <item name="android:textAppearance">@style/InviteButtonTextAppearance</item>
-    </style>
-    
-    <style name="InviteText">
-        <item name="android:fontFamily">@font/benton_sans</item>
-        <item name="android:textColor">@color/slr_white</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-    <style name="InviteButtonTextAppearance">
-        <item name="android:textColor">@color/slr_white</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:fontFamily">@font/benton_sans</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:lineSpacingExtra">4sp</item>
-    </style>
-
 </resources>

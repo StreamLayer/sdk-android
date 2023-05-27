@@ -33,7 +33,6 @@ android {
         manifestPlaceholders += [branchIoAlternateHost: "your-branchIo-alternate-host"]
 
         buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
-        buildConfigField "String", "SL_BYPASS_SCHEMA", "\"your-streamlayer-bypass-schema\""
 
     }
     buildTypes {
@@ -60,11 +59,7 @@ android {
 dependencies {
     implementation(project(":common"))
     // Jetpack
-    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
     implementation "androidx.fragment:fragment-ktx:$versions.fragment"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.archLifecycle"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.archLifecycle"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.archLifecycle"
     // Branch IO
     implementation "io.branch.sdk.android:library:$versions.branchIO"
     // Firebase
