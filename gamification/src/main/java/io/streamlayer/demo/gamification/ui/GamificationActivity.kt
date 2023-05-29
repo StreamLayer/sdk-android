@@ -42,8 +42,8 @@ class GamificationActivity : AppCompatActivity() {
         ExoPlayerHelper(this, getString(R.string.app_name))
     }
 
-    // app host player
-    private val appHostPlayer = object : SLRAppHost.Player {
+    // app host delegate
+    private val appHostDelegate = object : SLRAppHost.Delegate {
 
         override fun requestAudioDucking(level: Float) {
             exoHelper.notifyDuckingChanged(true, level)
@@ -78,8 +78,8 @@ class GamificationActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUI()
         loadDemoStream()
-        // set host app player
-        withStreamLayerUI { player = appHostPlayer }
+        // add host app delegate
+        withStreamLayerUI { delegate = appHostDelegate }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -92,7 +92,10 @@ class GamificationActivity : AppCompatActivity() {
             isTooltipsEnabled = false
             isMenuProfileEnabled = false
             inAppNotificationsMode = SLRAppHost.NotificationMode.List(
-                listOf(SLRAppHost.NotificationMode.Feature.GAMIFICATION)
+                listOf(
+                    SLRAppHost.NotificationMode.Feature.GAMES,
+                    SLRAppHost.NotificationMode.Feature.HIGHLIGHTS
+                )
             )
         }
     }
@@ -112,7 +115,10 @@ class GamificationActivity : AppCompatActivity() {
             playerView.player = exoHelper.player
             playerView.addOnLayoutChangeListener(layoutListener)
             gamesBtn.setOnClickListener {
-                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Gamification) }
+                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Games) }
+            }
+            highlightsBtn.setOnClickListener {
+                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Highlights) }
             }
             window.keepOnScreen()
             window.changeFullScreen(windowController, !isScreenPortrait())
@@ -133,7 +139,8 @@ class GamificationActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        withStreamLayerUI { player = null }
+        // remove app host delegate
+        withStreamLayerUI { delegate = null }
         super.onDestroy()
         binding.playerView.removeOnLayoutChangeListener(layoutListener)
         // release player

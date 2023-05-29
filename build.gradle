@@ -11,7 +11,7 @@ buildscript {
             'constraintlayout': "2.1.4",
             'fragment'        : "1.5.5",
             'firebase'        : "23.1.1",
-            'streamlayer'     : "2.15.2",
+            'streamlayer'     : "2.15.3",
             'exoPlayer'       : "2.18.0",
             'branchIO'        : "5.2.0",
             'minSdk'          : 21,

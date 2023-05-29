@@ -42,8 +42,8 @@ class TwitterActivity : AppCompatActivity() {
         ExoPlayerHelper(this, getString(R.string.app_name))
     }
 
-    // app host player
-    private val appHostPlayer = object : SLRAppHost.Player {
+    // app host delegate
+    private val appHostDelegate = object : SLRAppHost.Delegate {
 
         override fun requestAudioDucking(level: Float) {
             exoHelper.notifyDuckingChanged(true, level)
@@ -79,7 +79,7 @@ class TwitterActivity : AppCompatActivity() {
         setupUI()
         loadDemoStream()
         // set host app player
-        withStreamLayerUI { player = appHostPlayer }
+        withStreamLayerUI { delegate = appHostDelegate }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -134,7 +134,7 @@ class TwitterActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        withStreamLayerUI { player = null }
+        withStreamLayerUI { delegate = null }
         super.onDestroy()
         binding.playerView.removeOnLayoutChangeListener(layoutListener)
         // release player

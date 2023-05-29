@@ -68,8 +68,8 @@ class LiveActivity : AppCompatActivity() {
         ExoPlayerHelper(this, getString(R.string.app_name))
     }
 
-    // app host player
-    private val appHostPlayer = object : SLRAppHost.Player {
+    // app host delegate
+    private val appHostDelegate = object : SLRAppHost.Delegate {
 
         override fun requestAudioDucking(level: Float) {
             exoHelper.notifyDuckingChanged(true, level)
@@ -105,8 +105,8 @@ class LiveActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUI()
         loadDemoStream()
-        // set host app player
-        withStreamLayerUI { player = appHostPlayer }
+        // add host app delegate
+        withStreamLayerUI { delegate = appHostDelegate }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -257,7 +257,7 @@ class LiveActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         // remove host app player
-        withStreamLayerUI { player = null }
+        withStreamLayerUI { delegate = null }
         super.onDestroy()
         // remove player view layout listener
         binding.playerView.removeOnLayoutChangeListener(layoutListener)
