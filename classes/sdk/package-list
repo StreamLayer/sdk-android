@@ -1,10 +1,17 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:io.streamlayer.sdk////PointingToDeclaration/sdk/io.streamlayer.sdk/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/disableAudioDucking/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/disable-audio-ducking.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/getAudioVolumeListener/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/get-audio-volume-listener.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/requestAudioDucking/#kotlin.Float/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/request-audio-ducking.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/requestStream/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/request-stream.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/setAudioVolume/#kotlin.Float/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/set-audio-volume.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.All///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-all/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.CHAT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-c-h-a-t/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.CUSTOM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-c-u-s-t-o-m/index.html
-$dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.GAMIFICATION///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-g-a-m-i-f-i-c-a-t-i-o-n/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.GAMES///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-g-a-m-e-s/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.HIGHLIGHTS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-h-i-g-h-l-i-g-h-t-s/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.TWITTER///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-t-w-i-t-t-e-r/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature.WATCH_PARTY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/-w-a-t-c-h_-p-a-r-t-y/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Feature///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-feature/index.html
@@ -15,6 +22,8 @@ $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.List/List/#kotlin
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.List/features/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-list/features.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode.Silent///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/-silent/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.NotificationMode///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-notification-mode/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Overlay.Games///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-overlay/-games/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost.Overlay.Highlights///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-overlay/-highlights/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.Overlay.Statistics///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-overlay/-statistics/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.Overlay.Twitter///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-overlay/-twitter/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.Overlay///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-overlay/index.html
@@ -26,28 +35,27 @@ $dokka.location:io.streamlayer.sdk/SLRAppHost.WatchPartyVideoViewSide///Pointing
 $dokka.location:io.streamlayer.sdk/SLRAppHost.WatchPartyVideoViewSide/valueOf/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-watch-party-video-view-side/value-of.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.WatchPartyVideoViewSide/values/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-watch-party-video-view-side/values.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/index.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost/delegate/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/delegate.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/hideMenu/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/hide-menu.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/hideOverlay/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/hide-overlay.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/inAppNotificationsMode/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/in-app-notifications-mode.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isLaunchButtonEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-launch-button-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isMenuAlwaysOpened/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-menu-always-opened.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost/isMenuLabelsVisible/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-menu-labels-visible.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isMenuProfileEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-menu-profile-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isOverlayStartSide/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-overlay-start-side.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isPortraitOverlayStyleEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-portrait-overlay-style-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isPredictionsPointsEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-predictions-points-enabled.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost/isPredictionsPointsStartSide/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-predictions-points-start-side.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isTooltipsEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-tooltips-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isWatchPartyReturnButtonEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-watch-party-return-button-enabled.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost/isWatchPartySurfaceViewEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-watch-party-surface-view-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isWatchPartyVideoViewAlignmentEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-watch-party-video-view-alignment-enabled.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/isWhoIsWatchingViewEnabled/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/is-who-is-watching-view-enabled.html
-$dokka.location:io.streamlayer.sdk/SLRAppHost/overlayHeight/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/overlay-height.html
+$dokka.location:io.streamlayer.sdk/SLRAppHost/overlayHeightSpace/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/overlay-height-space.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/overlayWidth/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/overlay-width.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/showOverlay/#io.streamlayer.sdk.SLRAppHost.Overlay/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/show-overlay.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/watchPartyVideoViewSide/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/watch-party-video-view-side.html
-$dokka.location:io.streamlayer.sdk/SLRAudioDuckingListener.Companion///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-audio-ducking-listener/-companion/index.html
-$dokka.location:io.streamlayer.sdk/SLRAudioDuckingListener.Companion/DEFAULT_DUCKING_LEVEL/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-audio-ducking-listener/-companion/-d-e-f-a-u-l-t_-d-u-c-k-i-n-g_-l-e-v-e-l.html
-$dokka.location:io.streamlayer.sdk/SLRAudioDuckingListener///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-audio-ducking-listener/index.html
-$dokka.location:io.streamlayer.sdk/SLRAudioDuckingListener/disableAudioDucking/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-audio-ducking-listener/disable-audio-ducking.html
-$dokka.location:io.streamlayer.sdk/SLRAudioDuckingListener/requestAudioDucking/#kotlin.Float/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-audio-ducking-listener/request-audio-ducking.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/index.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification/SLRCustomNotification/#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.String?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/-s-l-r-custom-notification.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification/actionId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/action-id.html
@@ -69,8 +77,6 @@ $dokka.location:io.streamlayer.sdk/SLRCustomOverlay/titleId/#/PointingToDeclarat
 $dokka.location:io.streamlayer.sdk/SLREvent.LogoutButtonClick///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/-logout-button-click/index.html
 $dokka.location:io.streamlayer.sdk/SLREvent.SyncContinueButtonClick///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/-sync-continue-button-click/index.html
 $dokka.location:io.streamlayer.sdk/SLREvent///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/index.html
-$dokka.location:io.streamlayer.sdk/SLREventChangeListener///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-change-listener/index.html
-$dokka.location:io.streamlayer.sdk/SLREventChangeListener/onChanged/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-change-listener/on-changed.html
 $dokka.location:io.streamlayer.sdk/SLREventSession///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/index.html
 $dokka.location:io.streamlayer.sdk/SLREventSession/getExternalEventId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/get-external-event-id.html
 $dokka.location:io.streamlayer.sdk/SLREventSession/isReleased/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/is-released.html
@@ -128,6 +134,7 @@ $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/getState/#/PointingToD
 $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/getTitle/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/get-title.html
 $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/release/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/release.html
 $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/sendInfoMessage/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/send-info-message.html
+$dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/setOnCallEndedListener/#kotlin.Function0[kotlin.Unit]?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/set-on-call-ended-listener.html
 $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/showChat/#androidx.fragment.app.FragmentActivity#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/show-chat.html
 $dokka.location:io.streamlayer.sdk/SLRManagedGroupSession/showWatchParty/#androidx.fragment.app.FragmentActivity#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-managed-group-session/show-watch-party.html
 $dokka.location:io.streamlayer.sdk/SLRTheme.NotificationsStyle.DESIGN_NUMBER_ONE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-theme/-notifications-style/-d-e-s-i-g-n_-n-u-m-b-e-r_-o-n-e/index.html
@@ -204,7 +211,6 @@ $dokka.location:io.streamlayer.sdk/SLRVideoPlayerView/setShowControls/#kotlin.Bo
 $dokka.location:io.streamlayer.sdk/SLRVideoPlayerView/setVideoPlayer/#io.streamlayer.sdk.SLRVideoPlayer?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-video-player-view/set-video-player.html
 $dokka.location:io.streamlayer.sdk/StreamLayer///PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/index.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/activeWatchPartyIdState/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/active-watch-party-id-state.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/addAudioDuckingListener/#io.streamlayer.sdk.SLRAudioDuckingListener/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/add-audio-ducking-listener.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/addCustomOverlays/#kotlin.Array[io.streamlayer.sdk.SLRCustomOverlay]/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/add-custom-overlays.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/authorizationBypass/#kotlin.String#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/authorization-bypass.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/closeActiveWatchParty/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/close-active-watch-party.html
@@ -220,11 +226,9 @@ $dokka.location:io.streamlayer.sdk/StreamLayer/isManagedGroup/#kotlin.String/Poi
 $dokka.location:io.streamlayer.sdk/StreamLayer/isUserAuthorized/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/is-user-authorized.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/logout/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/logout.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/openActiveWatchParty/#android.content.Context#android.content.Intent?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/open-active-watch-party.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/removeAudioDuckingListener/#io.streamlayer.sdk.SLRAudioDuckingListener/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/remove-audio-ducking-listener.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/sdkEventBus/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/sdk-event-bus.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/sendCustomNotification/#io.streamlayer.sdk.SLRCustomNotification/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/send-custom-notification.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setCustomTheme/#io.streamlayer.sdk.SLRTheme/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-custom-theme.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/setEventChangeListener/#io.streamlayer.sdk.SLREventChangeListener?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-event-change-listener.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setExternalAuthEnabled/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-external-auth-enabled.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setLogListener/#io.streamlayer.sdk.SLRLogListener?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-log-listener.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setLogcatLoggingEnabled/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-logcat-logging-enabled.html
@@ -232,9 +236,10 @@ $dokka.location:io.streamlayer.sdk/StreamLayer/setPhoneContactsOptions/#kotlin.B
 $dokka.location:io.streamlayer.sdk/StreamLayer/setStatisticsDataOptions/#kotlin.String#kotlin.Long/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-statistics-data-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setSyncOptions/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-sync-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setVideoPlayerProvider/#io.streamlayer.sdk.SLRVideoPlayerProvider/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-video-player-provider.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/setWatchPartyOptions/#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-watch-party-options.html
+$dokka.location:io.streamlayer.sdk/StreamLayer/setWatchPartyOptions/#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-watch-party-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/uploadDeviceFCMToken/#android.content.Context#kotlin.String#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/upload-device-f-c-m-token.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/userIsAuthorizedState/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/user-is-authorized-state.html
+$dokka.location:io.streamlayer.sdk/StreamLayer/verifyBypass/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/verify-bypass.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/withStreamLayerUI/androidx.fragment.app.FragmentActivity#kotlin.Function1[io.streamlayer.sdk.SLRAppHost,kotlin.Unit]/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/with-stream-layer-u-i.html
 io.streamlayer.sdk
 
