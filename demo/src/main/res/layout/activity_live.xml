@@ -8,6 +8,34 @@
     android:layout_gravity="center"
     tools:context=".ui.LiveActivity">
 
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        style="@style/LiveToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/slr_auth_toolbar_height"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/titleIV"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginStart="24dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_logo_toolbar" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/profileIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true"
+            android:padding="8dp"
+            android:src="@drawable/ic_profile" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="0dp"
@@ -18,7 +46,7 @@
         app:layout_constraintDimensionRatio="H,16:9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:resize_mode="zoom"
         app:surface_type="surface_view"
         app:use_controller="false"
@@ -42,31 +70,6 @@
             android:src="@drawable/sl_pause_ic"
             android:visibility="gone" />
 
-        <ImageButton
-            android:id="@+id/closeButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/sl_close_ic"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
-        <ImageButton
-            android:id="@+id/pipButton"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="30dp"
-            android:layout_gravity="end|bottom"
-            android:background="@android:color/transparent"
-            android:scaleType="fitXY"
-            android:src="@drawable/slr_ic_video_zoom"
-            android:visibility="gone"
-            tools:visibility="visible" />
-
     </com.google.android.exoplayer2.ui.PlayerView>
 
     <androidx.fragment.app.FragmentContainerView
@@ -78,6 +81,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

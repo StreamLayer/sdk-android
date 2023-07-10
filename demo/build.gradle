@@ -20,7 +20,7 @@ android {
     compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        applicationId "io.streamlayer.demo"
+        namespace "io.streamlayer.demo"
 
         minSdk versions.minSdk
         targetSdk versions.targetSdk
@@ -58,10 +58,12 @@ android {
 
 dependencies {
     implementation(project(":common"))
-    // Jetpack
-    implementation "androidx.fragment:fragment-ktx:$versions.fragment"
+    // Material
+    implementation "com.google.android.material:material:$versions.material"
     // Branch IO
     implementation "io.branch.sdk.android:library:$versions.branchIO"
+    //Koin
+    implementation "io.insert-koin:koin-core:$versions.koin"
     // Firebase
     implementation "com.google.firebase:firebase-messaging:$versions.firebase"
 }

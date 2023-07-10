@@ -1,10 +1,7 @@
 package io.streamlayer.demo.ui
 
-import android.app.PictureInPictureParams
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -15,20 +12,29 @@ import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.lifecycleScope
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import io.branch.referral.Branch
+import io.streamlayer.auth.ui.StreamLayerAuthActivity
+import io.streamlayer.common.extensions.changeFullScreen
+import io.streamlayer.common.extensions.gone
+import io.streamlayer.common.extensions.isScreenPortrait
+import io.streamlayer.common.extensions.keepOnScreen
+import io.streamlayer.common.extensions.setInputKeyboardEventListener
+import io.streamlayer.common.extensions.toast
+import io.streamlayer.common.extensions.visible
+import io.streamlayer.common.extensions.visibleIf
+import io.streamlayer.common.extensions.windowController
 import io.streamlayer.demo.R
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.common.ext.*
-import io.streamlayer.demo.common.ext.changeFullScreen
-import io.streamlayer.demo.common.ext.isScreenPortrait
-import io.streamlayer.demo.common.ext.windowController
 import io.streamlayer.demo.databinding.ActivityLiveBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
 import io.streamlayer.sdk.SLRTimeCodeProvider
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
-import io.streamlayer.sdk.base.StreamLayerDemo
+import io.streamlayer.sdk.StreamLayerDemo
+import io.streamlayer.sdk.invite.StreamLayerInviteFragment
+import io.streamlayer.sdk.model.deeplink.InviteData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -40,7 +46,7 @@ private const val TAG = "LiveActivity"
 
 private const val CONTROLS_AUTO_HIDE_DELAY = 5000L
 
-class LiveActivity : AppCompatActivity() {
+class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
 
     private lateinit var binding: ActivityLiveBinding
 
@@ -53,8 +59,14 @@ class LiveActivity : AppCompatActivity() {
         Branch.BranchReferralInitListener { linkProperties, error ->
             if (error == null) linkProperties?.let {
                 StreamLayer.getInvite(it.toString())?.let {
-                    // do host logic if needed first and than call this function
-                    StreamLayer.handleInvite(it, this)
+                    // check if user authorized or auth isn't required for this invite
+                    if (StreamLayer.isUserAuthorized() || !it.isAuthRequired()){
+                        StreamLayer.handleInvite(it, this)
+                    } else{
+                        // show your custom dialog or user stream layer general invite dialog
+                        StreamLayerInviteFragment.newInstance(it)
+                            .show(supportFragmentManager, StreamLayerInviteFragment::class.java.name)
+                    }
                 }
             }
         }
@@ -112,12 +124,13 @@ class LiveActivity : AppCompatActivity() {
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (isControlsVisible) showControls()
-        withStreamLayerUI { isMenuProfileEnabled = true }
+        withStreamLayerUI { isMenuProfileEnabled = false }
         setPlaybackIcon()
     }
 
     private fun setupUI() {
         with(binding) {
+            profileIV.setOnClickListener { StreamLayerAuthActivity.open(this@LiveActivity, false) }
             playerView.player = exoHelper.player
             playerView.videoSurfaceView?.setOnTouchListener(object : DoubleTapListener() {
                 override fun onDelayedTap(x: Float, y: Float) {
@@ -132,18 +145,11 @@ class LiveActivity : AppCompatActivity() {
                     }
                 }
             })
-            closeButton.setOnClickListener { finish() }
             playbackButton.setOnClickListener {
                 isPlaybackPaused = !isPlaybackPaused
                 exoHelper.player.playWhenReady = !isPlaybackPaused
                 setPlaybackIcon()
                 showControls()
-            }
-            pipButton.setOnClickListener {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-                    packageManager.hasSystemFeature(PackageManager.FEATURE_PICTURE_IN_PICTURE)
-                ) enterPictureInPictureMode(PictureInPictureParams.Builder().build())
-                else toast("Picture in picture mode is not supported")
             }
             playerView.addOnLayoutChangeListener(layoutListener)
             window.keepOnScreen()
@@ -160,9 +166,7 @@ class LiveActivity : AppCompatActivity() {
         hideControlsJob?.cancel()
         with(binding) {
             playbackButton.visible()
-            closeButton.visible()
             playerShadow.visible()
-            pipButton.visible()
         }
         // hide launch button in landscape
         if (!isScreenPortrait()) withStreamLayerUI { isLaunchButtonEnabled = false }
@@ -177,9 +181,7 @@ class LiveActivity : AppCompatActivity() {
         hideControlsJob?.cancel()
         with(binding) {
             playbackButton.gone()
-            closeButton.gone()
             playerShadow.gone()
-            pipButton.gone()
         }
         if (!isScreenPortrait()) withStreamLayerUI { isLaunchButtonEnabled = true }
         isControlsVisible = false
@@ -248,11 +250,27 @@ class LiveActivity : AppCompatActivity() {
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
+        configureLayout()
+    }
+
+    private fun configureLayout() {
         val isScreenPortrait = isScreenPortrait()
-        binding.playerView.updateLayoutParams<ConstraintLayout.LayoutParams> {
-            bottomToBottom = if (isScreenPortrait) ConstraintSet.UNSET else ConstraintSet.PARENT_ID
+        with(binding) {
+            toolbar.visibleIf(isScreenPortrait)
+            playerView.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topToBottom = if (isScreenPortrait) R.id.toolbar else ConstraintSet.UNSET
+                topToTop = if (isScreenPortrait) ConstraintSet.UNSET else ConstraintSet.PARENT_ID
+                bottomToBottom =
+                    if (isScreenPortrait) ConstraintSet.UNSET else ConstraintSet.PARENT_ID
+                dimensionRatio = if (isScreenPortrait) "H,16:9" else ""
+            }
         }
         window.changeFullScreen(windowController, !isScreenPortrait)
+    }
+
+
+    override fun onInviteStart(inviteData: InviteData) {
+        StreamLayerAuthActivity.open(this, closeWhenAuthorized = false, inviteData = inviteData)
     }
 
     override fun onDestroy() {

@@ -76,12 +76,6 @@
 
         </activity>
 
-        <activity
-            android:name=".managed.ManagedGroupActivity"
-            android:exported="true"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustResize" />
-
         <service
             android:name=".firebase.MyFirebaseMessagingService"
             android:exported="false">

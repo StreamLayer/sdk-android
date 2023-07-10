@@ -1,9 +1,12 @@
 package io.streamlayer.demo
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import io.branch.referral.Branch
+import io.streamlayer.auth.ui.StreamLayerAuthActivity
 import io.streamlayer.demo.common.exo.ExoVideoPlayerProvider
+import io.streamlayer.sdk.SLRAuthRequestHandler
 import io.streamlayer.sdk.SLRLogListener
 import io.streamlayer.sdk.SLRTheme
 import io.streamlayer.sdk.StreamLayer
@@ -33,8 +36,12 @@ class App : Application() {
         })
         // initialize sdk with your key
         StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
-        // enable external auth - set true or false based on app
-        StreamLayer.setExternalAuthEnabled(false)
+        // set auth handler - we use stream layer phone authorization for this demo project
+        StreamLayer.setAuthHandler(object : SLRAuthRequestHandler {
+            override fun onAuthRequired(context: Context) {
+                StreamLayerAuthActivity.open(context, true)
+            }
+        })
         // set phone contacts options
         StreamLayer.setPhoneContactsOptions(isUiEnabled = true, isSyncEnabled = true)
         // set custom media provider base on your exo player api
@@ -42,7 +49,6 @@ class App : Application() {
         // set custom themes
         StreamLayer.setCustomTheme(
             SLRTheme(
-                authTheme = R.style.AuthOverlayTheme,
                 mainTheme = R.style.MainOverlayTheme,
                 profileTheme = R.style.ProfileOverlayTheme,
                 baseTheme = R.style.BaseOverlayTheme,

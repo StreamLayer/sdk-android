@@ -36,6 +36,8 @@ dependencies {
     // Jetpack
     api "androidx.appcompat:appcompat:$versions.appcompat"
     api "androidx.core:core-ktx:$versions.coreKtx"
+    api "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
+    api "androidx.fragment:fragment-ktx:$versions.fragment"
     // Exo player
     api "com.google.android.exoplayer:exoplayer:$versions.exoPlayer"
     // StreamLayer
