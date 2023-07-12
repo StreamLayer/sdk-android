@@ -1,5 +1,13 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:io.streamlayer.auth.ui////PointingToDeclaration/sdk/io.streamlayer.auth.ui/index.html
+$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity.Companion///PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-companion/index.html
+$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity.Companion/open/#android.content.Context#kotlin.Boolean#io.streamlayer.sdk.model.deeplink.InviteData?/PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-companion/open.html
+$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity///PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/index.html
+$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity/StreamLayerAuthActivity/#/PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-stream-layer-auth-activity.html
+$dokka.location:io.streamlayer.auth.utils////PointingToDeclaration/sdk/io.streamlayer.auth.utils/index.html
+$dokka.location:io.streamlayer.auth.utils/ImagePickerFileProvider///PointingToDeclaration/sdk/io.streamlayer.auth.utils/-image-picker-file-provider/index.html
+$dokka.location:io.streamlayer.auth.utils/ImagePickerFileProvider/ImagePickerFileProvider/#/PointingToDeclaration/sdk/io.streamlayer.auth.utils/-image-picker-file-provider/-image-picker-file-provider.html
 $dokka.location:io.streamlayer.sdk////PointingToDeclaration/sdk/io.streamlayer.sdk/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.Delegate/disableAudioDucking/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/-delegate/disable-audio-ducking.html
@@ -56,6 +64,8 @@ $dokka.location:io.streamlayer.sdk/SLRAppHost/overlayHeightSpace/#/PointingToDec
 $dokka.location:io.streamlayer.sdk/SLRAppHost/overlayWidth/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/overlay-width.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/showOverlay/#io.streamlayer.sdk.SLRAppHost.Overlay/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/show-overlay.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost/watchPartyVideoViewSide/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-app-host/watch-party-video-view-side.html
+$dokka.location:io.streamlayer.sdk/SLRAuthRequestHandler///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-auth-request-handler/index.html
+$dokka.location:io.streamlayer.sdk/SLRAuthRequestHandler/onAuthRequired/#android.content.Context/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-auth-request-handler/on-auth-required.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/index.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification/SLRCustomNotification/#kotlin.String?#kotlin.String?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.String?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/-s-l-r-custom-notification.html
 $dokka.location:io.streamlayer.sdk/SLRCustomNotification/actionId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-notification/action-id.html
@@ -74,9 +84,6 @@ $dokka.location:io.streamlayer.sdk/SLRCustomOverlay/onBottomMenu/#/PointingToDec
 $dokka.location:io.streamlayer.sdk/SLRCustomOverlay/position/#kotlin.Int/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-overlay/position.html
 $dokka.location:io.streamlayer.sdk/SLRCustomOverlay/showOnBottomMenu/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-overlay/show-on-bottom-menu.html
 $dokka.location:io.streamlayer.sdk/SLRCustomOverlay/titleId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-custom-overlay/title-id.html
-$dokka.location:io.streamlayer.sdk/SLREvent.LogoutButtonClick///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/-logout-button-click/index.html
-$dokka.location:io.streamlayer.sdk/SLREvent.SyncContinueButtonClick///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/-sync-continue-button-click/index.html
-$dokka.location:io.streamlayer.sdk/SLREvent///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event/index.html
 $dokka.location:io.streamlayer.sdk/SLREventSession///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/index.html
 $dokka.location:io.streamlayer.sdk/SLREventSession/getExternalEventId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/get-external-event-id.html
 $dokka.location:io.streamlayer.sdk/SLREventSession/isReleased/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-event-session/is-released.html
@@ -143,8 +150,7 @@ $dokka.location:io.streamlayer.sdk/SLRTheme.NotificationsStyle///PointingToDecla
 $dokka.location:io.streamlayer.sdk/SLRTheme.NotificationsStyle/valueOf/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/-notifications-style/value-of.html
 $dokka.location:io.streamlayer.sdk/SLRTheme.NotificationsStyle/values/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/-notifications-style/values.html
 $dokka.location:io.streamlayer.sdk/SLRTheme///PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/index.html
-$dokka.location:io.streamlayer.sdk/SLRTheme/SLRTheme/#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#io.streamlayer.sdk.SLRTheme.NotificationsStyle?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/-s-l-r-theme.html
-$dokka.location:io.streamlayer.sdk/SLRTheme/authTheme/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/auth-theme.html
+$dokka.location:io.streamlayer.sdk/SLRTheme/SLRTheme/#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#kotlin.Int?#io.streamlayer.sdk.SLRTheme.NotificationsStyle?/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/-s-l-r-theme.html
 $dokka.location:io.streamlayer.sdk/SLRTheme/baseTheme/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/base-theme.html
 $dokka.location:io.streamlayer.sdk/SLRTheme/inviteTheme/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/invite-theme.html
 $dokka.location:io.streamlayer.sdk/SLRTheme/mainTheme/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-s-l-r-theme/main-theme.html
@@ -226,20 +232,42 @@ $dokka.location:io.streamlayer.sdk/StreamLayer/isManagedGroup/#kotlin.String/Poi
 $dokka.location:io.streamlayer.sdk/StreamLayer/isUserAuthorized/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/is-user-authorized.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/logout/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/logout.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/openActiveWatchParty/#android.content.Context#android.content.Intent?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/open-active-watch-party.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/sdkEventBus/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/sdk-event-bus.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/sendCustomNotification/#io.streamlayer.sdk.SLRCustomNotification/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/send-custom-notification.html
+$dokka.location:io.streamlayer.sdk/StreamLayer/setAuthHandler/#io.streamlayer.sdk.SLRAuthRequestHandler/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-auth-handler.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setCustomTheme/#io.streamlayer.sdk.SLRTheme/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-custom-theme.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/setExternalAuthEnabled/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-external-auth-enabled.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setLogListener/#io.streamlayer.sdk.SLRLogListener?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-log-listener.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setLogcatLoggingEnabled/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-logcat-logging-enabled.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setPhoneContactsOptions/#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-phone-contacts-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setStatisticsDataOptions/#kotlin.String#kotlin.Long/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-statistics-data-options.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/setSyncOptions/#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-sync-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setVideoPlayerProvider/#io.streamlayer.sdk.SLRVideoPlayerProvider/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-video-player-provider.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/setWatchPartyOptions/#kotlin.Boolean#kotlin.Boolean#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/set-watch-party-options.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/uploadDeviceFCMToken/#android.content.Context#kotlin.String#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/upload-device-f-c-m-token.html
+$dokka.location:io.streamlayer.sdk/StreamLayer/useAnonymousAuth/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/use-anonymous-auth.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/userIsAuthorizedState/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/user-is-authorized-state.html
-$dokka.location:io.streamlayer.sdk/StreamLayer/verifyBypass/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/verify-bypass.html
 $dokka.location:io.streamlayer.sdk/StreamLayer/withStreamLayerUI/androidx.fragment.app.FragmentActivity#kotlin.Function1[io.streamlayer.sdk.SLRAppHost,kotlin.Unit]/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer/with-stream-layer-u-i.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream///PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/index.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/Stream/#kotlin.Long#kotlin.String#kotlin.String?#kotlin.String?#kotlin.String#kotlin.String?#kotlin.String#kotlin.Boolean/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/-stream.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/eventId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/event-id.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/leagueId/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/league-id.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/live/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/live.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/previewUrl/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/preview-url.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/stream/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/stream.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/subtitle/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/subtitle.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/time/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/time.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.Stream/title/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-stream/title.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.User///PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-user/index.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.User/User/#kotlin.String#kotlin.String?#kotlin.String?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-user/-user.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.User/avatar/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-user/avatar.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.User/id/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-user/id.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo.User/name/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/-user/name.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo///PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/index.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/getDemoStreams/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/get-demo-streams.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/getUserChangeListener/#/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/get-user-change-listener.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/phoneAuth/#kotlin.String#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/phone-auth.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/sendCode/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/send-code.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/updateUserImage/#android.graphics.Bitmap?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/update-user-image.html
+$dokka.location:io.streamlayer.sdk/StreamLayerDemo/updateUserName/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/update-user-name.html
+io.streamlayer.auth.ui
+io.streamlayer.auth.utils
 io.streamlayer.sdk
 
