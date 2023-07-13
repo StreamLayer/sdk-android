@@ -63,7 +63,7 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
                     if (StreamLayer.isUserAuthorized() || !it.isAuthRequired()){
                         StreamLayer.handleInvite(it, this)
                     } else{
-                        // show your custom dialog or user stream layer general invite dialog
+                        // show your custom dialog or user streamlayer general invite dialog
                         StreamLayerInviteFragment.newInstance(it)
                             .show(supportFragmentManager, StreamLayerInviteFragment::class.java.name)
                     }
