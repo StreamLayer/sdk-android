@@ -33,7 +33,7 @@
         <item name="slrActionColor">@color/button_color</item>
         <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
         <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
-        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrOverlayTooltipActionColor">#66FFFFFF</item>
         <item name="slrCircleButtonColor">@color/colorPrimary2</item>
         <item name="slrSenderMessageColor">@color/colorPrimary2</item>
         <item name="slrReceiverMessageColor">#1AFFFFFF</item>
@@ -67,7 +67,7 @@
         <item name="slrActionColor">@color/button_color</item>
         <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
         <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
-        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrOverlayTooltipActionColor">#66FFFFFF</item>
         <item name="slrNotificationBadgeColor">@color/colorAccent2</item>
         <item name="slrNotificationIconColor">@color/colorPrimary2</item>
         <item name="slrMenuButtonBottomMargin">@dimen/menuButtonBottomMargin</item>
@@ -89,7 +89,7 @@
         <item name="slrContactItemButtonColor">@color/button_color</item>
         <item name="slrOverlayWatchPartyStartButtonColor">@color/button_color</item>
         <item name="slrOverlayTooltipBackgroundColor">@color/colorPrimary2</item>
-        <item name="slrViewTooltipActionColor">#66FFFFFF</item>
+        <item name="slrOverlayTooltipActionColor">#66FFFFFF</item>
         <item name="slrInviteFriendsButtonColor">@color/colorPrimary2</item>
         <item name="slrChatSendButtonColor">@color/colorPrimary2</item>
         <item name="slrWatchPartyMessageIconColor">@color/colorPrimary2</item>

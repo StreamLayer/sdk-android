@@ -1,6 +1,7 @@
 package io.streamlayer.demo.gamification
 
 import android.app.Application
+import android.util.Log
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.demo.common.exo.ExoVideoPlayerProvider
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +25,11 @@ class App : Application() {
         StreamLayer.initializeApp(this, SL_SDK_KEY)
         // set video player provider
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
-        // authorize anonymous user
-        appScope.launch { StreamLayer.useAnonymousAuth() }
+        // authorize anonymous user if needed
+        appScope.launch {
+            kotlin.runCatching { StreamLayer.useAnonymousAuth() }
+                .onFailure { Log.e("StreamLayer", "anonymous auth failed", it) }
+        }
+
     }
 }
