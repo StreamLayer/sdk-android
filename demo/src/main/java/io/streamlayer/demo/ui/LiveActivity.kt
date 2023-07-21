@@ -117,14 +117,16 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
         setContentView(binding.root)
         setupUI()
         loadDemoStream()
-        // add host app delegate
-        withStreamLayerUI { delegate = appHostDelegate }
+        withStreamLayerUI {
+            // add host app delegate
+            delegate = appHostDelegate
+            isMenuProfileEnabled = false
+        }
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
         super.onPostCreate(savedInstanceState)
         if (isControlsVisible) showControls()
-        withStreamLayerUI { isMenuProfileEnabled = false }
         setPlaybackIcon()
     }
 

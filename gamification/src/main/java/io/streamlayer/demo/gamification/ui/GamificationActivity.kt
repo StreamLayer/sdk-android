@@ -78,14 +78,10 @@ class GamificationActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUI()
         loadDemoStream()
-        // add host app delegate
-        withStreamLayerUI { delegate = appHostDelegate }
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        // disable unused sdk ui views
         withStreamLayerUI {
+            // add app host delegate
+            delegate = appHostDelegate
+            // disable unused sdk ui views
             isLaunchButtonEnabled = false
             isWhoIsWatchingViewEnabled = false
             isWatchPartyReturnButtonEnabled = false
@@ -114,12 +110,6 @@ class GamificationActivity : AppCompatActivity() {
         with(binding) {
             playerView.player = exoHelper.player
             playerView.addOnLayoutChangeListener(layoutListener)
-            gamesBtn.setOnClickListener {
-                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Games) }
-            }
-            highlightsBtn.setOnClickListener {
-                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Highlights) }
-            }
             window.keepOnScreen()
             window.changeFullScreen(windowController, !isScreenPortrait())
             setInputKeyboardEventListener {

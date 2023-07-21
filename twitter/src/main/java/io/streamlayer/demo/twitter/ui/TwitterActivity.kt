@@ -78,14 +78,10 @@ class TwitterActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupUI()
         loadDemoStream()
-        // set host app player
-        withStreamLayerUI { delegate = appHostDelegate }
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        // disable sdk ui views
         withStreamLayerUI {
+            // set host app player
+            delegate = appHostDelegate
+            // disable sdk ui views
             isLaunchButtonEnabled = false
             isWhoIsWatchingViewEnabled = false
             isPredictionsPointsEnabled = false
