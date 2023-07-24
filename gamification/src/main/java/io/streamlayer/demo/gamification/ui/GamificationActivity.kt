@@ -110,6 +110,9 @@ class GamificationActivity : AppCompatActivity() {
         with(binding) {
             playerView.player = exoHelper.player
             playerView.addOnLayoutChangeListener(layoutListener)
+            gamesBtn.setOnClickListener {
+                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Games) }
+            }
             window.keepOnScreen()
             window.changeFullScreen(windowController, !isScreenPortrait())
             setInputKeyboardEventListener {
