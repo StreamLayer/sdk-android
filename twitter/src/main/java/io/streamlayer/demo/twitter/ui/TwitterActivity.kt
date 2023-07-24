@@ -2,13 +2,11 @@ package io.streamlayer.demo.twitter.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
-import androidx.lifecycle.lifecycleScope
 import io.streamlayer.common.extensions.changeFullScreen
 import io.streamlayer.common.extensions.isScreenPortrait
 import io.streamlayer.common.extensions.keepOnScreen
@@ -16,26 +14,15 @@ import io.streamlayer.common.extensions.setInputKeyboardEventListener
 import io.streamlayer.common.extensions.windowController
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
-import io.streamlayer.demo.twitter.App
 import io.streamlayer.demo.twitter.R
 import io.streamlayer.demo.twitter.databinding.ActivityTwitterBinding
 import io.streamlayer.sdk.SLRAppHost
-import io.streamlayer.sdk.SLREventSession
-import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
-
-private const val TAG = "GamificationActivity"
 
 class TwitterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTwitterBinding
-
-    // event session helper
-    private var createEventSessionJob: Job? = null
-    private var eventSession: SLREventSession? = null
 
     // exo player helper
     private val exoHelper: ExoPlayerHelper by lazy {
@@ -135,28 +122,9 @@ class TwitterActivity : AppCompatActivity() {
         binding.playerView.removeOnLayoutChangeListener(layoutListener)
         // release player
         exoHelper.release()
-        // release event session
-        createEventSessionJob?.cancel()
-        eventSession?.release()
     }
 
     private fun loadDemoStream() {
         exoHelper.init(DEMO_HLS_STREAM)
-        createEventSession(App.DEMO_EVENT_ID)
     }
-
-    // create a new event session
-    private fun createEventSession(id: String) {
-        if (eventSession?.getExternalEventId() == id) return
-        createEventSessionJob?.cancel()
-        createEventSessionJob = lifecycleScope.launch {
-            try {
-                eventSession?.release()
-                eventSession = StreamLayer.createEventSession(id, null)
-            } catch (t: Throwable) {
-                Log.e(TAG, "createEventSession failed:", t)
-            }
-        }
-    }
-
 }

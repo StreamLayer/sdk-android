@@ -9,7 +9,6 @@ class App : Application() {
     companion object {
         var instance: Application? = null
         const val SL_SDK_KEY = "SL_SDK_KEY"
-        const val DEMO_EVENT_ID = "demo"
     }
 
     override fun onCreate() {
