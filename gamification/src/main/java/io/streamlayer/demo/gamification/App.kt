@@ -25,6 +25,8 @@ class App : Application() {
         StreamLayer.initializeApp(this, SL_SDK_KEY)
         // set video player provider
         StreamLayer.setVideoPlayerProvider(ExoVideoPlayerProvider(this))
+        // set gamification options
+        StreamLayer.setGamificationOptions(isGlobalLeaderboardEnabled = true, isInvitesEnabled = false)
         // authorize anonymous user if needed
         appScope.launch {
             kotlin.runCatching { StreamLayer.useAnonymousAuth() }

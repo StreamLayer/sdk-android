@@ -45,10 +45,6 @@ class TwitterActivity : AppCompatActivity() {
         }
 
         override fun getAudioVolumeListener(): Flow<Float> = exoHelper.getAudioVolumeListener()
-
-        override fun requestStream(id: String) {
-            // SDK want to request new Event/Stream by id - process it if you need this functionality
-        }
     }
 
     private val layoutListener = View.OnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->

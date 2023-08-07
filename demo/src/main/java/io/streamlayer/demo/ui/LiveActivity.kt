@@ -100,6 +100,10 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
         override fun requestStream(id: String) {
             // SDK want to request new Event/Stream by id - process it if you need this functionality
         }
+
+        override fun onOverlayStateChanged(isShown: Boolean) {
+            // SDK notify that Overlay state is changed
+        }
     }
 
     // listen player view layout changes
