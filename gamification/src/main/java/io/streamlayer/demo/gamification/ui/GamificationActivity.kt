@@ -106,6 +106,9 @@ class GamificationActivity : AppCompatActivity() {
         with(binding) {
             playerView.player = exoHelper.player
             playerView.addOnLayoutChangeListener(layoutListener)
+            highlightsBtn.setOnClickListener {
+                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Highlights) }
+            }
             gamesBtn.setOnClickListener {
                 withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Games) }
             }
