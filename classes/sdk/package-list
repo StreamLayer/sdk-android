@@ -1,13 +1,5 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
-$dokka.location:io.streamlayer.auth.ui////PointingToDeclaration/sdk/io.streamlayer.auth.ui/index.html
-$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity.Companion///PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-companion/index.html
-$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity.Companion/open/#android.content.Context#kotlin.Boolean#io.streamlayer.sdk.SLRInviteData?/PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-companion/open.html
-$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity///PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/index.html
-$dokka.location:io.streamlayer.auth.ui/StreamLayerAuthActivity/StreamLayerAuthActivity/#/PointingToDeclaration/sdk/io.streamlayer.auth.ui/-stream-layer-auth-activity/-stream-layer-auth-activity.html
-$dokka.location:io.streamlayer.auth.utils////PointingToDeclaration/sdk/io.streamlayer.auth.utils/index.html
-$dokka.location:io.streamlayer.auth.utils/ImagePickerFileProvider///PointingToDeclaration/sdk/io.streamlayer.auth.utils/-image-picker-file-provider/index.html
-$dokka.location:io.streamlayer.auth.utils/ImagePickerFileProvider/ImagePickerFileProvider/#/PointingToDeclaration/sdk/io.streamlayer.auth.utils/-image-picker-file-provider/-image-picker-file-provider.html
 $dokka.location:io.streamlayer.sdk////PointingToDeclaration/sdk/io.streamlayer.sdk/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.ActionClicked.Source.WATCH_PARTIES_CREATE_NEW_BUTTON///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-action-clicked/-source/-w-a-t-c-h_-p-a-r-t-i-e-s_-c-r-e-a-t-e_-n-e-w_-b-u-t-t-o-n/index.html
 $dokka.location:io.streamlayer.sdk/SLRAppHost.ActionClicked.Source.WATCH_PARTY_LEAVE_BUTTON///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}sdk/io.streamlayer.sdk/-s-l-r-app-host/-action-clicked/-source/-w-a-t-c-h_-p-a-r-t-y_-l-e-a-v-e_-b-u-t-t-o-n/index.html
@@ -366,7 +358,5 @@ $dokka.location:io.streamlayer.sdk/StreamLayerDemo/sendCode/#kotlin.String/Point
 $dokka.location:io.streamlayer.sdk/StreamLayerDemo/updatePublicUserName/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/update-public-user-name.html
 $dokka.location:io.streamlayer.sdk/StreamLayerDemo/updateUserImage/#android.graphics.Bitmap?/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/update-user-image.html
 $dokka.location:io.streamlayer.sdk/StreamLayerDemo/updateUserName/#kotlin.String/PointingToDeclaration/sdk/io.streamlayer.sdk/-stream-layer-demo/update-user-name.html
-io.streamlayer.auth.ui
-io.streamlayer.auth.utils
 io.streamlayer.sdk
 
