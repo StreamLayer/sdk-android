@@ -42,6 +42,9 @@
     <div>
     </div>
     <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":sdk:dokkaHtml/vonage">androidJvm</button>
+        </div>
         <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
         <div id="searchBar"></div>
     </div>
@@ -51,181 +54,217 @@
         <div id="sideMenu"></div>
     </div>
     <div id="main">
-<div class="main-content" id="content" pageIds="sdk::io.streamlayer.sdk/SLRTheme///PointingToDeclaration//1900173323">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="sdk::io.streamlayer.sdk/SLRTheme///PointingToDeclaration//1900173323">
   <div class="breadcrumbs"><a href="../../../index.html">sdk</a><span class="delimiter">/</span><a href="../index.html">io.streamlayer.sdk</a><span class="delimiter">/</span><span class="current">SLRTheme</span></div>
   <div class="cover ">
     <h1 class="cover"><span><span>SLRTheme</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SLRTheme</a> <span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlin.jvm/JvmOverloads///PointingToDeclaration/"><span class="token annotation builtin">JvmOverloads</span></span> </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>mainTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>profileTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>baseTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>watchPartyTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inviteTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>predictionsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>statisticsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>messengerTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>notificationsStyle<span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">Sets the parameters for the custom theme in the application.</p></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SLRTheme</a> <span><span class="token annotation builtin">@</span><span data-unresolved-link="kotlin.jvm/JvmOverloads///PointingToDeclaration/"><span class="token annotation builtin">JvmOverloads</span></span> </span><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>mainTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>profileTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>baseTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>watchPartyTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>inviteTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>predictionsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>highlightsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>statisticsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>messengerTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>publicChatTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>notificationsStyle<span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><p class="paragraph">Sets the parameters for the custom theme in the application.</p></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
-      <h2 class="tabbedcontent">Constructors</h2>
-      <div class="table" data-togglable="Constructors"><a data-name="1676069657%2FConstructors%2F1900173323" anchor-label="SLRTheme" id="1676069657%2FConstructors%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue TabbedContent">
-            <div class=""><span class="inline-flex">
-                <div><a href="-s-l-r-theme.html"><span><span>SLRTheme</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1676069657%2FConstructors%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlin.jvm/JvmOverloads///PointingToDeclaration/"><span class="token annotation builtin">JvmOverloads</span></span></div></div><span class="token keyword"></span><span class="token keyword">fun </span><a href="-s-l-r-theme.html"><span class="token function">SLRTheme</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mainTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">profileTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">baseTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">watchPartyTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">inviteTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">predictionsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">statisticsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">messengerTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">notificationsStyle<span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-40075419%2FConstructors%2F1900173323" anchor-label="SLRTheme" id="-40075419%2FConstructors%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-s-l-r-theme.html"><span><span>SLRTheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-40075419%2FConstructors%2F1900173323"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><div class="block"><div class="block"><span class="token annotation builtin">@</span><span data-unresolved-link="kotlin.jvm/JvmOverloads///PointingToDeclaration/"><span class="token annotation builtin">JvmOverloads</span></span></div></div><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">mainTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">profileTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">baseTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">watchPartyTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">inviteTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">predictionsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">highlightsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">statisticsTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">messengerTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">publicChatTheme<span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">notificationsStyle<span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Types</h2>
-      <div class="table" data-togglable="Types"><a data-name="1875816388%2FClasslikes%2F1900173323" anchor-label="NotificationsStyle" id="1875816388%2FClasslikes%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="-notifications-style/index.html"><span>Notifications</span><wbr></wbr><span><span>Style</span></span></a></div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1875816388%2FClasslikes%2F1900173323" anchor-label="NotificationsStyle" id="1875816388%2FClasslikes%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-notifications-style/index.html"><span>Notifications</span><wbr></wbr><span><span>Style</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1875816388%2FClasslikes%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-notifications-style/index.html">NotificationsStyle</a> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Design type for predictions/polls/trivia/insight/tweet notifications</p></div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword">enum </span><a href="-notifications-style/index.html">NotificationsStyle</a> : <span data-unresolved-link="kotlin/Enum///PointingToDeclaration/">Enum</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Design type for predictions/polls/trivia/insight/tweet notifications</p></div></div></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <h2 class="">Properties</h2>
-      <div class="table" data-togglable="Properties"><a data-name="2071130698%2FProperties%2F1900173323" anchor-label="baseTheme" id="2071130698%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="base-theme.html"><span>base</span><wbr></wbr><span><span>Theme</span></span></a></div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="2071130698%2FProperties%2F1900173323" anchor-label="baseTheme" id="2071130698%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="base-theme.html"><span>base</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2071130698%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="2071130698%2FProperties%2F1900173323" anchor-label="baseTheme" id="2071130698%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="base-theme.html">baseTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="base-theme.html">baseTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+<a data-name="-1192351368%2FProperties%2F1900173323" anchor-label="highlightsTheme" id="-1192351368%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="highlights-theme.html"><span>highlights</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1192351368%2FProperties%2F1900173323"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="highlights-theme.html">highlightsTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-1495483582%2FProperties%2F1900173323" anchor-label="inviteTheme" id="-1495483582%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="invite-theme.html"><span>invite</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="invite-theme.html"><span>invite</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1495483582%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-1495483582%2FProperties%2F1900173323" anchor-label="inviteTheme" id="-1495483582%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="invite-theme.html">inviteTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="invite-theme.html">inviteTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-2044925134%2FProperties%2F1900173323" anchor-label="mainTheme" id="-2044925134%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="main-theme.html"><span>main</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="main-theme.html"><span>main</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2044925134%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-2044925134%2FProperties%2F1900173323" anchor-label="mainTheme" id="-2044925134%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="main-theme.html">mainTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="main-theme.html">mainTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-763592670%2FProperties%2F1900173323" anchor-label="messengerTheme" id="-763592670%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="messenger-theme.html"><span>messenger</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="messenger-theme.html"><span>messenger</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-763592670%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-763592670%2FProperties%2F1900173323" anchor-label="messengerTheme" id="-763592670%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="messenger-theme.html">messengerTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="messenger-theme.html">messengerTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="181812943%2FProperties%2F1900173323" anchor-label="notificationsStyle" id="181812943%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="notifications-style.html"><span>notifications</span><wbr></wbr><span><span>Style</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="notifications-style.html"><span>notifications</span><wbr></wbr><span><span>Style</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="181812943%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="181812943%2FProperties%2F1900173323" anchor-label="notificationsStyle" id="181812943%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="notifications-style.html">notificationsStyle</a><span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="notifications-style.html">notificationsStyle</a><span class="token operator">: </span><a href="-notifications-style/index.html">SLRTheme.NotificationsStyle</a><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1539594157%2FProperties%2F1900173323" anchor-label="predictionsTheme" id="-1539594157%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="predictions-theme.html"><span>predictions</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="predictions-theme.html"><span>predictions</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1539594157%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-1539594157%2FProperties%2F1900173323" anchor-label="predictionsTheme" id="-1539594157%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="predictions-theme.html">predictionsTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="predictions-theme.html">predictionsTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="-1301352712%2FProperties%2F1900173323" anchor-label="profileTheme" id="-1301352712%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="profile-theme.html"><span>profile</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="profile-theme.html"><span>profile</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1301352712%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-1301352712%2FProperties%2F1900173323" anchor-label="profileTheme" id="-1301352712%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="profile-theme.html">profileTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="profile-theme.html">profileTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+<a data-name="-520760038%2FProperties%2F1900173323" anchor-label="publicChatTheme" id="-520760038%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="public-chat-theme.html"><span>public</span><wbr></wbr><span>Chat</span><wbr></wbr><span><span>Theme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-520760038%2FProperties%2F1900173323"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="public-chat-theme.html">publicChatTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
 <a data-name="-215307940%2FProperties%2F1900173323" anchor-label="statisticsTheme" id="-215307940%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="statistics-theme.html"><span>statistics</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="statistics-theme.html"><span>statistics</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-215307940%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="-215307940%2FProperties%2F1900173323" anchor-label="statisticsTheme" id="-215307940%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="statistics-theme.html">statisticsTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="statistics-theme.html">statisticsTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <a data-name="932066448%2FProperties%2F1900173323" anchor-label="watchPartyTheme" id="932066448%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a>
-        <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
-          <div class="main-subrow keyValue ">
-            <div class=""><span class="inline-flex">
-                <div><a href="watch-party-theme.html"><span>watch</span><wbr></wbr><span>Party</span><wbr></wbr><span><span>Theme</span></span></a></div>
+          <div class="table-row" data-filterable-current=":sdk:dokkaHtml/vonage" data-filterable-set=":sdk:dokkaHtml/vonage">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="watch-party-theme.html"><span>watch</span><wbr></wbr><span>Party</span><wbr></wbr><span><span>Theme</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="932066448%2FProperties%2F1900173323"></span>
-                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                </span></span></div>
-            <div>
-              <div class="title">
-                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><a data-name="932066448%2FProperties%2F1900173323" anchor-label="watchPartyTheme" id="932066448%2FProperties%2F1900173323" data-filterable-set=":sdk:dokkaHtml/vonage"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="watch-party-theme.html">watchPartyTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":sdk:dokkaHtml/vonage"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="watch-party-theme.html">watchPartyTheme</a><span class="token operator">: </span><span data-unresolved-link="kotlin/Int///PointingToDeclaration/">Int</span><span class="token operator">?</span><span class="token operator"> = </span>null</div></div></div>
+                </div>
               </div>
             </div>
           </div>
@@ -235,7 +274,7 @@
   </div>
 </div>
       <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
                 class="pull-right"><span>Generated by </span><a
                 href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
       </div>
