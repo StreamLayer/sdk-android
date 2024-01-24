@@ -29,12 +29,12 @@ import io.streamlayer.demo.common.ext.*
 import io.streamlayer.demo.databinding.ActivityLiveBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
+import io.streamlayer.sdk.SLRInviteData
 import io.streamlayer.sdk.SLRTimeCodeProvider
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 import io.streamlayer.sdk.StreamLayerDemo
 import io.streamlayer.sdk.invite.StreamLayerInviteFragment
-import io.streamlayer.sdk.model.deeplink.InviteData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -57,14 +57,14 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
     // branch io listener
     private val branchReferralInitListener =
         Branch.BranchReferralInitListener { linkProperties, error ->
-            if (error == null) linkProperties?.let {
-                StreamLayer.getInvite(it.toString())?.let {
+            if (error == null) linkProperties?.let { jsonObject ->
+                SLRInviteData.fromJsonObject(jsonObject)?.let { invite ->
                     // check if user authorized or auth isn't required for this invite
-                    if (StreamLayer.isUserAuthorized() || !it.isAuthRequired()){
-                        StreamLayer.handleInvite(it, this)
+                    if (StreamLayer.isUserAuthorized() || !invite.isAuthRequired()){
+                        StreamLayer.handleInvite(invite, this)
                     } else{
                         // show your custom dialog or user streamlayer general invite dialog
-                        StreamLayerInviteFragment.newInstance(it)
+                        StreamLayerInviteFragment.newInstance(invite)
                             .show(supportFragmentManager, StreamLayerInviteFragment::class.java.name)
                     }
                 }
@@ -99,10 +99,6 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
 
         override fun requestStream(id: String) {
             // SDK want to request new Event/Stream by id - process it if you need this functionality
-        }
-
-        override fun onOverlayStateChanged(isShown: Boolean) {
-            // SDK notify that Overlay state is changed
         }
     }
 
@@ -275,7 +271,7 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
     }
 
 
-    override fun onInviteStart(inviteData: InviteData) {
+    override fun onInviteStart(inviteData: SLRInviteData) {
         StreamLayerAuthActivity.open(this, closeWhenAuthorized = false, inviteData = inviteData)
     }
 
