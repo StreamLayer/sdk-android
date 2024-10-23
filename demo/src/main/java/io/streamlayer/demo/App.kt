@@ -54,9 +54,9 @@ class App : Application() {
                 baseTheme = R.style.BaseOverlayTheme,
                 watchPartyTheme = R.style.WatchPartyOverlayTheme,
                 inviteTheme = R.style.InviteOverlayTheme,
-                predictionsTheme = R.style.PredictionsOverlayTheme,
+                gamesTheme = R.style.PredictionsOverlayTheme,
                 statisticsTheme = R.style.StatisticsOverlayTheme,
-                messengerTheme = R.style.MessengerOverlayTheme,
+                chatTheme = R.style.MessengerOverlayTheme,
                 notificationsStyle = SLRTheme.NotificationsStyle.DESIGN_NUMBER_ONE
             )
         )

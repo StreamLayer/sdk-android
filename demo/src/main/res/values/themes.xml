@@ -132,7 +132,7 @@
         <item name="slrOverlayInviteWatchPartyEndedIcon">@drawable/slr_ic_logo</item>
     </style>
 
-    <style name="PredictionsOverlayTheme" parent="StreamLayerSDK_PredictionsTheme">
+    <style name="PredictionsOverlayTheme" parent="StreamLayerSDK_GamesTheme">
         <item name="slrAppName">@string/slr_app_name</item>
         <item name="fontFamily">@font/benton_sans</item>
         <item name="slrToolbarBackground">@color/colorPrimary1</item>
@@ -145,7 +145,7 @@
         <item name="slrPickHistoryLostColor">@color/colorAccent1</item>
         <item name="slrPickHistoryDNPColor">@color/colorSecondary1</item>
         <item name="slrLeaderboardTabUnderscoreColor">@color/colorPrimary2</item>
-        <item name="slrPredictionsWrongAnswerColor">@color/slr_predictions_incorrect</item>
+        <item name="slrPredictionsWrongAnswerColor">@color/slr_red</item>
         <item name="slrPredictionsTimerColor">@color/colorSecondary1</item>
         <item name="slrPredictionsTimerFinishColor">@color/colorAccent2</item>
         <item name="slrAvatarColors">@array/avatar_colors</item>

@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-
+    namespace 'io.streamlayer.demo'
     compileOptions {
         sourceCompatibility = versions.java
         targetCompatibility = versions.java
@@ -32,7 +32,7 @@ android {
         manifestPlaceholders += [branchIoHost: "your-branchIo-host"]
         manifestPlaceholders += [branchIoAlternateHost: "your-branchIo-alternate-host"]
 
-        buildConfigField "String", "SL_SDK_KEY", "\"your-streamlayer-sdk-key\""
+        buildConfigField "String", "SL_SDK_KEY", "\"2eb26d69d71c99e18efb2b7e17d43cbd39694b8b8db176208babb1ed13c546a4\""
 
     }
     buildTypes {
@@ -49,6 +49,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     lintOptions {

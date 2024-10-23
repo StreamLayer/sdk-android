@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-
+    namespace 'io.streamlayer.gamification'
     compileOptions {
         sourceCompatibility = versions.java
         targetCompatibility = versions.java
@@ -39,6 +39,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 
     lintOptions {

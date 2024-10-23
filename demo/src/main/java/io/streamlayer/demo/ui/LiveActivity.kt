@@ -14,6 +14,7 @@ import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import io.branch.referral.Branch
 import io.streamlayer.auth.ui.StreamLayerAuthActivity
 import io.streamlayer.common.extensions.changeFullScreen
+import io.streamlayer.common.extensions.dp
 import io.streamlayer.common.extensions.gone
 import io.streamlayer.common.extensions.isScreenPortrait
 import io.streamlayer.common.extensions.keepOnScreen
@@ -82,6 +83,33 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
 
     // app host delegate
     private val appHostDelegate = object : SLRAppHost.Delegate {
+        var previousSlideX = 0
+        val step = 3f.dp
+
+        /**
+         * Example of using [SLRAppHost.OverlayLandscapeMode.LBAR] with [SLRAppHost.LBarMode.SIDE_BAR]
+         */
+        override fun onLBarStateChanged(slideX: Int, slideY: Int) {
+            binding.playerView.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                marginEnd = slideX
+                when {
+                    slideX >= previousSlideX && slideY == 0 -> {
+                        topMargin = (topMargin + step).coerceAtMost(48f.dp)
+                        bottomMargin = (bottomMargin + step).coerceAtMost(48f.dp)
+                    }
+
+                    slideX < previousSlideX && slideY == 0 -> {
+                        topMargin = (topMargin - step).coerceAtLeast(0)
+                        bottomMargin = (bottomMargin - step).coerceAtLeast(0)
+                    }
+
+                    else -> {
+                        bottomMargin = slideY
+                    }
+                }
+            }
+            previousSlideX = slideX
+        }
 
         override fun requestAudioDucking(level: Float) {
             exoHelper.notifyDuckingChanged(true, level)
@@ -121,6 +149,9 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
             // add host app delegate
             delegate = appHostDelegate
             isMenuProfileEnabled = false
+            // setting Lbar and Lbar mode
+            overlayLandscapeMode = SLRAppHost.OverlayLandscapeMode.LBAR
+            lbarMode = SLRAppHost.LBarMode.SIDE_BAR
         }
     }
 
@@ -211,9 +242,8 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+    override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
-        if (intent == null) return
         this.intent = intent
         Branch.sessionBuilder(this)
             .withCallback(branchReferralInitListener)

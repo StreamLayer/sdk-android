@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-
+    namespace 'io.streamlayer.demo.common'
     compileOptions {
         sourceCompatibility = versions.java
         targetCompatibility = versions.java
@@ -29,6 +29,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 

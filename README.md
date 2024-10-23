@@ -9,7 +9,7 @@ Here you will find implementation samples of the StreamLayer SDK for Android:
 
 System Requirements:
 1) Android Studio 4.0+
-2) Target SDK version 31 or higher
+2) Target SDK version 34 or higher
 3) Minimum SDK version 21
 4) Kotlin or Java
 
