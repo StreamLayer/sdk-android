@@ -14,10 +14,10 @@ import io.streamlayer.common.extensions.setInputKeyboardEventListener
 import io.streamlayer.common.extensions.windowController
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
-import io.streamlayer.demo.twitter.R
-import io.streamlayer.demo.twitter.databinding.ActivityTwitterBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
+import io.streamlayer.twitter.R
+import io.streamlayer.twitter.databinding.ActivityTwitterBinding
 import kotlinx.coroutines.flow.Flow
 
 class TwitterActivity : AppCompatActivity() {
@@ -67,7 +67,7 @@ class TwitterActivity : AppCompatActivity() {
             // disable sdk ui views
             isLaunchButtonEnabled = false
             isWhoIsWatchingViewEnabled = false
-            isPredictionsPointsEnabled = false
+            isGamesPointsEnabled = false
             isWatchPartyReturnButtonEnabled = false
             isTooltipsEnabled = false
             isMenuProfileEnabled = false
