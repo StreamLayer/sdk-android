@@ -17,8 +17,8 @@ import io.streamlayer.common.extensions.windowController
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demo.gamification.App
-import io.streamlayer.demo.gamification.R
-import io.streamlayer.demo.gamification.databinding.ActivityGamificationBinding
+import io.streamlayer.gamification.R
+import io.streamlayer.gamification.databinding.ActivityGamificationBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
 import io.streamlayer.sdk.StreamLayer
@@ -85,10 +85,17 @@ class GamificationActivity : AppCompatActivity() {
             isMenuProfileEnabled = false
             inAppNotificationsMode = SLRAppHost.NotificationMode.List(
                 listOf(
-                    SLRAppHost.NotificationMode.Feature.GAMES,
-                    SLRAppHost.NotificationMode.Feature.HIGHLIGHTS
+                    SLRAppHost.NotificationMode.Feature.GAMES
                 )
             )
+        }
+        /**
+         * Configure separate game points view
+         */
+        withStreamLayerUI { isGamesPointsEnabled = false }
+        binding.slGamesPointsView.apply {
+            isStartSide = true // set side
+            setupView()
         }
     }
 
@@ -106,9 +113,6 @@ class GamificationActivity : AppCompatActivity() {
         with(binding) {
             playerView.player = exoHelper.player
             playerView.addOnLayoutChangeListener(layoutListener)
-            highlightsBtn.setOnClickListener {
-                withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Highlights) }
-            }
             gamesBtn.setOnClickListener {
                 withStreamLayerUI { showOverlay(SLRAppHost.Overlay.Games) }
             }
