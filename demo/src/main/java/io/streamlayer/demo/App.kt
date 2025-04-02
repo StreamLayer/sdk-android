@@ -10,6 +10,7 @@ import io.streamlayer.sdk.SLRAuthRequestHandler
 import io.streamlayer.sdk.SLRLogListener
 import io.streamlayer.sdk.SLRTheme
 import io.streamlayer.sdk.StreamLayer
+import io.streamlayer.sdk.watchparty.StreamLayerWatchParty
 
 class App : Application() {
 
@@ -36,6 +37,13 @@ class App : Application() {
         })
         // initialize sdk with your key
         StreamLayer.initializeApp(this, BuildConfig.SL_SDK_KEY)
+        // set watch party feature
+        StreamLayerWatchParty.initSdk(this)
+        StreamLayer.setWatchPartyOptions(
+            isPublicWpEnabled = true,
+            isWpHistoryEnabled = true,
+            isCreateSoloWpEnabled = true
+        )
         // set auth handler - we use stream layer phone authorization for this demo project
         StreamLayer.setAuthHandler(object : SLRAuthRequestHandler {
             override fun onAuthRequired(context: Context) {

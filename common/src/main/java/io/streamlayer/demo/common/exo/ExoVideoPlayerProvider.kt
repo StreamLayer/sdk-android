@@ -44,12 +44,20 @@ class ExoVideoPlayer(internal val simpleExoPlayer: ExoPlayer) : SLRVideoPlayer {
         simpleExoPlayer.seekTo(position)
     }
 
+    override fun setVolume(volume: Float) {
+        simpleExoPlayer.volume = volume
+    }
+
     override fun getCurrentPosition(): Long {
         return simpleExoPlayer.currentPosition
     }
 
     override fun getDuration(): Long {
         return simpleExoPlayer.duration
+    }
+
+    override fun getVolume(): Float {
+        return simpleExoPlayer.volume
     }
 
     override fun addListener(listener: SLRVideoPlayer.Listener) {
@@ -136,6 +144,7 @@ class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPlayerProvi
                 HlsMediaSource.Factory(defaultDataSourceFactory())
                     .createMediaSource(streamUri.build())
             }
+
             else -> {
                 streamUri.setMimeType(MimeTypes.APPLICATION_MP4)
                 ProgressiveMediaSource.Factory(defaultDataSourceFactory())
@@ -158,6 +167,7 @@ class ExoVideoPlayerProvider(private val context: Context) : SLRVideoPlayerProvi
     ): SLRVideoPlayerView = when (type) {
         SLRVideoPlayerView.Type.SURFACE -> LayoutInflater.from(context)
             .inflate(R.layout.surface_player_view, null) as ExoVideoPlayerView
+
         SLRVideoPlayerView.Type.TEXTURE -> LayoutInflater.from(context)
             .inflate(R.layout.texture_player_view, null) as ExoVideoPlayerView
     }

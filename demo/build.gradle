@@ -65,5 +65,7 @@ dependencies {
     implementation "io.branch.sdk.android:library:$versions.branchIO"
     // Firebase
     implementation "com.google.firebase:firebase-messaging:$versions.firebase"
+    //Watch Party
+    implementation "io.streamlayer:android-watchparty:2.19.0-beta.4"
 }
 
