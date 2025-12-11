@@ -2,9 +2,11 @@ package io.streamlayer.demo.ui
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.graphics.Outline
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewOutlineProvider
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
@@ -61,12 +63,15 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
             if (error == null) linkProperties?.let { jsonObject ->
                 SLRInviteData.fromJsonObject(jsonObject)?.let { invite ->
                     // check if user authorized or auth isn't required for this invite
-                    if (StreamLayer.isUserAuthorized() || !invite.isAuthRequired()){
+                    if (StreamLayer.isUserAuthorized() || !invite.isAuthRequired()) {
                         StreamLayer.handleInvite(invite, this)
-                    } else{
+                    } else {
                         // show your custom dialog or user streamlayer general invite dialog
                         StreamLayerInviteFragment.newInstance(invite)
-                            .show(supportFragmentManager, StreamLayerInviteFragment::class.java.name)
+                            .show(
+                                supportFragmentManager,
+                                StreamLayerInviteFragment::class.java.name
+                            )
                     }
                 }
             }
@@ -109,6 +114,28 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
                 }
             }
             previousSlideX = slideX
+        }
+
+        /**
+         * Example of using [SLRAppHost.SLRScreenSize]
+         */
+        override fun onScreenSizeChanged(size: SLRAppHost.SLRScreenSize) {
+            binding.playerView.updateLayoutParams<ConstraintLayout.LayoutParams> {
+                topMargin = size.topMargin
+                bottomMargin = size.bottomMargin
+                marginEnd = size.endMargin
+                marginStart = size.startMargin
+                horizontalBias = 0f
+                width = size.playerMinWidth
+                height = size.playerHeight
+                verticalBias = size.verticalBias
+            }
+            binding.playerView.outlineProvider = object : ViewOutlineProvider() {
+                override fun getOutline(view: View, outline: Outline) {
+                    outline.setRoundRect(0, 0, view.width, view.height, size.playerCornerRadius)
+                }
+            }
+            binding.playerView.clipToOutline = true
         }
 
         override fun requestAudioDucking(level: Float) {
