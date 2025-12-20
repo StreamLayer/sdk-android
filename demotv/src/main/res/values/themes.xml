@@ -1,0 +1,20 @@
+<resources>
+    <style name="Theme.StreamLayerTV" parent="Theme.MaterialComponents.NoActionBar" />
+
+    <style name="TVMainOverlayTheme" parent="StreamLayerSDK_MainTheme">
+        <item name="slrOverlayCornerRadius">0dp</item>
+        <item name="slrOverlayOutlineColor">@android:color/transparent</item>
+        <item name="slrToolbarPortraitBackground">@android:color/transparent</item>
+        <item name="slrToolbarDividerColor">@android:color/transparent</item>
+        <item name="slrSwipeHandleColor">@android:color/transparent</item>
+        <item name="slrOverlayCloseButtonStyle">@style/StreamLayerSDK_CloseButtonStyle</item>
+        <item name="slrOverlayMainBackground">@drawable/slr_bg_main_overlay_sheet</item>
+        <item name="slrOverlayMainBackgroundColor">@color/slr_overlay_container_background</item>
+        <item name="slrOverlayMainPortraitBackground">@android:color/transparent</item>
+        <item name="slrOverlayBackground">@android:color/transparent</item>
+        <item name="slrOverlayInnerShadowBackground">@android:color/transparent</item>
+        <item name="slrOverlayInnerBackground">@android:color/transparent</item>
+        <item name="slrOverlayInnerBackgroundColor">@android:color/transparent</item>
+        <item name="slrLBarBackgroundColor">@android:color/transparent</item>
+    </style>
+</resources>
