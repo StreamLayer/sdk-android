@@ -2,7 +2,8 @@ package io.streamlayer.demotv
 import android.app.Application
 import io.streamlayer.sdk.SLRTheme
 import io.streamlayer.sdk.StreamLayer
-import io.streamlayer.sdk.media3.StreamLayerMedia3Player
+import io.streamlayer.sdk.exoplayer.StreamLayerExoPlayer
+//import io.streamlayer.sdk.media3.StreamLayerMedia3Player
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,7 +28,8 @@ class App : Application() {
             )
         )
         StreamLayer.setInvitesEnabled(false)
-        StreamLayerMedia3Player.initSdk(this)
+        StreamLayerExoPlayer.initSdk(this)
+//        StreamLayerMedia3Player.initSdk(this) // in case media3
         // If you need anonymous authorization
         if (!StreamLayer.isUserAuthorized()) {
             CoroutineScope(Dispatchers.IO).launch {

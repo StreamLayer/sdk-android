@@ -11,7 +11,11 @@ android {
         minSdk = 23
         versionCode = 1
         versionName = "1"
-        buildConfigField("String", "SL_SDK_KEY", "\"2eb26d69d71c99e18efb2b7e17d43cbd39694b8b8db176208babb1ed13c546a4\"")
+        buildConfigField(
+            "String",
+            "SL_SDK_KEY",
+            "\"2eb26d69d71c99e18efb2b7e17d43cbd39694b8b8db176208babb1ed13c546a4\""
+        )
     }
 
     buildFeatures {
@@ -45,18 +49,21 @@ val Project.versions: Map<String, Any>
 
 dependencies {
     implementation(project(":common"))
-    val streamlayer = versions["streamlayer"] as String // latest 2.19.0-beta.68 for now
-    val appcompat  = versions["appcompat"] as String
-    val coreKtx=  versions["appcompat"] as String
-    val constraintlayout=  versions["constraintlayout"] as String
-    val fragment=  versions["fragment"] as String
+    val streamlayer =
+        versions["streamlayer"] as String // latest 2.19.0-beta.73-kotlin1.9.23 for now
+    val appcompat = versions["appcompat"] as String
+    val coreKtx = versions["appcompat"] as String
+    val constraintlayout = versions["constraintlayout"] as String
+    val fragment = versions["fragment"] as String
 
     implementation("androidx.appcompat:appcompat:$appcompat")
     implementation("androidx.core:core-ktx:$coreKtx")
     implementation("androidx.constraintlayout:constraintlayout:$constraintlayout")
     implementation("androidx.fragment:fragment-ktx:$fragment")
     implementation("io.streamlayer:androidsdk:$streamlayer")
-    implementation("io.streamlayer:android-media3:$streamlayer")
+//    implementation("io.streamlayer:android-media3:$streamlayer")  // in case media3
+    implementation("io.streamlayer:android-exoplayer:${streamlayer}")
+
     // if you need google pal, but be aware because it's adding additional dependencies
     // to com.google.android.gms:play-services-pal:23.0.0
     // reed https://developers.google.com/ad-manager/pal/android/get-started?hl=en

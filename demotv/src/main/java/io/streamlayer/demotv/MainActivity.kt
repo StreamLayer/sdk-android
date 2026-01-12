@@ -12,9 +12,11 @@ import androidx.lifecycle.coroutineScope
 import io.streamlayer.common.extensions.gone
 import io.streamlayer.common.extensions.visible
 import io.streamlayer.common.extensions.visibleIf
+import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demotv.databinding.MainActivityBinding
 import io.streamlayer.sdk.SLRAppHost
+import io.streamlayer.sdk.StreamLayer.getSLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 import io.streamlayer.sdk.StreamLayerAd
 import kotlinx.coroutines.flow.Flow
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
                 SLRAppHost.ActionShown.Source.OVERLAY -> Unit
                 SLRAppHost.ActionShown.Source.WATCH_PARTY_RETURN_BUTTON -> Unit
                 SLRAppHost.ActionShown.Source.FULL_BLEED -> {
-                    binding.playerButton.visibleIf(!action.isShown)
+                    // do your action
                 }
             }
         }
@@ -97,22 +99,33 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(LayoutInflater.from(this)).apply {
             setContentView(root)
+            exoHelper.init("https://205101.global.ssl.fastly.net/64e4ef822551090422066aca/live_fcfd3450bb8d11ef82d663692ed1f6c4/index.m3u8")
+            playerView.player = exoHelper.player
+            playerButton.gone()
             playerButton.setOnClickListener {
+                playerView.player?.play()
                 playerButton.gone()
+                StreamLayerAd.hide()
                 StreamLayerAd.cancel()
             }
             playerView.setOnClickListener {
+                playerView.player?.pause()
                 playerButton.visible()
-                //Example how to start Ad paused
-                lifecycle.coroutineScope.launch {
-                    StreamLayerAd.googlePal {
-                        viewFullScreen()
-                        contentVastUrl("vast_url")
-                        resumeButtonImage()
-                    }.onSuccess {
-                        // hide your views if needed
-                    }.onFailure {
-                        // do you logic
+                getSLRAppHost()?.run {
+                    //Do your logic
+                    if (currentOverlay() == SLRAppHost.OverlayType.Ad
+                        || isAnyOverlayShown
+                    ) return@setOnClickListener
+                    //Example how to start Ad paused
+                    lifecycle.coroutineScope.launch {
+                        StreamLayerAd.googlePal {
+                            viewFullScreen()
+                            contentVastUrl("https://storage.googleapis.com/roku.streamlayer.io/pause-ads/vast/pause_ad_vast.xml")
+                        }.onSuccess {
+                            // hide your views if needed
+                        }.onFailure {
+                            // do you logic
+                        }
                     }
                 }
             }
@@ -126,6 +139,7 @@ class MainActivity : AppCompatActivity() {
             isWhoIsWatchingViewEnabled = false
             isGamesPointsEnabled = false
             setRootViewGroup(binding.root)
+            adDelay(0) // Default 3000 ms
         }
     }
 }
