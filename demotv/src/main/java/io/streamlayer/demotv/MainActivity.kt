@@ -2,6 +2,7 @@ package io.streamlayer.demotv
 
 import android.graphics.Outline
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewOutlineProvider
@@ -9,18 +10,28 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import io.streamlayer.common.extensions.gone
+import io.streamlayer.common.extensions.toast
 import io.streamlayer.common.extensions.visible
-import io.streamlayer.common.extensions.visibleIf
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
 import io.streamlayer.demotv.databinding.MainActivityBinding
 import io.streamlayer.sdk.SLRAppHost
+import io.streamlayer.sdk.SLREventSession
+import io.streamlayer.sdk.SLRTimeCodeProvider
+import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.StreamLayer.getSLRAppHost
 import io.streamlayer.sdk.StreamLayer.withStreamLayerUI
 import io.streamlayer.sdk.StreamLayerAd
+import io.streamlayer.sdk.StreamLayerDemo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,6 +40,10 @@ class MainActivity : AppCompatActivity() {
     private val exoHelper: ExoPlayerHelper by lazy {
         ExoPlayerHelper(this, getString(R.string.app_name))
     }
+
+    // event session helper
+    private var createEventSessionJob: Job? = null
+    private var eventSession: SLREventSession? = null
 
     private val appHostDelegate = object : SLRAppHost.Delegate {
         //StreamLayer sdk notify what overlay is shown or closed.
@@ -51,6 +66,11 @@ class MainActivity : AppCompatActivity() {
                     //Stream Layer sdk requested player start to play
                     // start play video player
                     binding.playerButton.gone()
+                    true
+                }
+
+                SLRAppHost.ActionClicked.Source.BACK_BUTTON -> {
+                    //do your action
                     true
                 }
             }
@@ -99,7 +119,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(LayoutInflater.from(this)).apply {
             setContentView(root)
-            exoHelper.init("https://205101.global.ssl.fastly.net/64e4ef822551090422066aca/live_fcfd3450bb8d11ef82d663692ed1f6c4/index.m3u8")
+            loadDemoStream()
             playerView.player = exoHelper.player
             playerButton.gone()
             playerButton.setOnClickListener {
@@ -116,18 +136,27 @@ class MainActivity : AppCompatActivity() {
                     if (currentOverlay() == SLRAppHost.OverlayType.Ad
                         || isAnyOverlayShown
                     ) return@setOnClickListener
-                    //Example how to start Ad paused
+                    //Example how to show prefetched Ad paused
                     lifecycle.coroutineScope.launch {
                         StreamLayerAd.googlePal {
-                            viewFullScreen()
-                            contentVastUrl("https://storage.googleapis.com/roku.streamlayer.io/pause-ads/vast/pause_ad_vast.xml")
-                        }.onSuccess {
-                            // hide your views if needed
-                        }.onFailure {
-                            // do you logic
+                            showPrefetchedAd()
                         }
                     }
                 }
+            }
+        }
+
+        lifecycle.coroutineScope.launch {
+            StreamLayerAd.googlePal {
+                //it will fetch time interval 1 hour by default, setupPrefetch(Long) milliseconds
+                setupPrefetch()
+                viewFullScreen()
+                contentVastUrl("https://storage.googleapis.com/roku.streamlayer.io/pause-ads/vast/pause_ad_vast.xml")
+                overrideBackPressed()
+            }.onSuccess {
+                // hide your views if needed
+            }.onFailure {
+                // do you logic
             }
         }
         // Setup StreamLayer Ui
@@ -141,5 +170,53 @@ class MainActivity : AppCompatActivity() {
             setRootViewGroup(binding.root)
             adDelay(0) // Default 3000 ms
         }
+    }
+
+    // load demo streams and select first
+    private fun loadDemoStream() {
+        lifecycleScope.launch {
+            // don't change date - it's for testing purposes
+            val result =
+                withContext(Dispatchers.IO) { kotlin.runCatching { StreamLayerDemo.getDemoStreams("2022-01-01") } }
+            result.getOrNull()?.let { list ->
+                Log.i(TAG, "Demo streams $list")
+                list.firstOrNull()?.let { demoStream ->
+                    Log.i(TAG, "Demo stream $demoStream")
+                    exoHelper.init(demoStream.stream.ifEmpty { DEMO_HLS_STREAM })
+                    createEventSession(demoStream.eventId.toString())
+                }
+            } ?: kotlin.run {
+                result.exceptionOrNull()?.let { Log.e(TAG, "can not load stream", it) }
+                toast("Can not load stream")
+            }
+        }
+    }
+
+    // create a new event session
+    private fun createEventSession(id: String) {
+        if (eventSession?.getExternalEventId() == id) return
+        createEventSessionJob?.cancel()
+        createEventSessionJob = lifecycleScope.launch {
+            try {
+                eventSession?.release()
+                eventSession = StreamLayer.createEventSession(id, object : SLRTimeCodeProvider {
+                    override fun getEpochTimeCodeInMillis() = exoHelper.getEpochTimeCodeInMillis()
+                })
+            } catch (t: Throwable) {
+                Log.e(TAG, "createEventSession failed:", t)
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        createEventSessionJob?.cancel()
+        eventSession?.release()
+        //will stop prefect Ad
+        lifecycle.coroutineScope.launch {
+            StreamLayerAd.googlePal {
+                stopPrefetchAd()
+            }
+        }
+        super.onDestroy()
     }
 }

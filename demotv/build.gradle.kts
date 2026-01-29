@@ -14,7 +14,7 @@ android {
         buildConfigField(
             "String",
             "SL_SDK_KEY",
-            "\"2eb26d69d71c99e18efb2b7e17d43cbd39694b8b8db176208babb1ed13c546a4\""
+            "\"679acc583ca0ad3ae5114a9a50a1646179cdc11f93c210277b30b8e3a807e92d\""
         )
     }
 
