@@ -169,6 +169,11 @@ class MainActivity : AppCompatActivity() {
             isGamesPointsEnabled = false
             setRootViewGroup(binding.root)
             adDelay(0) // Default 3000 ms
+            binding.playerView.let { playerView ->
+                playerView.post {
+                    setPlayerViewSize(playerView.width, playerView.height)
+                }
+            }
         }
     }
 
