@@ -50,7 +50,7 @@ val Project.versions: Map<String, Any>
 dependencies {
     implementation(project(":common"))
     val streamlayer =
-        versions["streamlayer"] as String // latest 2.19.0-beta.73-kotlin1.9.23 for now
+        versions["streamlayer"] as String // latest 2.20.0-beta.9-kotlin1.9.23 for now
     val appcompat = versions["appcompat"] as String
     val coreKtx = versions["appcompat"] as String
     val constraintlayout = versions["constraintlayout"] as String

@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity() {
                 //it will fetch time interval 1 hour by default, setupPrefetch(Long) milliseconds
                 setupPrefetch()
                 viewFullScreen()
-                contentVastUrl("https://storage.googleapis.com/roku.streamlayer.io/pause-ads/vast/pause_ad_vast.xml")
+                contentVastUrl("https://roku.streamlayer.io/pause-ads/vast/non-linear-1.xml")
                 overrideBackPressed()
             }.onSuccess {
                 // hide your views if needed

@@ -1,5 +1,6 @@
 package io.streamlayer.demotv
 import android.app.Application
+import io.streamlayer.sdk.SLRLogListener
 import io.streamlayer.sdk.SLRTheme
 import io.streamlayer.sdk.StreamLayer
 import io.streamlayer.sdk.exoplayer.StreamLayerExoPlayer
@@ -27,6 +28,12 @@ class App : Application() {
                 baseTheme = R.style.TVMainOverlayTheme
             )
         )
+        StreamLayer.setLogcatLoggingEnabled(true)
+        StreamLayer.setLogListener(object : SLRLogListener{
+            override fun log(level: SLRLogListener.Level, msg: String) {
+                println("CHECK_LOG $msg")
+            }
+        })
         StreamLayer.setInvitesEnabled(false)
         StreamLayerExoPlayer.initSdk(this)
 //        StreamLayerMedia3Player.initSdk(this) // in case media3
