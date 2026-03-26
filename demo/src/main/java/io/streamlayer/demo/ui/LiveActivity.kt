@@ -28,7 +28,7 @@ import io.streamlayer.common.extensions.windowController
 import io.streamlayer.demo.R
 import io.streamlayer.demo.common.DEMO_HLS_STREAM
 import io.streamlayer.demo.common.exo.ExoPlayerHelper
-import io.streamlayer.demo.common.ext.*
+import io.streamlayer.demo.common.ext.DoubleTapListener
 import io.streamlayer.demo.databinding.ActivityLiveBinding
 import io.streamlayer.sdk.SLRAppHost
 import io.streamlayer.sdk.SLREventSession
@@ -375,6 +375,7 @@ class LiveActivity : AppCompatActivity(), StreamLayerInviteFragment.Listener {
                 eventSession?.release()
                 eventSession = StreamLayer.createEventSession(id, object : SLRTimeCodeProvider {
                     override fun getEpochTimeCodeInMillis() = exoHelper.getEpochTimeCodeInMillis()
+                    override fun getTotalDurationInMillis(): Long = exoHelper.totalDuration()
                 })
             } catch (t: Throwable) {
                 Log.e(TAG, "createEventSession failed:", t)

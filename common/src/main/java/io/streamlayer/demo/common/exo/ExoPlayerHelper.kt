@@ -123,4 +123,6 @@ class ExoPlayerHelper(private val context: Context, private val appName: String)
         ).windowStartTimeMs + player.currentPosition
         else player.currentPosition
     }
+
+    fun totalDuration(): Long = player.duration
 }

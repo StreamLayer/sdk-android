@@ -139,26 +139,25 @@ class MainActivity : AppCompatActivity() {
                     //Example how to show prefetched Ad paused
                     lifecycle.coroutineScope.launch {
                         StreamLayerAd.googlePal {
-                            showPrefetchedAd()
+                            viewFullScreen()
+                            webView {
+                                host = "https://bell-ad.streamlayer.io/"
+                                url =
+                                    "https://pubads.g.doubleclick.net/gampad/ads?iu=/23213969138/adxvsporta&description_url=http%3A%2F%2Fstreamlayer.io&tfcd=0&npa=0&sz=400x300%7C640x480%7C640x480&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator="
+                                platformtype = "androidtv" // or "amazonfire", "googletv"
+                                platform = "cotv"
+                                pagetype = "playerpage"
+                                product = "tsn"
+                                content = "na_cfl-news-and-highlights"
+                                npa = 0
+                                islat = 0
+                            }
                         }
                     }
                 }
             }
         }
 
-        lifecycle.coroutineScope.launch {
-            StreamLayerAd.googlePal {
-                //it will fetch time interval 1 hour by default, setupPrefetch(Long) milliseconds
-                setupPrefetch()
-                viewFullScreen()
-                contentVastUrl("https://roku.streamlayer.io/pause-ads/vast/non-linear-1.xml")
-                overrideBackPressed()
-            }.onSuccess {
-                // hide your views if needed
-            }.onFailure {
-                // do you logic
-            }
-        }
         // Setup StreamLayer Ui
         withStreamLayerUI {
             overlayLandscapeMode = SLRAppHost.OverlayLandscapeMode.LBAR
@@ -206,6 +205,7 @@ class MainActivity : AppCompatActivity() {
                 eventSession?.release()
                 eventSession = StreamLayer.createEventSession(id, object : SLRTimeCodeProvider {
                     override fun getEpochTimeCodeInMillis() = exoHelper.getEpochTimeCodeInMillis()
+                    override fun getTotalDurationInMillis(): Long = exoHelper.totalDuration()
                 })
             } catch (t: Throwable) {
                 Log.e(TAG, "createEventSession failed:", t)
@@ -216,12 +216,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         createEventSessionJob?.cancel()
         eventSession?.release()
-        //will stop prefect Ad
-        lifecycle.coroutineScope.launch {
-            StreamLayerAd.googlePal {
-                stopPrefetchAd()
-            }
-        }
         super.onDestroy()
     }
 }

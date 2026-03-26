@@ -31,7 +31,6 @@ class App : Application() {
         StreamLayer.setLogcatLoggingEnabled(true)
         StreamLayer.setLogListener(object : SLRLogListener{
             override fun log(level: SLRLogListener.Level, msg: String) {
-                println("CHECK_LOG $msg")
             }
         })
         StreamLayer.setInvitesEnabled(false)
