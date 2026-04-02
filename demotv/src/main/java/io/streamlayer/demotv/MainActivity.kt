@@ -143,14 +143,7 @@ class MainActivity : AppCompatActivity() {
                             webView {
                                 host = "https://bell-ad.streamlayer.io/"
                                 url =
-                                    "https://pubads.g.doubleclick.net/gampad/ads?iu=/23213969138/adxvsporta&description_url=http%3A%2F%2Fstreamlayer.io&tfcd=0&npa=0&sz=400x300%7C640x480%7C640x480&gdfp_req=1&unviewed_position_start=1&output=vast&env=vp&impl=s&correlator="
-                                platformtype = "androidtv" // or "amazonfire", "googletv"
-                                platform = "cotv"
-                                pagetype = "playerpage"
-                                product = "tsn"
-                                content = "na_cfl-news-and-highlights"
-                                npa = 0
-                                islat = 0
+                                    "https://securepubads.g.doubleclick.net/gampad/ads?ad_rule=0&an=tsn&correlator=1774963552&description_url=https://www.tsn.ca/&env=instream&gdfp_req=1&hl=en&idtype=tifa&is_lat=true&iu=/5479/tsn_tsndigital_cotv_samsungtv/playerpage/na_nba-on-tsn&cust_params=envr%3Ddev%26contentrating%3Dagvote%2Cqfrg%26genre%3Dbasketball%26adtarget%3D%26subtype%3Dtsn%2Ctsn2%2Ctsn2_bdu%2Ctsn_bdu%26pagetitle%3Dnba-on-tsn-mavericks-vs-rockets%26mediatype%3Dsports%26contenttype%3Dgame%26revshare%3Dna%26lang%3Den%26adrule%3D&msid=ca.tsn.tsngo&output=ldjh&pp=app_profile&rdid=&sz=315x400&tfcd=0&unviewed_position_start=1&url=ca.tsn.tsngo&vid=8243165&sid=a3098bb7-ae67-4d8c-b4be-3309cf64ca0d&impl=s&video_doc_id=8243165&scor=879066875&npa=0&wta=1&plcmt=1"
                             }
                         }
                     }
